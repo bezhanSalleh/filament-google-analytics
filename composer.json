@@ -1,24 +1,31 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "bezhansalleh/filament-google-analytics",
+    "description": "Google Analytics integration with Filamentphp (FilamentAdmin)",
     "keywords": [
-        ":vendor_name",
+        "bezhanSalleh",
         "laravel",
-        ":package_slug"
+        "filament-google-analytics",
+        "google-analytics",
+        "analytics",
+        "filamentadmin",
+        "filament-plugin",
+        "php",
+        "livewire"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/bezhansalleh/filament-google-analytics",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Bezhan Salleh",
+            "email": "bezhan_salleh@yahoo.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.0",
-        "spatie/laravel-package-tools": "^1.9.2",
-        "illuminate/contracts": "^9.0"
+        "illuminate/contracts": "^9.0",
+        "spatie/laravel-analytics": "^4.1",
+        "spatie/laravel-package-tools": "^1.9.2"
     },
     "require-dev": {
         "nunomaduro/collision": "^6.0",
@@ -34,13 +41,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "BezhanSalleh\\FilamentGoogleAnalytics\\": "src",
+            "BezhanSalleh\\FilamentGoogleAnalytics\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "BezhanSalleh\\FilamentGoogleAnalytics\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -54,10 +61,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "BezhanSalleh\\FilamentGoogleAnalytics\\FilamentGoogleAnalyticsServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "FilamentGoogleAnalytics": "BezhanSalleh\\FilamentGoogleAnalytics\\Facades\\FilamentGoogleAnalytics"
             }
         }
     },

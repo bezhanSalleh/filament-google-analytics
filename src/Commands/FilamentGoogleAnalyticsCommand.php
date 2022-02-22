@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace BezhanSalleh\FilamentGoogleAnalytics\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentGoogleAnalyticsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-google-analytics';
 
     public $description = 'My command';
 
