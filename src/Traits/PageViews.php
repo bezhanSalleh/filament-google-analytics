@@ -157,6 +157,7 @@ trait PageViews
            'icon' => $icon,
        ];
     }
+    
     public function pageViewsCard(): Card
     {
         return Card::make('Page Views', $this->getCardStats()['value'])
