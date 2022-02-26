@@ -5,19 +5,10 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/bezhansalleh/filament-google-analytics/Check%20&%20fix%20styling?label=code%20style)](https://github.com/bezhansalleh/filament-google-analytics/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/bezhansalleh/filament-google-analytics.svg?style=flat-square)](https://packagist.org/packages/bezhansalleh/filament-google-analytics)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/filament-google-analytics.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/filament-google-analytics)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
 ## Installation
 
-You can install the package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
+You can install the package in to a Laravel app that uses [Filament](https://filamentphp.com) via composer:
 
 ```bash
 composer require bezhansalleh/filament-google-analytics
@@ -36,18 +27,24 @@ ANALYTICS_VIEW_ID=
 ```
 ## Usage
 
-You must enable the widgets you want to display with Filament. By uncommenting the widgets you want in the config file.
+You must enable the widgets you want to display with Filament. By uncommenting them in the config file.
 
 ## Features
 #### View the Visitors and Pageview Metrics
+<img width="756" alt="Screen Shot 2022-02-26 at 12 35 41 PM" src="https://user-images.githubusercontent.com/10007504/155835519-d1fbb973-110d-4341-af50-8f5abea5f2f4.png">
 
 #### View the Active Users Metrics
+<img width="773" alt="Screen Shot 2022-02-26 at 12 48 57 PM" src="https://user-images.githubusercontent.com/10007504/155835949-beb4de3f-4d93-4f92-88fa-dd1678b907c8.png">
+
 
 #### View the Sessions and Avg. Session Duration Metrics
+<img width="756" alt="Screen Shot 2022-02-26 at 12 37 42 PM" src="https://user-images.githubusercontent.com/10007504/155835567-d88b644e-8f73-4c9d-b513-2abf2e704a16.png">
 
 #### View the Devices and Country Metrics by Session (WIP)
+<img width="850" alt="Screen Shot 2022-02-26 at 12 44 00 PM" src="https://user-images.githubusercontent.com/10007504/155835896-e20c4f8b-1cb1-4c5c-bb41-344025fbbf7a.png">
 
 #### View the lists of Most Visited Pages and Referrers
+<img width="902" alt="Screen Shot 2022-02-26 at 12 44 34 PM" src="https://user-images.githubusercontent.com/10007504/155835898-debb3935-81d4-4963-9b02-9734230be387.png">
 
 ## Changelog
 
