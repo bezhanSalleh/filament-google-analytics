@@ -13,8 +13,6 @@ class PageViewsAndVisitorsWidget extends BaseWidget
     use Traits\Visitors;
     use Traits\PageViews;
 
-    // protected int | string | array $columnSpan = 1;
-
     public ?array $filters = [
         'page-views' => 'T',
         'visitors' => 'T'

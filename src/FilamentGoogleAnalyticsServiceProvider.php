@@ -12,6 +12,8 @@ class FilamentGoogleAnalyticsServiceProvider extends PluginServiceProvider
         Widgets\PageViewsAndVisitorsWidget::class,
         Widgets\ActiveUsersStatsOverviewWidget::class,
         Widgets\SessionsAndSessionsDurationWidget::class,
+        Widgets\SessionsByCountryWidget::class,
+        Widgets\SessionsByDeviceWidget::class,
         Widgets\MostVisitedPagesWidget::class,
         Widgets\TopReferrersListWidget::class,
     ];

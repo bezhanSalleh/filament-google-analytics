@@ -17,50 +17,37 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 
 ## Installation
 
-You can install the package via composer:
+You can install the package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
 
 ```bash
 composer require bezhansalleh/filament-google-analytics
 ```
 
-You can publish and run the migrations with:
+For now, follow the directions on [Spatie's Laravel Google Analytics package](https://github.com/spatie/laravel-analytics) for getting your credentials, then put them here:
 
-```bash
-php artisan vendor:publish --tag="filament-google-analytics-migrations"
-php artisan migrate
+```
+yourapp/storage/app/analytics/service-account-credentials.json
 ```
 
-You can publish the config file with:
+Also add this to the `.env` for your Nova app:
 
-```bash
-php artisan vendor:publish --tag="filament-google-analytics-config"
+```ini
+ANALYTICS_VIEW_ID=
 ```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-google-analytics-views"
-```
-
 ## Usage
 
-```php
-$filamentGoogleAnalytics = new BezhanSalleh\FilamentGoogleAnalytics();
-echo $filamentGoogleAnalytics->echoPhrase('Hello, BezhanSalleh!');
-```
+You must enable the widgets you want to display with Filament. By uncommenting the widgets you want in the config file.
 
-## Testing
+## Features
+#### View the Visitors and Pageview Metrics
 
-```bash
-composer test
-```
+#### View the Active Users Metrics
+
+#### View the Sessions and Avg. Session Duration Metrics
+
+#### View the Devices and Country Metrics by Session (WIP)
+
+#### View the lists of Most Visited Pages and Referrers
 
 ## Changelog
 
@@ -77,6 +64,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## Credits
 
 - [Bezhan Salleh](https://github.com/bezhanSalleh)
+- [Laravel Analytics](https://github.com/spatie/laravel-analytics) By [Spatie](https://github.com/spatie)
+- [Nova Google Analytics](https://github.com/tighten/nova-google-analytics) By [Tighten](https://github.com/tighten)
 - [All Contributors](../../contributors)
 
 ## License
