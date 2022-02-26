@@ -1,4 +1,10 @@
-# Google Analytics integration with Filamentphp (FilamentAdmin)
+# Filament Analytics
+Google Analytics integration for Filament
+
+(WIP)
+- Configuration(abilitiy to enable or disable)
+- Translations
+- Improve the design
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/bezhansalleh/filament-google-analytics.svg?style=flat-square)](https://packagist.org/packages/bezhansalleh/filament-google-analytics)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/bezhansalleh/filament-google-analytics/run-tests?label=tests)](https://github.com/bezhansalleh/filament-google-analytics/actions?query=workflow%3Arun-tests+branch%3Amain)
