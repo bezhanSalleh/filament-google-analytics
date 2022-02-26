@@ -3,8 +3,8 @@
 namespace BezhanSalleh\FilamentGoogleAnalytics\Traits;
 
 use Carbon\Carbon;
-use Spatie\Analytics\Period;
 use Spatie\Analytics\Analytics;
+use Spatie\Analytics\Period;
 
 trait PageViews
 {

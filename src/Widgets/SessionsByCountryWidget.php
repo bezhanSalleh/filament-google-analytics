@@ -2,10 +2,10 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Illuminate\Support\Str;
-use Spatie\Analytics\Period;
-use Spatie\Analytics\Analytics;
 use Filament\Widgets\DoughnutChartWidget;
+use Illuminate\Support\Str;
+use Spatie\Analytics\Analytics;
+use Spatie\Analytics\Period;
 
 class SessionsByCountryWidget extends DoughnutChartWidget
 {
@@ -19,19 +19,22 @@ class SessionsByCountryWidget extends DoughnutChartWidget
     {
         return 'Sessions By Country - Top 5 '. $this->total;
     }
+
     protected function getData(): array
     {
-
-        $analyticsData = app(Analytics::class)->performQuery( Period::months(1),'ga:sessions',[
+        $analyticsData = app(Analytics::class)->performQuery(
+            Period::months(1),
+            'ga:sessions',
+            [
                     'metrics' => 'ga:sessions',
                     'dimensions' => 'ga:country',
                     'sort' => '-ga:sessions',
                     'max-results' => 5,
                 ]
-            );
+        );
 
         $results = [];
-        foreach(collect($analyticsData->getRows()) as $row) {
+        foreach (collect($analyticsData->getRows()) as $row) {
             $results[Str::studly($row[0])] = $row[1];
         }
         $this->total = number_format($analyticsData->totalsForAllResults['ga:sessions']);
@@ -40,14 +43,14 @@ class SessionsByCountryWidget extends DoughnutChartWidget
             'labels' => array_keys($results),
             'datasets' => [
                 [
-                    'label' =>  'Country',
-                    'data' => array_map('intval',array_values($results)),
+                    'label' => 'Country',
+                    'data' => array_map('intval', array_values($results)),
                     'backgroundColor' => [
                         '#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe',
                     ],
                     'cutout' => '75%',
                     'hoverOffset' => 4,
-                    'borderColor' => '#fff'
+                    'borderColor' => '#fff',
 
                 ],
             ],
@@ -59,19 +62,19 @@ class SessionsByCountryWidget extends DoughnutChartWidget
         return [
             'plugins' => [
                 'legend' => [
-                    'display'=> true,
+                    'display' => true,
                     'position' => 'left',
                     'align' => 'bottom',
                     'labels' => [
                         'usePointStyle' => true,
-                    ]
-                ]
+                    ],
+                ],
             ],
             'maintainAspectRatio' => false,
             'radius' => '70%',
             'borderRadius' => 4,
             'cutout' => 95,
-            'scaleBeginAtZero' => true
+            'scaleBeginAtZero' => true,
         ];
     }
 }

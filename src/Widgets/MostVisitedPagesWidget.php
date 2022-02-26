@@ -3,8 +3,8 @@
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
 use Filament\Widgets\Widget;
-use Spatie\Analytics\Period;
 use Spatie\Analytics\Analytics;
+use Spatie\Analytics\Period;
 
 class MostVisitedPagesWidget extends Widget
 {

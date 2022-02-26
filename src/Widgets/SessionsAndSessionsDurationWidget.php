@@ -2,12 +2,11 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Carbon\Carbon;
-use Illuminate\Support\Arr;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits;
-use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
-use BezhanSalleh\FilamentGoogleAnalytics\Widgets\GoogleAnalyticsCard;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits;
+use Carbon\Carbon;
+use Filament\Widgets\StatsOverviewWidget as BaseWidget;
+use Illuminate\Support\Arr;
 
 class SessionsAndSessionsDurationWidget extends BaseWidget
 {
@@ -16,7 +15,7 @@ class SessionsAndSessionsDurationWidget extends BaseWidget
 
     public ?array $filters = [
         'sessions' => 'T',
-        'sessions-duration' => 'T'
+        'sessions-duration' => 'T',
     ];
 
     protected function getCards(): array
@@ -33,11 +32,11 @@ class SessionsAndSessionsDurationWidget extends BaseWidget
                 ->color($this->getContent()['color'])
                 ->description($this->getContent()['description'])
                 ->descriptionIcon($this->getContent()['icon'])
-                ->filters($this->filters())
+                ->filters($this->filters()),
         ];
     }
 
-    public function updatedFilters($value,$key)
+    public function updatedFilters($value, $key)
     {
         if ($key === 'sessions') {
             $this->filters['sessions'] = $value;
@@ -53,12 +52,12 @@ class SessionsAndSessionsDurationWidget extends BaseWidget
     public function initializeSessionsContent()
     {
         $lookups = [
-            'T' =>  $this->sessionsToday(),
-            'Y' =>  $this->sessionsYesterday(),
-            'LW'    =>  $this->sessionsLastWeek(),
-            'LM'    =>  $this->sessionsLastMonth(),
-            'LSD'   =>  $this->sessionsLastSevenDays(),
-            'LTD'   =>  $this->sessionsLastThirtyDays(),
+            'T' => $this->sessionsToday(),
+            'Y' => $this->sessionsYesterday(),
+            'LW' => $this->sessionsLastWeek(),
+            'LM' => $this->sessionsLastMonth(),
+            'LSD' => $this->sessionsLastSevenDays(),
+            'LTD' => $this->sessionsLastThirtyDays(),
         ];
 
         $data = Arr::get(
@@ -93,12 +92,12 @@ class SessionsAndSessionsDurationWidget extends BaseWidget
     public function initializeContent()
     {
         $lookups = [
-            'T' =>  $this->sessionDurationToday(),
-            'Y' =>  $this->sessionDurationYesterday(),
-            'LW'    =>  $this->sessionDurationLastWeek(),
-            'LM'    =>  $this->sessionDurationLastMonth(),
-            'LSD'   =>  $this->sessionDurationLastSevenDays(),
-            'LTD'   =>  $this->sessionDurationLastThirtyDays(),
+            'T' => $this->sessionDurationToday(),
+            'Y' => $this->sessionDurationYesterday(),
+            'LW' => $this->sessionDurationLastWeek(),
+            'LM' => $this->sessionDurationLastMonth(),
+            'LSD' => $this->sessionDurationLastSevenDays(),
+            'LTD' => $this->sessionDurationLastThirtyDays(),
         ];
 
         $data = Arr::get(
@@ -128,12 +127,12 @@ class SessionsAndSessionsDurationWidget extends BaseWidget
     public function filters(): array
     {
         return [
-            'T' =>  'Today',
-            'Y' =>  'Yesterday',
-            'LW'    =>  'Last Week',
-            'LM'    =>  'Last Month',
-            'LSD'   =>  'Last 7 Days',
-            'LTD'   =>  'Last 30 Days',
+            'T' => 'Today',
+            'Y' => 'Yesterday',
+            'LW' => 'Last Week',
+            'LM' => 'Last Month',
+            'LSD' => 'Last 7 Days',
+            'LTD' => 'Last 30 Days',
         ];
     }
 }

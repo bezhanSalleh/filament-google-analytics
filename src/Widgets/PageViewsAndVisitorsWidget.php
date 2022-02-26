@@ -2,11 +2,10 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Illuminate\Support\Arr;
+use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
-use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
-use BezhanSalleh\FilamentGoogleAnalytics\Widgets\GoogleAnalyticsCard;
+use Illuminate\Support\Arr;
 
 class PageViewsAndVisitorsWidget extends BaseWidget
 {
@@ -15,7 +14,7 @@ class PageViewsAndVisitorsWidget extends BaseWidget
 
     public ?array $filters = [
         'page-views' => 'T',
-        'visitors' => 'T'
+        'visitors' => 'T',
     ];
 
     protected function getCards(): array
@@ -32,11 +31,11 @@ class PageViewsAndVisitorsWidget extends BaseWidget
                 ->color($this->getPageViewContent()['color'])
                 ->description($this->getPageViewContent()['description'])
                 ->descriptionIcon($this->getPageViewContent()['icon'])
-                ->filters($this->filters())
+                ->filters($this->filters()),
         ];
     }
 
-    public function updatedFilters($value,$key)
+    public function updatedFilters($value, $key)
     {
         if ($key === 'visitors') {
             $this->filters['visitors'] = $value;
@@ -52,12 +51,12 @@ class PageViewsAndVisitorsWidget extends BaseWidget
     public function initializeContent()
     {
         $lookups = [
-            'T' =>  $this->visitorsToday(),
-            'Y' =>  $this->visitorsYesterday(),
-            'LW'    =>  $this->visitorsLastWeek(),
-            'LM'    =>  $this->visitorsLastMonth(),
-            'LSD'   =>  $this->visitorsLastSevenDays(),
-            'LTD'   =>  $this->visitorsLastThirtyDays(),
+            'T' => $this->visitorsToday(),
+            'Y' => $this->visitorsYesterday(),
+            'LW' => $this->visitorsLastWeek(),
+            'LM' => $this->visitorsLastMonth(),
+            'LSD' => $this->visitorsLastSevenDays(),
+            'LTD' => $this->visitorsLastThirtyDays(),
         ];
 
         $data = Arr::get(
@@ -92,12 +91,12 @@ class PageViewsAndVisitorsWidget extends BaseWidget
     public function initializePageViewContent()
     {
         $lookups = [
-            'T' =>  $this->pageViewsToday(),
-            'Y' =>  $this->pageViewsYesterday(),
-            'LW'    =>  $this->pageViewsLastWeek(),
-            'LM'    =>  $this->pageViewsLastMonth(),
-            'LSD'   =>  $this->pageViewsLastSevenDays(),
-            'LTD'   =>  $this->pageViewsLastThirtyDays(),
+            'T' => $this->pageViewsToday(),
+            'Y' => $this->pageViewsYesterday(),
+            'LW' => $this->pageViewsLastWeek(),
+            'LM' => $this->pageViewsLastMonth(),
+            'LSD' => $this->pageViewsLastSevenDays(),
+            'LTD' => $this->pageViewsLastThirtyDays(),
         ];
 
         $data = Arr::get(
@@ -112,7 +111,6 @@ class PageViewsAndVisitorsWidget extends BaseWidget
         return FilamentGoogleAnalytics::for($data['result'])
             ->previous($data['previous'])
             ->format('%');
-
     }
 
     public function getPageViewContent(): array
@@ -128,12 +126,12 @@ class PageViewsAndVisitorsWidget extends BaseWidget
     public function filters(): array
     {
         return [
-            'T' =>  'Today',
-            'Y' =>  'Yesterday',
-            'LW'    =>  'Last Week',
-            'LM'    =>  'Last Month',
-            'LSD'   =>  'Last 7 Days',
-            'LTD'   =>  'Last 30 Days',
+            'T' => 'Today',
+            'Y' => 'Yesterday',
+            'LW' => 'Last Week',
+            'LM' => 'Last Month',
+            'LSD' => 'Last 7 Days',
+            'LTD' => 'Last 30 Days',
         ];
     }
 }

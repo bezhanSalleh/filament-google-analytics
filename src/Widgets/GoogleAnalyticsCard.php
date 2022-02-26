@@ -2,8 +2,8 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Illuminate\Contracts\View\View;
 use Filament\Widgets\StatsOverviewWidget\Card;
+use Illuminate\Contracts\View\View;
 
 class GoogleAnalyticsCard extends Card
 {

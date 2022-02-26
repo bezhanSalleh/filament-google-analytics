@@ -2,9 +2,9 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Tests;
 
+use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalyticsServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalyticsServiceProvider;
 
 class TestCase extends Orchestra
 {

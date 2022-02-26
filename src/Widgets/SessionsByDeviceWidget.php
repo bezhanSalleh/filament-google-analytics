@@ -2,10 +2,10 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Illuminate\Support\Str;
-use Spatie\Analytics\Period;
-use Spatie\Analytics\Analytics;
 use Filament\Widgets\DoughnutChartWidget;
+use Illuminate\Support\Str;
+use Spatie\Analytics\Analytics;
+use Spatie\Analytics\Period;
 
 class SessionsByDeviceWidget extends DoughnutChartWidget
 {
@@ -22,14 +22,17 @@ class SessionsByDeviceWidget extends DoughnutChartWidget
 
     protected function getData(): array
     {
-        $analyticsData = app(Analytics::class)->performQuery( Period::months(1),'ga:sessions',[
+        $analyticsData = app(Analytics::class)->performQuery(
+            Period::months(1),
+            'ga:sessions',
+            [
                 'metrics' => 'ga:sessions',
                 'dimensions' => 'ga:deviceCategory',
             ]
         );
 
         $results = [];
-        foreach(collect($analyticsData->getRows()) as $row) {
+        foreach (collect($analyticsData->getRows()) as $row) {
             $results[Str::studly($row[0])] = $row[1];
         }
 
@@ -39,8 +42,8 @@ class SessionsByDeviceWidget extends DoughnutChartWidget
             'labels' => array_keys($results),
             'datasets' => [
                 [
-                    'label' =>  'Device',
-                    'data' => array_map('intval',array_values($results)),
+                    'label' => 'Device',
+                    'data' => array_map('intval', array_values($results)),
                     'backgroundColor' => [
                         '#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe',
                     ],
@@ -58,20 +61,20 @@ class SessionsByDeviceWidget extends DoughnutChartWidget
         return [
             'plugins' => [
                 'legend' => [
-                    'display'=> true,
+                    'display' => true,
                     'position' => 'left',
                     'align' => 'bottom',
                     'labels' => [
                         'usePointStyle' => true,
-                    ]
-                ]
+                    ],
+                ],
             ],
 
             'maintainAspectRatio' => false,
             'radius' => '70%',
             'borderRadius' => 4,
             'cutout' => 95,
-            'scaleBeginAtZero' => true
+            'scaleBeginAtZero' => true,
         ];
     }
 }

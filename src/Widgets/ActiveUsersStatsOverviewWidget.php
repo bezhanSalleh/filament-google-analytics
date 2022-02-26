@@ -2,10 +2,10 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Illuminate\Support\Arr;
+use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
-use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
+use Illuminate\Support\Arr;
 
 class ActiveUsersStatsOverviewWidget extends BaseWidget
 {
@@ -40,19 +40,19 @@ class ActiveUsersStatsOverviewWidget extends BaseWidget
                 ->id('twenty-eight-day-active-users')
                 ->filters($this->filters())
                 ->chart($this->getTwentyEightDayActiveUsersContent()['chart'])
-                ->color($this->getTwentyEightDayActiveUsersContent()['color'])
+                ->color($this->getTwentyEightDayActiveUsersContent()['color']),
         ];
     }
 
-    public function updatedFilters($value,$key)
+    public function updatedFilters($value, $key)
     {
         if ($key === 'one-day-active-users') {
             $this->filters['one-day-active-users'] = $value;
             $this->initializeOneDayActiveUsersContent();
 
-            $this->dispatchBrowserEvent('updateStatsChartData',[
+            $this->dispatchBrowserEvent('updateStatsChartData', [
                 'id' => $key,
-                'data' => array_values($this->initializeOneDayActiveUsersContent()['results'])
+                'data' => array_values($this->initializeOneDayActiveUsersContent()['results']),
             ]);
         }
 
@@ -60,9 +60,9 @@ class ActiveUsersStatsOverviewWidget extends BaseWidget
             $this->filters['seven-day-active-users'] = $value;
             $this->initializeSevenDayActiveUsersContent();
 
-            $this->dispatchBrowserEvent('updateStatsChartData',[
+            $this->dispatchBrowserEvent('updateStatsChartData', [
                 'id' => $key,
-                'data' => array_values($this->initializeSevenDayActiveUsersContent()['results'])
+                'data' => array_values($this->initializeSevenDayActiveUsersContent()['results']),
             ]);
         }
 
@@ -70,9 +70,9 @@ class ActiveUsersStatsOverviewWidget extends BaseWidget
             $this->filters['fourteen-day-active-users'] = $value;
             $this->initializeFourteenDayActiveUsersContent();
 
-            $this->dispatchBrowserEvent('updateStatsChartData',[
+            $this->dispatchBrowserEvent('updateStatsChartData', [
                 'id' => $key,
-                'data' => array_values($this->initializeFourteenDayActiveUsersContent()['results'])
+                'data' => array_values($this->initializeFourteenDayActiveUsersContent()['results']),
             ]);
         }
 
@@ -80,12 +80,11 @@ class ActiveUsersStatsOverviewWidget extends BaseWidget
             $this->filters['twenty-eight-day-active-users'] = $value;
             $this->initializeTwentyEightDayActiveUsersContent();
 
-            $this->dispatchBrowserEvent('updateStatsChartData',[
+            $this->dispatchBrowserEvent('updateStatsChartData', [
                 'id' => $key,
-                'data' => array_values($this->initializeTwentyEightDayActiveUsersContent()['results'])
+                'data' => array_values($this->initializeTwentyEightDayActiveUsersContent()['results']),
             ]);
         }
-
     }
 
     public function initializeOneDayActiveUsersContent()
@@ -112,7 +111,7 @@ class ActiveUsersStatsOverviewWidget extends BaseWidget
         return [
             'value' => FilamentGoogleAnalytics::for(last($this->initializeOneDayActiveUsersContent()['results']))->trajectoryValue(),
             'color' => 'primary',
-            'chart' => array_values($this->initializeOneDayActiveUsersContent()['results'])
+            'chart' => array_values($this->initializeOneDayActiveUsersContent()['results']),
         ];
     }
 
@@ -140,7 +139,7 @@ class ActiveUsersStatsOverviewWidget extends BaseWidget
         return [
             'value' => FilamentGoogleAnalytics::for(last($this->initializeSevenDayActiveUsersContent()['results']))->trajectoryValue(),
             'color' => 'primary',
-            'chart' => array_values($this->initializeSevenDayActiveUsersContent()['results'])
+            'chart' => array_values($this->initializeSevenDayActiveUsersContent()['results']),
         ];
     }
 
@@ -168,7 +167,7 @@ class ActiveUsersStatsOverviewWidget extends BaseWidget
         return [
             'value' => FilamentGoogleAnalytics::for(last($this->initializeFourteenDayActiveUsersContent()['results']))->trajectoryValue(),
             'color' => 'primary',
-            'chart' => array_values($this->initializeFourteenDayActiveUsersContent()['results'])
+            'chart' => array_values($this->initializeFourteenDayActiveUsersContent()['results']),
         ];
     }
 
@@ -196,7 +195,7 @@ class ActiveUsersStatsOverviewWidget extends BaseWidget
         return [
             'value' => FilamentGoogleAnalytics::for(last($this->initializeTwentyEightDayActiveUsersContent()['results']))->trajectoryValue(),
             'color' => 'primary',
-            'chart' => array_values($this->initializeTwentyEightDayActiveUsersContent()['results'])
+            'chart' => array_values($this->initializeTwentyEightDayActiveUsersContent()['results']),
         ];
     }
 
