@@ -1,0 +1,13 @@
+<x-filament-google-analytics::stats.card
+    :chart="$getChart()"
+    :chart-color="$getChartColor()"
+    :color="$getColor()"
+    :description="$getDescription()"
+    :description-color="$getDescriptionColor()"
+    :description-icon="$getDescriptionIcon()"
+    :label="$getLabel()"
+    :value="$getValue()"
+    :filters="$getFilters()"
+    :id="$getId()"
+    class="filament-stats-overview-widget-card"
+/>
