@@ -41,8 +41,7 @@
     },
     "autoload": {
         "psr-4": {
-            "BezhanSalleh\\FilamentGoogleAnalytics\\": "src",
-            "BezhanSalleh\\FilamentGoogleAnalytics\\Database\\Factories\\": "database/factories"
+            "BezhanSalleh\\FilamentGoogleAnalytics\\": "src"
         }
     },
     "autoload-dev": {
