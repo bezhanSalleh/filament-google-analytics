@@ -56,4 +56,9 @@ class TopReferrersListWidget extends Widget
             'year' => 'This Year',
         ];
     }
+
+    public static function canView(): bool
+    {
+        return request()->routeIs('filament.pages.google-analytics-dashboard');
+    }
 }

@@ -134,4 +134,9 @@ class PageViewsAndVisitorsWidget extends BaseWidget
             'LTD' => 'Last 30 Days',
         ];
     }
+
+    public static function canView(): bool
+    {
+        return request()->routeIs('filament.pages.google-analytics-dashboard');
+    }
 }

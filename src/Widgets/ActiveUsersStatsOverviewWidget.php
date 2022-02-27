@@ -207,4 +207,9 @@ class ActiveUsersStatsOverviewWidget extends BaseWidget
             '15' => '15 Days',
         ];
     }
+
+    public static function canView(): bool
+    {
+        return request()->routeIs('filament.pages.google-analytics-dashboard');
+    }
 }

@@ -77,4 +77,9 @@ class SessionsByCountryWidget extends DoughnutChartWidget
             'scaleBeginAtZero' => true,
         ];
     }
+
+    public static function canView(): bool
+    {
+        return request()->routeIs('filament.pages.google-analytics-dashboard');
+    }
 }

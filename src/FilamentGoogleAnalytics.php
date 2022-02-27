@@ -80,7 +80,7 @@ class FilamentGoogleAnalytics
      */
     public function trajectoryDescription(): string
     {
-        return $this->thousandsFormater($this->compute()) . $this->format . ' ' .$this->trajectoryLabel();
+        return $this->thousandsFormater(abs($this->compute())) . $this->format . ' ' .$this->trajectoryLabel();
     }
 
     public function thousandsFormater($value)

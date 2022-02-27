@@ -2,6 +2,8 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics;
 
+use BezhanSalleh\FilamentGoogleAnalytics\Widgets\GoogleAnalyticsCard;
+use Livewire\Livewire;
 use Filament\PluginServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 
@@ -24,5 +26,6 @@ class FilamentGoogleAnalyticsServiceProvider extends PluginServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasTranslations();
+            // ->hasViewComponent('filament-google-analytics', GoogleAnalyticsCard::class);
     }
 }
