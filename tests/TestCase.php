@@ -2,9 +2,10 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Tests;
 
-use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalyticsServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalyticsServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -20,6 +21,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
+            LivewireServiceProvider::class,
             FilamentGoogleAnalyticsServiceProvider::class,
         ];
     }
