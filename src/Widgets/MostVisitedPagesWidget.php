@@ -2,10 +2,10 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
+use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 use Filament\Widgets\Widget;
 use Spatie\Analytics\Analytics;
 use Spatie\Analytics\Period;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 
 class MostVisitedPagesWidget extends Widget
 {
@@ -33,7 +33,7 @@ class MostVisitedPagesWidget extends Widget
     {
         return [
             'data' => $this->readyToLoad ? $this->getData() : [],
-            'filters' => $this->getFilters()
+            'filters' => $this->getFilters(),
         ];
     }
 
@@ -45,7 +45,7 @@ class MostVisitedPagesWidget extends Widget
             'TM' => Period::months(1),
             'TY' => Period::years(1),
         ];
-        
+
         $analyticsData = app(Analytics::class)->performQuery(
             $lookups[$this->filter],
             'ga:users',

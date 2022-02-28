@@ -8,7 +8,7 @@ use Spatie\LaravelPackageTools\Package;
 class FilamentGoogleAnalyticsServiceProvider extends PluginServiceProvider
 {
     protected array $pages = [
-        Pages\FilamentGoogleAnalyticsDashboard::class
+        Pages\FilamentGoogleAnalyticsDashboard::class,
     ];
 
     protected array $widgets = [

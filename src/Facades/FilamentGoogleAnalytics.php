@@ -2,8 +2,8 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Facades;
 
-use Illuminate\Support\Facades\Facade;
 use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics as FGA;
+use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static thousandsFormater()
