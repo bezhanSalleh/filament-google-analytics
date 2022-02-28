@@ -1,16 +1,29 @@
+<p align="center">
+    <a href="https://filamentadmin.com/docs/2.x/admin/installation">
+        <img alt="FILAMENT 8.x" src="https://img.shields.io/badge/FILAMENT-2.x-EBB304?style=for-the-badge">
+    </a>
+    <a href="https://packagist.org/packages/bezhansalleh/filament-google-analytics">
+        <img alt="Packagist" src="https://img.shields.io/packagist/v/bezhansalleh/filament-google-analytics.svg?style=for-the-badge&logo=packagist">
+    </a>
+    <a href="https://github.com/bezhansalleh/filament-google-analytics/actions?query=workflow%3Arun-tests+branch%3Amain">
+        <img alt="Tests Passing" src="https://img.shields.io/github/workflow/status/bezhansalleh/filament-google-analytics/run-tests?style=for-the-badge&logo=github&label=tests">
+    </a>
+    <a href="https://github.com/bezhansalleh/filament-google-analytics/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain">
+        <img alt="Code Style Passing" src="https://img.shields.io/github/workflow/status/bezhansalleh/filament-google-analytics/run-tests?style=for-the-badge&logo=github&label=code%20style">
+    </a>
+
+<a href="https://packagist.org/packages/bezhansalleh/filament-google-analytics">
+    <img alt="Downloads" src="https://img.shields.io/packagist/dt/bezhansalleh/filament-google-analytics.svg?style=for-the-badge" >
+    </a>
+<p>
+
 # Filament Google Analytics
 Google Analytics integration for Filament
 
-(WIP)
+
+**WIP**
 - Translations
 - Improve the design
-
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/bezhansalleh/filament-google-analytics.svg?style=flat-square)](https://packagist.org/packages/bezhansalleh/filament-google-analytics)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/bezhansalleh/filament-google-analytics/run-tests?label=tests)](https://github.com/bezhansalleh/filament-google-analytics/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/bezhansalleh/filament-google-analytics/Check%20&%20fix%20styling?label=code%20style)](https://github.com/bezhansalleh/filament-google-analytics/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/bezhansalleh/filament-google-analytics.svg?style=flat-square)](https://packagist.org/packages/bezhansalleh/filament-google-analytics)
-
-
 ## Installation
 
 You can install the package in to a Laravel app that uses [Filament](https://filamentphp.com) via composer:
