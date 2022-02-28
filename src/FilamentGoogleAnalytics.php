@@ -2,6 +2,8 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics;
 
+use Illuminate\Support\Carbon;
+
 class FilamentGoogleAnalytics
 {
     public string $previous;
@@ -41,7 +43,12 @@ class FilamentGoogleAnalytics
 
     public function trajectoryValue()
     {
-        return $this->thousandsFormater($this->value);
+        return static::thousandsFormater($this->value);
+    }
+
+    public function trajectoryValueAsTimeString()
+    {
+        return Carbon::createFromTimestamp($this->value)->toTimeString();
     }
 
     public function trajectoryLabel()
@@ -80,10 +87,10 @@ class FilamentGoogleAnalytics
      */
     public function trajectoryDescription(): string
     {
-        return $this->thousandsFormater(abs($this->compute())) . $this->format . ' ' .$this->trajectoryLabel();
+        return static::thousandsFormater(abs($this->compute())) . $this->format . ' ' .$this->trajectoryLabel();
     }
 
-    public function thousandsFormater($value)
+    public static function thousandsFormater($value)
     {
         $number = (int) $value;
 

@@ -5,29 +5,47 @@ namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 use Filament\Widgets\Widget;
 use Spatie\Analytics\Analytics;
 use Spatie\Analytics\Period;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 
 class MostVisitedPagesWidget extends Widget
 {
+    use Traits\CanViewWidget;
+
     protected static string $view = 'filament-google-analytics::widgets.most-visited-pages-widget';
 
     protected static ?int $sort = 3;
 
-    public ?string $filter = 'today';
+    public ?string $filter = 'T';
+
+    public bool $readyToLoad = false;
+
+    public function init()
+    {
+        $this->readyToLoad = true;
+    }
 
     protected function getHeading(): ?string
     {
-        return 'Top 10 - Most Visited Pages';
+        return 'Most Visited Pages - Top 10';
+    }
+
+    protected function getViewData(): array
+    {
+        return [
+            'data' => $this->readyToLoad ? $this->getData() : [],
+            'filters' => $this->getFilters()
+        ];
     }
 
     protected function getData()
     {
         $lookups = [
-            'today' => Period::days(1),
-            'week' => Period::days(7),
-            'month' => Period::months(1),
-            'year' => Period::years(1),
+            'T' => Period::days(1),
+            'TW' => Period::days(7),
+            'TM' => Period::months(1),
+            'TY' => Period::years(1),
         ];
-
+        
         $analyticsData = app(Analytics::class)->performQuery(
             $lookups[$this->filter],
             'ga:users',
@@ -57,15 +75,10 @@ class MostVisitedPagesWidget extends Widget
     public function getFilters(): array
     {
         return [
-            'today' => 'Today',
-            'week' => 'This Week',
-            'month' => 'This Month',
-            'year' => 'This Year',
+            'T' => 'Today',
+            'TW' => 'This Week',
+            'TM' => 'This Month',
+            'TY' => 'This Year',
         ];
-    }
-
-    public static function canView(): bool
-    {
-        return request()->routeIs('filament.pages.google-analytics-dashboard');
     }
 }

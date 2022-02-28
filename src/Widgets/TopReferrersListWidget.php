@@ -3,29 +3,46 @@
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
 use Filament\Widgets\Widget;
-use Spatie\Analytics\Analytics;
 use Spatie\Analytics\Period;
+use Spatie\Analytics\Analytics;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 
 class TopReferrersListWidget extends Widget
 {
+    use Traits\CanViewWidget;
+
     protected static string $view = 'filament-google-analytics::widgets.top-referrers-list-widget';
 
     protected static ?int $sort = 3;
 
-    public ?string $filter = 'today';
+    public ?string $filter = 'T';
+
+    public bool $readyToLoad = false;
+
+    public function init()
+    {
+        $this->readyToLoad = true;
+    }
 
     protected function getHeading(): ?string
     {
         return 'Top Referrers';
     }
 
+    protected function getViewData(): array
+    {
+        return [
+            'data' => $this->readyToLoad ? $this->getData() : [],
+            'filters' => static::filters()
+        ];
+    }
     protected function getData()
     {
         $lookups = [
-            'today' => Period::days(1),
-            'week' => Period::days(7),
-            'month' => Period::months(1),
-            'year' => Period::years(1),
+            'T' => Period::days(1),
+            'TW' => Period::days(7),
+            'TM' => Period::months(1),
+            'TY' => Period::years(1),
         ];
 
         $analyticsData = app(Analytics::class)
@@ -47,18 +64,13 @@ class TopReferrersListWidget extends Widget
         });
     }
 
-    public function getFilters(): array
+    protected static function filters(): array
     {
         return [
-            'today' => 'Today',
-            'week' => 'This Week',
-            'month' => 'This Month',
-            'year' => 'This Year',
+            'T' => 'Today',
+            'TW' => 'This Week',
+            'TM' => 'This Month',
+            'TY' => 'This Year',
         ];
-    }
-
-    public static function canView(): bool
-    {
-        return request()->routeIs('filament.pages.google-analytics-dashboard');
     }
 }

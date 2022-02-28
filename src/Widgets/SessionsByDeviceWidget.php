@@ -2,25 +2,35 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Filament\Widgets\DoughnutChartWidget;
 use Illuminate\Support\Str;
-use Spatie\Analytics\Analytics;
+use Filament\Widgets\Widget;
 use Spatie\Analytics\Period;
+use Spatie\Analytics\Analytics;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 
-class SessionsByDeviceWidget extends DoughnutChartWidget
+class SessionsByDeviceWidget extends Widget
 {
-    protected static ?string $pollingInterval = null;
+    use Traits\CanViewWidget;
+
+    protected static string $view = 'filament-google-analytics::widgets.sessions-by-device-widget';
+
+    protected static ?int $sort = 3;
 
     public ?string $total = null;
 
-    protected static ?int $sort = 2;
+    public bool $readyToLoad = false;
 
-    protected function getHeading(): ?string
+    public function init()
     {
-        return 'Sessions By Device ' . $this->total;
+        $this->readyToLoad = true;
     }
 
-    protected function getData(): array
+    protected function label(): ?string
+    {
+        return 'Sessions By Device';
+    }
+
+    protected function getChartData()
     {
         $analyticsData = app(Analytics::class)->performQuery(
             Period::months(1),
@@ -49,7 +59,7 @@ class SessionsByDeviceWidget extends DoughnutChartWidget
                     ],
                     'cutout' => '75%',
                     'hoverOffset' => 7,
-                    'borderColor' => '#fff',
+                    'borderColor' => config('filament.dark_mode') ? 'transparent' : '#fff',
 
                 ],
             ],
@@ -69,7 +79,6 @@ class SessionsByDeviceWidget extends DoughnutChartWidget
                     ],
                 ],
             ],
-
             'maintainAspectRatio' => false,
             'radius' => '70%',
             'borderRadius' => 4,
@@ -78,8 +87,19 @@ class SessionsByDeviceWidget extends DoughnutChartWidget
         ];
     }
 
-    public static function canView(): bool
+    protected function getData()
     {
-        return request()->routeIs('filament.pages.google-analytics-dashboard');
+        return [
+            'chartData' => $this->getChartData(),
+            'chartOptions' => $this->getOptions(),
+            'total' => $this->total
+        ];
+    }
+
+    protected function getViewData(): array
+    {
+        return [
+            'data' => $this->readyToLoad ? $this->getData() : [],
+        ];
     }
 }

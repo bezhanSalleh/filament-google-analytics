@@ -1,7 +1,7 @@
 <x-filament::widget class="filament-wigets-chart-widget">
     <x-filament::card>
         <div class="flex items-center justify-between gap-8">
-            <x-filament::card.heading class="text-gray-600">
+            <x-filament::card.heading class="text-gray-600 dark:text-white">
                 {{ $this->getHeading() }}
             </x-filament::card.heading>
 
@@ -11,7 +11,7 @@
                     'filament.dark_mode',
                 ),
             ])>
-                @foreach ($this->getFilters() as $value => $label)
+                @foreach ($filters as $value => $label)
                     <option value="{{ $value }}">
                         {{ $label }}
                     </option>
@@ -21,27 +21,52 @@
 
         <x-filament::hr />
 
-        <ul class="space-y-2">
-            @foreach ($this->getData() as $data)
-                <li class="hover:bg-primary-50">
-                    <a href="https://{{ $data['hostname'] . $data['path'] }}" target="_blank"
-                        class="block p-2 border-b border-b-primary-500 group-hover:border-b-primary-500">
-                        <div class="flex justify-between items-center">
-                            <div class="flex justify-start items-center space-x-1 ">
-                                <h5 class="font-medium text-gray-500">
-                                    {{ $data['name'] }}
-                                </h5>
-                                <span class="text-sm text-gray-400 group-hover:text-gray-600">
-                                     - {{ $data['path'] }}
-                                </span>
+        <div class="relative space-y-2 max-auto" wire:init='init'>
+            <ul>
+                @if ($readyToLoad)
+                    @foreach ($data as $record)
+                        <li @class([
+                            'group border-gray-300 hover:border-primary-500',
+                            'border-b' => !$loop->last,
+                            'border-b-none' => $loop->last,
+                            'dark:border-gray-700' => config('filament.dark_mode')
+                        ])>
+                            <div class="block p-2">
+                                <div class="flex justify-between items-center">
+                                    <div class="flex justify-start items-center space-x-1 ">
+                                        <h5 class="font-medium text-gray-500 group-hover:text-primary-500 dark:text-gray-300">
+                                            {{ $record['name'] }}
+                                        </h5>
+                                        <span class="text-sm text-gray-400 group-hover:text-primary-400">
+                                            <a href="https://{{ $record['hostname'] . $record['path'] }}" target="_blank" class="flex justify-start items-center group-hover:text-primary-500">
+                                                &NonBreakingSpace;{{ $record['path'] }}
+                                                &NonBreakingSpace;
+                                                <x-heroicon-o-external-link class="h-3 w-3" />
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <span
+                                        class="inline-flex items-center justify-center min-h-6 px-2 py-0.5 text-sm font-medium tracking-tight rounded-xl text-primary-700 bg-primary-500/10 whitespace-normal dark:text-primary-500">
+                                        {{ FilamentGoogleAnalytics::thousandsFormater($record['visits']) }}
+                                    </span>
+                                </div>
                             </div>
-                            <span class="inline-flex items-center justify-center min-h-6 px-2 py-0.5 text-sm font-medium tracking-tight rounded-xl text-primary-700 bg-primary-500/10 whitespace-normal dark:text-primary-500">
-                                {{ $data['visits'] }}
-                            </span>
-                        </div>
-                    </a>
-                </li>
-            @endforeach
-        </ul>
+                        </li>
+                    @endforeach
+                @else
+                    <div class="flex justify-center items-center h-[270px] w-full">
+                        <x-filament-google-analytics::loading-indicator />
+                    </div>
+                @endif
+            </ul>
+            <div wire:loading.delay.long wire:target='filter'>
+                <div class="absolute inset-0">
+                    <div class="flex justify-center items-center mx-auto h-full w-full"
+                        wire:loading.delay.long.class='bg-[#ffffffccc]'>
+                        <x-filament-google-analytics::loading-indicator />
+                    </div>
+                </div>
+            </div>
+        </div>
     </x-filament::card>
 </x-filament::widget>

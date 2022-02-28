@@ -2,25 +2,35 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Filament\Widgets\DoughnutChartWidget;
 use Illuminate\Support\Str;
-use Spatie\Analytics\Analytics;
+use Filament\Widgets\Widget;
 use Spatie\Analytics\Period;
+use Spatie\Analytics\Analytics;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 
-class SessionsByCountryWidget extends DoughnutChartWidget
+class SessionsByCountryWidget extends Widget
 {
-    protected static ?int $sort = 2;
+    use Traits\CanViewWidget;
 
-    protected static ?string $pollingInterval = null;
+    protected static string $view = 'filament-google-analytics::widgets.sessions-by-country-widget';
+
+    protected static ?int $sort = 3;
 
     public ?string $total = null;
 
-    protected function getHeading(): ?string
+    public bool $readyToLoad = false;
+
+    public function init()
     {
-        return 'Sessions By Country - Top 5 '. $this->total;
+        $this->readyToLoad = true;
     }
 
-    protected function getData(): array
+    protected function label(): ?string
+    {
+        return 'Sessions By Country - Top 10';
+    }
+
+    protected function getChartData()
     {
         $analyticsData = app(Analytics::class)->performQuery(
             Period::months(1),
@@ -29,7 +39,7 @@ class SessionsByCountryWidget extends DoughnutChartWidget
                     'metrics' => 'ga:sessions',
                     'dimensions' => 'ga:country',
                     'sort' => '-ga:sessions',
-                    'max-results' => 5,
+                    'max-results' => 10,
                 ]
         );
 
@@ -37,6 +47,7 @@ class SessionsByCountryWidget extends DoughnutChartWidget
         foreach (collect($analyticsData->getRows()) as $row) {
             $results[Str::studly($row[0])] = $row[1];
         }
+
         $this->total = number_format($analyticsData->totalsForAllResults['ga:sessions']);
 
         return [
@@ -50,7 +61,7 @@ class SessionsByCountryWidget extends DoughnutChartWidget
                     ],
                     'cutout' => '75%',
                     'hoverOffset' => 4,
-                    'borderColor' => '#fff',
+                    'borderColor' => config('filament.dark_mode') ? 'transparent' : '#fff',
 
                 ],
             ],
@@ -78,8 +89,19 @@ class SessionsByCountryWidget extends DoughnutChartWidget
         ];
     }
 
-    public static function canView(): bool
+    protected function getData()
     {
-        return request()->routeIs('filament.pages.google-analytics-dashboard');
+        return [
+            'chartData' => $this->getChartData(),
+            'chartOptions' => $this->getOptions(),
+            'total' => $this->total
+        ];
+    }
+
+    protected function getViewData(): array
+    {
+        return [
+            'data' => $this->readyToLoad ? $this->getData() : [],
+        ];
     }
 }

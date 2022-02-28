@@ -1,8 +1,7 @@
-# Filament Analytics
+# Filament Google Analytics
 Google Analytics integration for Filament
 
 (WIP)
-- Configuration(abilitiy to enable or disable)
 - Translations
 - Improve the design
 
@@ -33,7 +32,7 @@ ANALYTICS_VIEW_ID=
 ```
 ## Usage
 
-You must enable the widgets you want to display with Filament. By uncommenting them in the config file.
+All the widgets are enabled by default in a dedicated `Google Analytics Dashboard`. You can enable or disable a specific widget or the dedicated dashboard all together or show and hide some from the main `Filament Dashboard` from the config `filament-google-analytics`.
 
 ## Features
 #### View the Visitors and Pageview Metrics

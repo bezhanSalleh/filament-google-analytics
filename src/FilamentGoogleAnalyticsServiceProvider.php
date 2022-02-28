@@ -2,17 +2,24 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics;
 
-use BezhanSalleh\FilamentGoogleAnalytics\Widgets\GoogleAnalyticsCard;
-use Livewire\Livewire;
 use Filament\PluginServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 
 class FilamentGoogleAnalyticsServiceProvider extends PluginServiceProvider
 {
+    protected array $pages = [
+        Pages\FilamentGoogleAnalyticsDashboard::class
+    ];
+
     protected array $widgets = [
-        Widgets\PageViewsAndVisitorsWidget::class,
-        Widgets\ActiveUsersStatsOverviewWidget::class,
-        Widgets\SessionsAndSessionsDurationWidget::class,
+        Widgets\PageViewsWidget::class,
+        Widgets\VisitorsWidget::class,
+        Widgets\ActiveUsersOneDayWidget::class,
+        Widgets\ActiveUsersSevenDayWidget::class,
+        Widgets\ActiveUsersFourteenDayWidget::class,
+        Widgets\ActiveUsersTwentyEightDayWidget::class,
+        Widgets\SessionsWidget::class,
+        Widgets\SessionsDurationWidget::class,
         Widgets\SessionsByCountryWidget::class,
         Widgets\SessionsByDeviceWidget::class,
         Widgets\MostVisitedPagesWidget::class,
@@ -26,6 +33,5 @@ class FilamentGoogleAnalyticsServiceProvider extends PluginServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasTranslations();
-            // ->hasViewComponent('filament-google-analytics', GoogleAnalyticsCard::class);
     }
 }
