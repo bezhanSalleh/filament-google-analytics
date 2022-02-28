@@ -18,13 +18,13 @@
 <p>
 
 # Filament Google Analytics
-Google Analytics integration for Filament
+Google Analytics integration for [Filament (FilamentAdmin)](https://filamentphp.com)
 
 
 **WIP**
 - Translations
 - Improve the design
-## Installation
+# Installation
 
 You can install the package in to a Laravel app that uses [Filament](https://filamentphp.com) via composer:
 
@@ -43,11 +43,12 @@ Also add this to the `.env` for your Nova app:
 ```ini
 ANALYTICS_VIEW_ID=
 ```
-## Usage
+
+# Usage
 
 All the widgets are enabled by default in a dedicated `Google Analytics Dashboard`. You can enable or disable a specific widget or the dedicated dashboard all together or show and hide some from the main `Filament Dashboard` from the config `filament-google-analytics`.
 
-## Features
+# Features
 #### View the Visitors and Pageview Metrics
 <img width="756" alt="Screen Shot 2022-02-26 at 12 35 41 PM" src="https://user-images.githubusercontent.com/10007504/155835519-d1fbb973-110d-4341-af50-8f5abea5f2f4.png">
 
@@ -64,25 +65,48 @@ All the widgets are enabled by default in a dedicated `Google Analytics Dashboar
 #### View the lists of Most Visited Pages and Referrers
 <img width="902" alt="Screen Shot 2022-02-26 at 12 44 34 PM" src="https://user-images.githubusercontent.com/10007504/155835898-debb3935-81d4-4963-9b02-9734230be387.png">
 
-## Changelog
+# Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-## Contributing
+# Contributing
+If you want to contribute to this packages, you may want to test it in a real Filament project:
+
+- Fork this repository to your GitHub account.
+- Create a Filament app locally.
+- Clone your fork in your Filament app's root directory.
+- In the `/filament-google-analytics` directory, create a branch for your fix, e.g. `fix/error-message`.
+
+Install the packages in your app's `composer.json`:
+
+```json
+"require": {
+    "bezhansalleh/filament-google-analytics": "dev-fix/error-message as main-dev",
+},
+"repositories": [
+    {
+        "type": "path",
+        "url": "filament-google-analytics"
+    }
+]
+```
+
+Now, run `composer update`.
+
 
 Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
-## Security Vulnerabilities
+# Security Vulnerabilities
 
 Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
-## Credits
+# Credits
 
 - [Bezhan Salleh](https://github.com/bezhanSalleh)
 - [Laravel Analytics](https://github.com/spatie/laravel-analytics) By [Spatie](https://github.com/spatie)
 - [Nova Google Analytics](https://github.com/tighten/nova-google-analytics) By [Tighten](https://github.com/tighten)
 - [All Contributors](../../contributors)
 
-## License
+# License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
