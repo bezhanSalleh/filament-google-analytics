@@ -2,10 +2,10 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Filament\Widgets\Widget;
-use Spatie\Analytics\Period;
-use Spatie\Analytics\Analytics;
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
+use Filament\Widgets\Widget;
+use Spatie\Analytics\Analytics;
+use Spatie\Analytics\Period;
 
 class TopReferrersListWidget extends Widget
 {
@@ -33,9 +33,10 @@ class TopReferrersListWidget extends Widget
     {
         return [
             'data' => $this->readyToLoad ? $this->getData() : [],
-            'filters' => static::filters()
+            'filters' => static::filters(),
         ];
     }
+
     protected function getData()
     {
         $lookups = [

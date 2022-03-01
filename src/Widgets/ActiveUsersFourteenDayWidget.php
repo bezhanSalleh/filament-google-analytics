@@ -2,10 +2,10 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Illuminate\Support\Arr;
-use Filament\Widgets\Widget;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits;
+use Filament\Widgets\Widget;
+use Illuminate\Support\Arr;
 
 class ActiveUsersFourteenDayWidget extends Widget
 {
@@ -30,7 +30,7 @@ class ActiveUsersFourteenDayWidget extends Widget
         return __('filament-google-analytics::widgets.fourteen_day_active_users');
     }
 
-    function updatedFilter()
+    public function updatedFilter()
     {
         $this->emitSelf('filterChartData', [
             'data' => array_values($this->initializeData()['results']),
@@ -78,7 +78,7 @@ class ActiveUsersFourteenDayWidget extends Widget
     {
         return [
             'data' => $this->readyToLoad ? $this->getData() : [],
-            'filters' => static::filters()
+            'filters' => static::filters(),
         ];
     }
 }

@@ -2,10 +2,10 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Illuminate\Support\Arr;
-use Filament\Widgets\Widget;
 use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
+use Filament\Widgets\Widget;
+use Illuminate\Support\Arr;
 
 class VisitorsWidget extends Widget
 {
@@ -84,7 +84,7 @@ class VisitorsWidget extends Widget
     {
         return [
             'data' => $this->readyToLoad ? $this->getData() : [],
-            'filters' => static::filters()
+            'filters' => static::filters(),
         ];
     }
 }

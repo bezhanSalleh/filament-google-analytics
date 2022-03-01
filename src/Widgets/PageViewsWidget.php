@@ -2,10 +2,10 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Illuminate\Support\Arr;
-use Filament\Widgets\Widget;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits;
+use Filament\Widgets\Widget;
+use Illuminate\Support\Arr;
 
 class PageViewsWidget extends Widget
 {
@@ -81,10 +81,9 @@ class PageViewsWidget extends Widget
 
     protected function getViewData(): array
     {
-
         return [
             'data' => $this->readyToLoad ? $this->getData() : [],
-            'filters' => static::filters()
+            'filters' => static::filters(),
         ];
     }
 }

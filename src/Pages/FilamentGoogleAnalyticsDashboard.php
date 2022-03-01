@@ -2,8 +2,8 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Pages;
 
-use Filament\Pages\Page;
 use BezhanSalleh\FilamentGoogleAnalytics\Widgets;
+use Filament\Pages\Page;
 
 class FilamentGoogleAnalyticsDashboard extends Page
 {

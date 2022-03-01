@@ -2,11 +2,11 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Illuminate\Support\Str;
-use Filament\Widgets\Widget;
-use Spatie\Analytics\Period;
-use Spatie\Analytics\Analytics;
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
+use Filament\Widgets\Widget;
+use Illuminate\Support\Str;
+use Spatie\Analytics\Analytics;
+use Spatie\Analytics\Period;
 
 class SessionsByDeviceWidget extends Widget
 {
@@ -92,7 +92,7 @@ class SessionsByDeviceWidget extends Widget
         return [
             'chartData' => $this->getChartData(),
             'chartOptions' => $this->getOptions(),
-            'total' => $this->total
+            'total' => $this->total,
         ];
     }
 
