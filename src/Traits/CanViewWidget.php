@@ -16,8 +16,7 @@ trait CanViewWidget
             return true;
         }
 
-        if ($globalStatus && config('filament-google-analytics.dedicated_dashboard') && request()->routeIs('filament.pages.filament-google-analytics-dashboard'))
-        {
+        if ($globalStatus && config('filament-google-analytics.dedicated_dashboard') && request()->routeIs('filament.pages.filament-google-analytics-dashboard')) {
             return true;
         }
 
