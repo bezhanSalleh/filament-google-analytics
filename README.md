@@ -20,10 +20,6 @@
 # Filament Google Analytics
 Google Analytics integration for [Filament (FilamentAdmin)](https://filamentphp.com)
 
-
-**WIP**
-- Translations
-- Improve the design
 # Installation
 
 You can install the package in to a Laravel app that uses [Filament](https://filamentphp.com) via composer:
