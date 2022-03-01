@@ -26,7 +26,7 @@ class TopReferrersListWidget extends Widget
 
     protected function getHeading(): ?string
     {
-        return 'Top Referrers';
+        return __('filament-google-analytics::widgets.top_referrers');
     }
 
     protected function getViewData(): array
@@ -67,10 +67,10 @@ class TopReferrersListWidget extends Widget
     protected static function filters(): array
     {
         return [
-            'T' => 'Today',
-            'TW' => 'This Week',
-            'TM' => 'This Month',
-            'TY' => 'This Year',
+            'T' => __('filament-google-analytics::widgets.T'),
+            'TW' => __('filament-google-analytics::widgets.TW'),
+            'TM' => __('filament-google-analytics::widgets.TM'),
+            'TY' => __('filament-google-analytics::widgets.TY'),
         ];
     }
 }

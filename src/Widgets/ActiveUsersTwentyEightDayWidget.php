@@ -27,7 +27,7 @@ class ActiveUsersTwentyEightDayWidget extends Widget
 
     public function label(): ?string
     {
-        return '28 Day Active Users';
+        return __('filament-google-analytics::widgets.twenty_eight_day_active_users');
     }
 
     function updatedFilter()
@@ -40,9 +40,9 @@ class ActiveUsersTwentyEightDayWidget extends Widget
     protected static function filters(): array
     {
         return [
-            '5' => '5 Days',
-            '10' => '10 Days',
-            '15' => '15 Days',
+            '5' => __('filament-google-analytics::widgets.FD'),
+            '10' => __('filament-google-analytics::widgets.TD'),
+            '15' => __('filament-google-analytics::widgets.FFD'),
         ];
     }
 

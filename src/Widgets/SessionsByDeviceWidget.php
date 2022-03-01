@@ -27,7 +27,7 @@ class SessionsByDeviceWidget extends Widget
 
     protected function label(): ?string
     {
-        return 'Sessions By Device';
+        return __('filament-google-analytics::widgets.sessions_by_device');
     }
 
     protected function getChartData()

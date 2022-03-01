@@ -2,10 +2,18 @@
 
 return [
 
+    /**
+     * Dashboard Page
+     */
     'dedicated_dashboard' => true,
+    'dashboard_icon' => 'heroicon-o-chart-bar',
+
+    /**
+     * Widgets
+     */
 
     'page_views' => [
-        'filament_dashboard' => false,
+        'filament_dashboard' => true,
         'global' => true
     ],
     'visitors' => [
@@ -62,4 +70,18 @@ return [
         'filament_dashboard' => false,
         'global' => true
     ],
+
+    /**
+    * Trajectory Icons
+    */
+    'trending_up_icon' => 'heroicon-o-trending-up',
+    'trending_down_icon' => 'heroicon-o-trending-down',
+    'steady_icon' => 'heroicon-o-switch-horizontal',
+
+    /**
+    * Trajectory Colors
+    */
+    'trending_up_color' => 'success',
+    'trending_down_color' => 'danger',
+    'steady_color' => 'secondary',
 ];

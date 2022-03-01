@@ -7,12 +7,6 @@ use BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
 class FilamentGoogleAnalyticsDashboard extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-chart-bar';
-
-    protected static ?string $navigationLabel = 'Google Analytics Dashboard';
-
-    protected static ?string $title = 'Google Analytics Dashboard';
-
     protected static string $view = 'filament-google-analytics::pages.google-analytics-dashboard';
 
     public function mount()
@@ -20,6 +14,21 @@ class FilamentGoogleAnalyticsDashboard extends Page
         if (! static::canView()) {
             return redirect(config('filament.path'));
         }
+    }
+
+    protected static function getNavigationIcon(): string
+    {
+        return config('filament-google-analytics.dashboard_icon') ?? 'heroicon-o-chart-bar';
+    }
+
+    protected static function getNavigationLabel(): string
+    {
+        return __('filament-google-analytics::widgets.navigation_label');
+    }
+
+    protected function getTitle(): string
+    {
+        return __('filament-google-analytics::widgets.title');
     }
 
     public static function canView(): bool

@@ -27,18 +27,18 @@ class SessionsWidget extends Widget
 
     public function label(): ?string
     {
-        return 'Sessions';
+        return __('filament-google-analytics::widgets.sessions');
     }
 
     protected static function filters(): array
     {
         return [
-            'T' => 'Today',
-            'Y' => 'Yesterday',
-            'LW' => 'Last Week',
-            'LM' => 'Last Month',
-            'LSD' => 'Last 7 Days',
-            'LTD' => 'Last 30 Days',
+            'T' => __('filament-google-analytics::widgets.T'),
+            'Y' => __('filament-google-analytics::widgets.Y'),
+            'LW' => __('filament-google-analytics::widgets.LW'),
+            'LM' => __('filament-google-analytics::widgets.LM'),
+            'LSD' => __('filament-google-analytics::widgets.LSD'),
+            'LTD' => __('filament-google-analytics::widgets.LTD'),
         ];
     }
 

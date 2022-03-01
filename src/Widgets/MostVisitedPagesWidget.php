@@ -26,7 +26,7 @@ class MostVisitedPagesWidget extends Widget
 
     protected function getHeading(): ?string
     {
-        return 'Most Visited Pages - Top 10';
+        return __('filament-google-analytics::widgets.most_visited_pages');
     }
 
     protected function getViewData(): array
@@ -45,7 +45,7 @@ class MostVisitedPagesWidget extends Widget
             'TM' => Period::months(1),
             'TY' => Period::years(1),
         ];
-        
+
         $analyticsData = app(Analytics::class)->performQuery(
             $lookups[$this->filter],
             'ga:users',
@@ -75,10 +75,10 @@ class MostVisitedPagesWidget extends Widget
     public function getFilters(): array
     {
         return [
-            'T' => 'Today',
-            'TW' => 'This Week',
-            'TM' => 'This Month',
-            'TY' => 'This Year',
+            'T' => __('filament-google-analytics::widgets.T'),
+            'TW' => __('filament-google-analytics::widgets.TW'),
+            'TM' => __('filament-google-analytics::widgets.TM'),
+            'TY' => __('filament-google-analytics::widgets.TY'),
         ];
     }
 }

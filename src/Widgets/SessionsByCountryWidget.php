@@ -27,7 +27,7 @@ class SessionsByCountryWidget extends Widget
 
     protected function label(): ?string
     {
-        return 'Sessions By Country - Top 10';
+        return __('filament-google-analytics::widgets.sessions_by_country');
     }
 
     protected function getChartData()

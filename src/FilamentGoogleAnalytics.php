@@ -9,9 +9,7 @@ class FilamentGoogleAnalytics
     public string $previous;
     public string $format;
 
-    public function __construct(public ?string $value = null)
-    {
-    }
+    public function __construct(public ?string $value = null) {}
 
     public static function for(?string $value = null)
     {
@@ -54,29 +52,29 @@ class FilamentGoogleAnalytics
     public function trajectoryLabel()
     {
         return match (gmp_sign($this->compute())) {
-            -1 => 'Descrease',
-            0 => 'Same',
-            1 => 'Increase',
-            default => 'Same'
+            -1 => __('filament-google-analytics::widgets.trending_down'),
+            0 => __('filament-google-analytics::widgets.steady'),
+            1 => __('filament-google-analytics::widgets.trending_up'),
+            default => __('filament-google-analytics::widgets.steady')
         };
     }
 
     public function trajectoryColor()
     {
         return match (gmp_sign($this->compute())) {
-            -1 => 'danger',
-            0 => 'secondary',
-            1 => 'success',
-            default => 'secondary'
+            -1 => config('filament-google-analytics.trending_down_color'),
+            0 => config('filament-google-analytics.trending_steady_color'),
+            1 => config('filament-google-analytics.trending_up_color'),
+            default => config('filament-google-analytics.trending_steady_color')
         };
     }
 
     public function trajectoryIcon()
     {
         return match (gmp_sign($this->compute())) {
-            1 => 'heroicon-o-trending-up',
-            -1 => 'heroicon-o-trending-down',
-            default => 'heroicon-o-switch-horizontal'
+            1 => config('filament-google-analytics.trending_up_icon'),
+            -1 => config('filament-google-analytics.trending_down_icon'),
+            default => config('filament-google-analytics.steady_icon')
         };
     }
 
