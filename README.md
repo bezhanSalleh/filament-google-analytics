@@ -1,3 +1,7 @@
+<a href="https://github.com/bezhansalleh/filament-google-analytics">
+<img style="width: 100%; max-width: 100%;" alt="filament-google-analytics-art" src="https://user-images.githubusercontent.com/10007504/156206044-a800cc32-c40e-4ae8-9452-d80b3d6667cb.png" >
+</a>
+
 <p align="center">
     <a href="https://filamentadmin.com/docs/2.x/admin/installation">
         <img alt="FILAMENT 8.x" src="https://img.shields.io/badge/FILAMENT-2.x-EBB304?style=for-the-badge">
