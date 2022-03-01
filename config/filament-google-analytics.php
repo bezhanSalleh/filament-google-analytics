@@ -13,7 +13,7 @@ return [
      */
 
     'page_views' => [
-        'filament_dashboard' => true,
+        'filament_dashboard' => false,
         'global' => true
     ],
     'visitors' => [
