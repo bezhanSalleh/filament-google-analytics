@@ -38,7 +38,7 @@ For now, follow the directions on [Spatie's Laravel Google Analytics package](ht
 yourapp/storage/app/analytics/service-account-credentials.json
 ```
 
-Also add this to the `.env` for your Nova app:
+Also add this to the `.env` for your Filament PHP app:
 
 ```ini
 ANALYTICS_VIEW_ID=
@@ -47,6 +47,68 @@ ANALYTICS_VIEW_ID=
 # Usage
 
 All the widgets are enabled by default in a dedicated `Google Analytics Dashboard`. You can enable or disable a specific widget or the dedicated dashboard all together or show and hide some from the main `Filament Dashboard` from the config `filament-google-analytics`.
+
+Publish the config files and set your settings:
+```bash
+php artisan vendor:publish --tag=filament-google-analytics-config
+```
+
+####Available Widgets
+```php
+\BezhanSalleh\FilamentGoogleAnalytics\Widgets\PageViewsWidget::class,
+\BezhanSalleh\FilamentGoogleAnalytics\Widgets\VisitorsWidget::class,
+\BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersOneDayWidget::class,
+\BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersSevenDayWidget::class,
+\BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersFourteenDayWidget::class,
+\BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersTwentyEightDayWidget::class,
+\BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsWidget::class,
+\BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsDurationWidget::class,
+\BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsByCountryWidget::class,
+\BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsByDeviceWidget::class,
+\BezhanSalleh\FilamentGoogleAnalytics\Widgets\MostVisitedPagesWidget::class,
+\BezhanSalleh\FilamentGoogleAnalytics\Widgets\TopReferrersListWidget::class,
+```
+
+####Dashboard
+Though this plugin comes with a default dashboard, but sometimes you might want to change `navigationLabel` or `navigationGroup` or disable some `widgets` or any other options and given that the dashboard is a simple filament `page`; The easiest solution would be to disable the default dashboard and create a new `page`:
+
+```bash
+php artisan filament:page MyCustomDashboardPage
+```
+then register the widgets you want from the **Available Widgets** list either in the `getHeaderWidgets()` or `getFooterWidgets()`:
+```php
+<?php
+
+namespace App\Filament\Pages;
+
+use Filament\Pages\Page;
+use BezhanSalleh\FilamentGoogleAnalytics\Widgets;
+
+class MyCustomDashboardPage extends Page
+{
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+
+    protected static string $view = 'filament.pages.my-custom-dashboard-page';
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            Widgets\PageViewsWidget::class,
+            Widgets\VisitorsWidget::class,
+            Widgets\ActiveUsersOneDayWidget::class,
+            Widgets\ActiveUsersSevenDayWidget::class,
+            Widgets\ActiveUsersFourteenDayWidget::class,
+            Widgets\ActiveUsersTwentyEightDayWidget::class,
+            Widgets\SessionsWidget::class,
+            Widgets\SessionsDurationWidget::class,
+            Widgets\SessionsByCountryWidget::class,
+            Widgets\SessionsByDeviceWidget::class,
+            Widgets\MostVisitedPagesWidget::class,
+            Widgets\TopReferrersListWidget::class,
+        ];
+    }
+}
+```
 
 # Features
 #### View the Visitors and Pageview Metrics
