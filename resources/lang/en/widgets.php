@@ -1,11 +1,15 @@
 <?php
 
 return [
-    // Dashboard Page
+    /**
+     * Dashboard Page
+     */
     'navigation_label' => 'Google Analytics Dashboard',
     'title' => 'Google Analytics Dashboard',
 
-    // Widget Heading/Labels
+    /**
+     * Widget Heading/Labels
+     */
     'page_views' => 'Page Views',
     'visitors' => 'Unique Users',
     'sessions' => 'Sessions',
@@ -19,7 +23,9 @@ return [
     'fourteen_day_active_users' => '14 Day Active Users',
     'twenty_eight_day_active_users' => '28 Day Active Users',
 
-    // Filter Labels
+    /**
+     * Filter Labels
+     */
     'T' => 'Today',
     'Y' => 'Yesterday',
     'TW' => 'This Week',
@@ -33,7 +39,9 @@ return [
     'TD' => '10 Days',
     'FFD' => '15 Days',
 
-    // Trajectory Label Descriptions
+    /**
+     * Trajectory Label Descriptions
+     */
     'trending_up' => 'Increase',
     'trending_down' => 'Decrease',
     'steady' => 'Steady',
