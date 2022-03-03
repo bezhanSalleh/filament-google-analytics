@@ -1,6 +1,7 @@
 <a href="https://github.com/bezhansalleh/filament-google-analytics">
-<img style="width: 100%; max-width: 100%;" alt="filament-google-analytics-art" src="https://user-images.githubusercontent.com/10007504/156206044-a800cc32-c40e-4ae8-9452-d80b3d6667cb.png" >
+<img style="width: 100%; max-width: 100%;" alt="filament-google-analytics-art" src="https://user-images.githubusercontent.com/10007504/156520889-0abeb87d-a231-4f63-a79a-774fbd92ee5c.png" >
 </a>
+
 
 <p align="center">
     <a href="https://filamentadmin.com/docs/2.x/admin/installation">
@@ -53,7 +54,7 @@ Publish the config files and set your settings:
 php artisan vendor:publish --tag=filament-google-analytics-config
 ```
 
-####Available Widgets
+#### Available Widgets
 ```php
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\PageViewsWidget::class,
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\VisitorsWidget::class,
@@ -69,7 +70,7 @@ php artisan vendor:publish --tag=filament-google-analytics-config
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\TopReferrersListWidget::class,
 ```
 
-####Dashboard
+#### Customizing Dashboard
 Though this plugin comes with a default dashboard, but sometimes you might want to change `navigationLabel` or `navigationGroup` or disable some `widgets` or any other options and given that the dashboard is a simple filament `page`; The easiest solution would be to disable the default dashboard and create a new `page`:
 
 ```bash
