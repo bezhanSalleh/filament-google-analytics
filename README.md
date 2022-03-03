@@ -70,7 +70,7 @@ php artisan vendor:publish --tag=filament-google-analytics-config
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\TopReferrersListWidget::class,
 ```
 
-#### Customizing Dashboard
+#### Custom Dashboard
 Though this plugin comes with a default dashboard, but sometimes you might want to change `navigationLabel` or `navigationGroup` or disable some `widgets` or any other options and given that the dashboard is a simple filament `page`; The easiest solution would be to disable the default dashboard and create a new `page`:
 
 ```bash
