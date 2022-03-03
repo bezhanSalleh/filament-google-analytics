@@ -20,8 +20,8 @@ return [
     'most_visited_pages' => 'Most Visited Pages',
     'one_day_active_users' => '1 Day Active Users',
     'seven_day_active_users' => '7 Day Active Users',
-    'fourteen_day_active_users' => '1 Day Active Users',
-    'twenty_eight_day_active_users' => '1 Day Active Users',
+    'fourteen_day_active_users' => '14 Day Active Users',
+    'twenty_eight_day_active_users' => '28 Day Active Users',
 
     /**
      * Filter Labels
