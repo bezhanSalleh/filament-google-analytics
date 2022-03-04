@@ -11,7 +11,7 @@ trait Sessions
 
     private function sessionsToday(): array
     {
-        $results = $this->performQuery('ga:sessions', 'ga:date', Period::days(1));
+        $results = $this->performQuery('ga:sessions', 'ga:date', Period::days(0));
 
         return [
             'previous' => $results->first()['value'] ?? 0,
