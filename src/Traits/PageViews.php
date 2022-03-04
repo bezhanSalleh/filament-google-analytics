@@ -13,7 +13,7 @@ trait PageViews
     private function pageViewsToday(): array
     {
         $analyticsData = app(Analytics::class)
-            ->fetchTotalVisitorsAndPageViews(Period::days(1));
+            ->fetchTotalVisitorsAndPageViews(Period::days(0));
 
         return [
             'result' => $analyticsData->last()['pageViews'] ?? 0,
