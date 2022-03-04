@@ -11,7 +11,7 @@ trait SessionsDuration
 
     private function sessionDurationToday(): array
     {
-        $results = $this->performQuery('ga:avgSessionDuration', 'ga:date', Period::days(1));
+        $results = $this->performQuery('ga:avgSessionDuration', 'ga:date', Period::days(0));
 
         return [
             'previous' => $results->first()['value'] ?? 0,
