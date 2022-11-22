@@ -43,6 +43,6 @@ return [
      * Trajectory Label Descriptions
      */
     'trending_up' => 'زيادة',
-    'trending_down' => 'تخفيض',
+    'trending_down' => 'انخفاض',
     'steady' => 'ثابت',
 ];
