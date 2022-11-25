@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static thousandsFormater()
+ *
  * @see \BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics
  */
 class FilamentGoogleAnalytics extends Facade

@@ -36,11 +36,11 @@ class SessionsByCountryWidget extends Widget
             Period::months(1),
             'ga:sessions',
             [
-                    'metrics' => 'ga:sessions',
-                    'dimensions' => 'ga:country',
-                    'sort' => '-ga:sessions',
-                    'max-results' => 10,
-                ]
+                'metrics' => 'ga:sessions',
+                'dimensions' => 'ga:country',
+                'sort' => '-ga:sessions',
+                'max-results' => 10,
+            ]
         );
 
         $results = [];

@@ -11,10 +11,9 @@ return [
     /**
      * Widgets
      */
-
     'page_views' => [
         'filament_dashboard' => false,
-        'global' => true
+        'global' => true,
     ],
     'visitors' => [
         'filament_dashboard' => false,
@@ -23,64 +22,64 @@ return [
 
     'active_users_one_day' => [
         'filament_dashboard' => false,
-        'global' => true
+        'global' => true,
     ],
 
     'active_users_seven_day' => [
         'filament_dashboard' => false,
-        'global' => true
+        'global' => true,
     ],
 
     'active_users_fourteen_day' => [
         'filament_dashboard' => false,
-        'global' => true
+        'global' => true,
     ],
 
     'active_users_twenty_eight_day' => [
         'filament_dashboard' => false,
-        'global' => true
+        'global' => true,
     ],
 
     'sessions' => [
         'filament_dashboard' => false,
-        'global' => true
+        'global' => true,
     ],
 
     'sessions_duration' => [
         'filament_dashboard' => false,
-        'global' => true
+        'global' => true,
     ],
 
     'sessions_by_country' => [
         'filament_dashboard' => false,
-        'global' => true
+        'global' => true,
     ],
 
     'sessions_by_device' => [
         'filament_dashboard' => false,
-        'global' => true
+        'global' => true,
     ],
 
     'most_visited_pages' => [
         'filament_dashboard' => false,
-        'global' => true
+        'global' => true,
     ],
 
     'top_referrers_list' => [
         'filament_dashboard' => false,
-        'global' => true
+        'global' => true,
     ],
 
     /**
-    * Trajectory Icons
-    */
+     * Trajectory Icons
+     */
     'trending_up_icon' => 'heroicon-o-trending-up',
     'trending_down_icon' => 'heroicon-o-trending-down',
     'steady_icon' => 'heroicon-o-switch-horizontal',
 
     /**
-    * Trajectory Colors
-    */
+     * Trajectory Colors
+     */
     'trending_up_color' => 'success',
     'trending_down_color' => 'danger',
     'steady_color' => 'secondary',

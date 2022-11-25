@@ -8,9 +8,9 @@ trait CanViewWidget
 {
     public static function canView(): bool
     {
-        $filamentDashboardStatus = config('filament-google-analytics.' . Str::of(static::class)->after('Widgets\\')->before('Widget')->snake().'.filament_dashboard');
+        $filamentDashboardStatus = config('filament-google-analytics.'.Str::of(static::class)->after('Widgets\\')->before('Widget')->snake().'.filament_dashboard');
 
-        $globalStatus = config('filament-google-analytics.' . Str::of(static::class)->after('Widgets\\')->before('Widget')->snake().'.global');
+        $globalStatus = config('filament-google-analytics.'.Str::of(static::class)->after('Widgets\\')->before('Widget')->snake().'.global');
 
         if ($filamentDashboardStatus && request()->routeIs('filament.pages.dashboard')) {
             return true;
