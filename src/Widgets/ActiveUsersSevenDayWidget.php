@@ -49,9 +49,9 @@ class ActiveUsersSevenDayWidget extends Widget
     protected function initializeData()
     {
         $lookups = [
-            '5' => $this->performActiveUsersQuery('ga:7dayUsers', 5),
-            '10' => $this->performActiveUsersQuery('ga:7dayUsers', 10),
-            '15' => $this->performActiveUsersQuery('ga:7dayUsers', 15),
+            '5' => $this->performActiveUsersQuery('active7dayUsers', 5),
+            '10' => $this->performActiveUsersQuery('active7dayUsers', 10),
+            '15' => $this->performActiveUsersQuery('active7dayUsers', 15),
         ];
 
         $data = Arr::get(

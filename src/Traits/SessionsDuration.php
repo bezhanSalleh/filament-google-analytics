@@ -11,7 +11,7 @@ trait SessionsDuration
 
     private function sessionDurationToday(): array
     {
-        $results = $this->performQuery('ga:avgSessionDuration', 'ga:date', Period::days(1));
+        $results = $this->get('averageSessionDuration', 'date', Period::days(1));
 
         return [
             'previous' => $results->first()['value'] ?? 0,
@@ -21,7 +21,7 @@ trait SessionsDuration
 
     private function sessionDurationYesterday(): array
     {
-        $results = $this->performQuery('ga:avgSessionDuration', 'ga:date', Period::create(Carbon::yesterday()->clone()->subDay(), Carbon::yesterday()));
+        $results = $this->get('averageSessionDuration', 'date', Period::create(Carbon::yesterday()->clone()->subDay(), Carbon::yesterday()));
 
         return [
             'previous' => $results->first()['value'] ?? 0,
@@ -32,8 +32,8 @@ trait SessionsDuration
     private function sessionDurationLastWeek(): array
     {
         $lastWeek = $this->getLastWeek();
-        $currentResults = $this->performQuery('ga:avgSessionDuration', 'ga:year', $lastWeek['current']);
-        $previousResults = $this->performQuery('ga:avgSessionDuration', 'ga:year', $lastWeek['previous']);
+        $currentResults = $this->get('averageSessionDuration', 'year', $lastWeek['current']);
+        $previousResults = $this->get('averageSessionDuration', 'year', $lastWeek['previous']);
 
         return [
             'previous' => $previousResults->pluck('value')[0] ?? 0,
@@ -44,8 +44,8 @@ trait SessionsDuration
     private function sessionDurationLastMonth(): array
     {
         $lastMonth = $this->getLastMonth();
-        $currentResults = $this->performQuery('ga:avgSessionDuration', 'ga:year', $lastMonth['current']);
-        $previousResults = $this->performQuery('ga:avgSessionDuration', 'ga:year', $lastMonth['previous']);
+        $currentResults = $this->get('averageSessionDuration', 'year', $lastMonth['current']);
+        $previousResults = $this->get('averageSessionDuration', 'year', $lastMonth['previous']);
 
         return [
             'previous' => $previousResults->pluck('value')[0] ?? 0,
@@ -56,8 +56,8 @@ trait SessionsDuration
     private function sessionDurationLastSevenDays(): array
     {
         $lastSevenDays = $this->getLastSevenDays();
-        $currentResults = $this->performQuery('ga:avgSessionDuration', 'ga:year', $lastSevenDays['current']);
-        $previousResults = $this->performQuery('ga:avgSessionDuration', 'ga:year', $lastSevenDays['previous']);
+        $currentResults = $this->get('averageSessionDuration', 'year', $lastSevenDays['current']);
+        $previousResults = $this->get('averageSessionDuration', 'year', $lastSevenDays['previous']);
 
         return [
             'previous' => $previousResults->pluck('value')[0] ?? 0,
@@ -68,8 +68,8 @@ trait SessionsDuration
     private function sessionDurationLastThirtyDays(): array
     {
         $lastThirtyDays = $this->getLastThirtyDays();
-        $currentResults = $this->performQuery('ga:avgSessionDuration', 'ga:year', $lastThirtyDays['current']);
-        $previousResults = $this->performQuery('ga:avgSessionDuration', 'ga:year', $lastThirtyDays['previous']);
+        $currentResults = $this->get('averageSessionDuration', 'year', $lastThirtyDays['current']);
+        $previousResults = $this->get('averageSessionDuration', 'year', $lastThirtyDays['previous']);
 
         return [
             'previous' => $previousResults->pluck('value')[0] ?? 0,

@@ -3,26 +3,23 @@
 namespace BezhanSalleh\FilamentGoogleAnalytics\Traits;
 
 use Carbon\Carbon;
-use Spatie\Analytics\Analytics;
+use Spatie\Analytics\Facades\Analytics;
 use Spatie\Analytics\Period;
 
 trait ActiveUsers
 {
     private function performActiveUsersQuery(string $metric, int $days): array
     {
-        $analyticsData = app(Analytics::class)
-            ->performQuery(
+        $analyticsData = Analytics::get(
                 Period::days($days),
-                $metric,
-                [
-                    'metrics' => $metric,
-                    'dimensions' => 'ga:date',
-                ]
-            );
+                [$metric],
+                ['date']
+        );
 
-        $results = collect($analyticsData->getRows())->mapWithKeys(function ($row) {
+        $results = $analyticsData->mapWithKeys(function ($row) use($metric){
             return [
-                (new Carbon($row[0]))->format('M j') => intval($row[1]),
+                //(new Carbon($row['date']))->format('M j') => intval($row[1]),
+                (new Carbon($row['date']))->format('M j') => $row[$metric],
             ];
         });
 

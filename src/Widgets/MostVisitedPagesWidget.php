@@ -4,7 +4,8 @@ namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 use Filament\Widgets\Widget;
-use Spatie\Analytics\Analytics;
+use Spatie\Analytics\Facades\Analytics;
+use Spatie\Analytics\OrderBy;
 use Spatie\Analytics\Period;
 
 class MostVisitedPagesWidget extends Widget
@@ -46,17 +47,13 @@ class MostVisitedPagesWidget extends Widget
             'TY' => Period::years(1),
         ];
 
-        $analyticsData = app(Analytics::class)->performQuery(
+        $analyticsData = Analytics::get(
             $lookups[$this->filter],
-            'ga:users',
-            [
-                'metrics' => 'ga:pageviews',
-                'dimensions' => 'ga:pageTitle,ga:hostname,ga:pagePath',
-                'sort' => '-ga:pageviews',
-                'max-results' => 10,
-            ]
+            ['screenPageViews'],
+            ['pageTitle','hostName','pagePath'],
+            10,
+            [OrderBy::metric('screenPageViews', true)],
         );
-
         $headers = [
             'name',
             'hostname',
@@ -68,7 +65,7 @@ class MostVisitedPagesWidget extends Widget
             function ($row) use ($headers) {
                 return array_combine($headers, $row);
             },
-            $analyticsData->rows ?? []
+            $analyticsData->toArray() ?? []
         );
     }
 

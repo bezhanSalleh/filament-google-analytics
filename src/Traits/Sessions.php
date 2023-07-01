@@ -11,7 +11,7 @@ trait Sessions
 
     private function sessionsToday(): array
     {
-        $results = $this->performQuery('ga:sessions', 'ga:date', Period::days(1));
+        $results = $this->get('sessions', 'date', Period::days(1));
 
         return [
             'previous' => $results->first()['value'] ?? 0,
@@ -21,7 +21,7 @@ trait Sessions
 
     private function sessionsYesterday(): array
     {
-        $results = $this->performQuery('ga:sessions', 'ga:date', Period::create(Carbon::yesterday()->clone()->subDay(), Carbon::yesterday()));
+        $results = $this->get('sessions', 'date', Period::create(Carbon::yesterday()->clone()->subDay(), Carbon::yesterday()));
 
         return [
             'previous' => $results->first()['value'] ?? 0,
@@ -32,8 +32,8 @@ trait Sessions
     private function sessionsLastWeek(): array
     {
         $lastWeek = $this->getLastWeek();
-        $currentResults = $this->performQuery('ga:sessions', 'ga:year', $lastWeek['current']);
-        $previousResults = $this->performQuery('ga:sessions', 'ga:year', $lastWeek['previous']);
+        $currentResults = $this->get('sessions', 'year', $lastWeek['current']);
+        $previousResults = $this->get('sessions', 'year', $lastWeek['previous']);
 
         return [
             'previous' => $previousResults->pluck('value')[0] ?? 0,
@@ -44,8 +44,8 @@ trait Sessions
     private function sessionsLastMonth(): array
     {
         $lastMonth = $this->getLastMonth();
-        $currentResults = $this->performQuery('ga:sessions', 'ga:year', $lastMonth['current']);
-        $previousResults = $this->performQuery('ga:sessions', 'ga:year', $lastMonth['previous']);
+        $currentResults = $this->get('sessions', 'year', $lastMonth['current']);
+        $previousResults = $this->get('sessions', 'year', $lastMonth['previous']);
 
         return [
             'previous' => $previousResults->pluck('value')[0] ?? 0,
@@ -56,8 +56,8 @@ trait Sessions
     private function sessionsLastSevenDays(): array
     {
         $lastSevenDays = $this->getLastSevenDays();
-        $currentResults = $this->performQuery('ga:sessions', 'ga:year', $lastSevenDays['current']);
-        $previousResults = $this->performQuery('ga:sessions', 'ga:year', $lastSevenDays['previous']);
+        $currentResults = $this->get('sessions', 'year', $lastSevenDays['current']);
+        $previousResults = $this->get('sessions', 'year', $lastSevenDays['previous']);
 
         return [
             'previous' => $previousResults->pluck('value')[0] ?? 0,
@@ -68,8 +68,8 @@ trait Sessions
     private function sessionsLastThirtyDays(): array
     {
         $lastThirtyDays = $this->getLastThirtyDays();
-        $currentResults = $this->performQuery('ga:sessions', 'ga:year', $lastThirtyDays['current']);
-        $previousResults = $this->performQuery('ga:sessions', 'ga:year', $lastThirtyDays['previous']);
+        $currentResults = $this->get('sessions', 'year', $lastThirtyDays['current']);
+        $previousResults = $this->get('sessions', 'year', $lastThirtyDays['previous']);
 
         return [
             'previous' => $previousResults->pluck('value')[0] ?? 0,
