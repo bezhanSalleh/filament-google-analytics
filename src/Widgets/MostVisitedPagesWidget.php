@@ -52,9 +52,8 @@ class MostVisitedPagesWidget extends Widget
             ['screenPageViews'],
             ['pageTitle','hostName','pagePath'],
             10,
-            [OrderBy::metric('screenPageViews')],
+            [OrderBy::metric('screenPageViews', true)],
         );
-
         $headers = [
             'name',
             'hostname',

@@ -5,6 +5,7 @@ namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 use Filament\Widgets\Widget;
 use Spatie\Analytics\Facades\Analytics;
+use Spatie\Analytics\OrderBy;
 use Spatie\Analytics\Period;
 
 class TopReferrersListWidget extends Widget
@@ -46,21 +47,18 @@ class TopReferrersListWidget extends Widget
             'TY' => Period::years(1),
         ];
 
-        $analyticsData = app(Analytics::class)
-            ->get(
+        $analyticsData = Analytics::get(
                 $lookups[$this->filter],
-                'ga:users',
-                [
-                    'dimensions' => 'ga:fullReferrer',
-                    'sort' => '-ga:users',
-                    'max-results' => 10,
-                ]
+                ['activeUsers'],
+                ['pageReferrer'],
+                10,
+                [OrderBy::dimension('activeUsers',true)],
             );
 
-        return collect($analyticsData['rows'] ?? [])->map(function (array $pageRow) {
+        return $analyticsData->map(function (array $pageRow) {
             return [
-                'url' => $pageRow[0],
-                'pageViews' => (int) $pageRow[1],
+                'url' => $pageRow['pageReferrer'],
+                'pageViews' => (int) $pageRow['activeUsers'],
             ];
         });
     }
