@@ -83,8 +83,6 @@ class FilamentGoogleAnalytics
 
     /**
      * Undocumented function
-     *
-     * @return string
      */
     public function trajectoryDescription(): string
     {

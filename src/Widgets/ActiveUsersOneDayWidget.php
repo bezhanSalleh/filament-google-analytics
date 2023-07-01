@@ -49,9 +49,9 @@ class ActiveUsersOneDayWidget extends Widget
     protected function initializeData()
     {
         $lookups = [
-            '5' => $this->performActiveUsersQuery('ga:1dayUsers', 5),
-            '10' => $this->performActiveUsersQuery('ga:1dayUsers', 10),
-            '15' => $this->performActiveUsersQuery('ga:1dayUsers', 15),
+            '5' => $this->performActiveUsersQuery('active1dayUsers', 5),
+            '10' => $this->performActiveUsersQuery('active1dayUsers', 10),
+            '15' => $this->performActiveUsersQuery('active1dayUsers', 15),
         ];
 
         $data = Arr::get(

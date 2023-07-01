@@ -48,14 +48,13 @@ class FilamentGoogleAnalyticsDashboard extends Page
             Widgets\VisitorsWidget::class,
             Widgets\ActiveUsersOneDayWidget::class,
             Widgets\ActiveUsersSevenDayWidget::class,
-            Widgets\ActiveUsersFourteenDayWidget::class,
             Widgets\ActiveUsersTwentyEightDayWidget::class,
             Widgets\SessionsWidget::class,
             Widgets\SessionsDurationWidget::class,
             Widgets\SessionsByCountryWidget::class,
             Widgets\SessionsByDeviceWidget::class,
             Widgets\MostVisitedPagesWidget::class,
-            Widgets\TopReferrersListWidget::class,
+            //Widgets\TopReferrersListWidget::class,
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 use Filament\Widgets\Widget;
-use Spatie\Analytics\Analytics;
+use Spatie\Analytics\Facades\Analytics;
 use Spatie\Analytics\Period;
 
 class TopReferrersListWidget extends Widget
@@ -47,7 +47,7 @@ class TopReferrersListWidget extends Widget
         ];
 
         $analyticsData = app(Analytics::class)
-            ->performQuery(
+            ->get(
                 $lookups[$this->filter],
                 'ga:users',
                 [
