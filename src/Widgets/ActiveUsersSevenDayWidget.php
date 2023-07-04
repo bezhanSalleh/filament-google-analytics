@@ -20,6 +20,8 @@ class ActiveUsersSevenDayWidget extends Widget
 
     public $readyToLoad = false;
 
+    public array|null $pagePath = null;
+
     public function init()
     {
         $this->readyToLoad = true;
