@@ -19,8 +19,8 @@ trait Visitors
         );
 
         return [
-            'result' => $analyticsData[0]['activeUsers'],
-            'previous' => $analyticsData[1]['activeUsers']
+            'previous' => $analyticsData->first()['activeUsers'] ?? 0,
+            'result' => $analyticsData->last()['activeUsers'] ?? 0,
         ];
     }
 
@@ -33,8 +33,8 @@ trait Visitors
         );
 
         return [
-            'result' => $analyticsData[0]['activeUsers'],
-            'previous' => $analyticsData[1]['activeUsers']
+            'previous' => $analyticsData->first()['activeUsers'] ?? 0,
+            'result' => $analyticsData->last()['activeUsers'] ?? 0,
         ];
     }
 
