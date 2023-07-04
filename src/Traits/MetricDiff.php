@@ -4,25 +4,27 @@ namespace BezhanSalleh\FilamentGoogleAnalytics\Traits;
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
-use Spatie\Analytics\Facades\Analytics;
 use Spatie\Analytics\Period;
 
 trait MetricDiff
 {
-    private function get(string $metric, string $dimensions, Period $period): Collection
+    use GAFetch;
+
+    private function get(array $metrics, array $dimensions, Period $period): Collection
     {
-        $analyticsData = Analytics::get(
-                $period,
-                [$metric],
-                [$dimensions],
-            );
+        $analyticsData = $this->fetch(
+            $period,
+            $metrics,
+            isset($this->pagePath) && !is_null($this->pagePath) ? array_merge($dimensions, ['pagePath']) : $dimensions,
+            $this->pagePath ?? null,
+        );
 
         $results = $analyticsData;
 
-        return collect($results ?? [])->map(function (array $dateRow) use ($metric,$dimensions){
+        return collect($results ?? [])->map(function (array $dateRow) use ($metrics,$dimensions){
             return [
-                'date' => $dateRow[$dimensions],
-                'value' => $dateRow[$metric],
+                'date' => $dateRow[$dimensions[0]],
+                'value' => $dateRow[$metrics[0]],
             ];
         });
     }
