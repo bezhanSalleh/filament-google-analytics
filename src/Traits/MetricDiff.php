@@ -15,7 +15,7 @@ trait MetricDiff
         $analyticsData = $this->fetch(
             $period,
             $metrics,
-            isset($this->pagePath) && !is_null($this->pagePath) ? array_merge($dimensions, ['pagePath']) : $dimensions,
+            collect(isset($this->pagePath) && !is_null($this->pagePath) ? array_merge($dimensions, ['pagePath']) : $dimensions)->unique()->toArray(),
             $this->pagePath ?? null,
         );
 

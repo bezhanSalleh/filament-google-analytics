@@ -13,7 +13,7 @@ trait ActiveUsers
         $analyticsData = $this->fetch(
             $days,
             [$metric],
-            isset($this->pagePath) && !is_null($this->pagePath) ? ['pagePath', 'date'] : ['date'],
+            collect(isset($this->pagePath) && !is_null($this->pagePath) ? ['pagePath', 'date'] : ['date'])->unique()->toArray(),
             $this->pagePath ?? null,
         );
 
