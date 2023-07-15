@@ -30,14 +30,9 @@ return [
         'global' => true,
     ],
 
-    'active_users_fourteen_day' => [
-        'filament_dashboard' => false,
-        'global' => true,
-    ],
-
     'active_users_twenty_eight_day' => [
         'filament_dashboard' => false,
-        'global' => true,
+        'global' => false,
     ],
 
     'sessions' => [
