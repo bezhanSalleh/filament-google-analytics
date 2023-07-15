@@ -1,0 +1,20 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev:styles": "npx tailwindcss -i resources/css/plugin.css -o resources/dist/curator.css --postcss --watch",
+        "dev:scripts": "node bin/build.js --dev",
+        "build:styles": "npx tailwindcss -i resources/css/plugin.css -o resources/dist/curator.css --postcss --minify && npm run purge",
+        "build:scripts": "node bin/build.js",
+        "purge": "filament-purge -i resources/dist/curator.css -o resources/dist/curator.css -v 3.x",
+        "dev": "npm-run-all --parallel dev:*",
+        "build": "npm-run-all build:*",
+        "prettier": "npx prettier --write ."
+    },
+    "dependencies": {
+        "chart.js": "^4.3.0"
+    },
+    "devDependencies": {
+        "esbuild": "^0.18.13"
+    }
+}

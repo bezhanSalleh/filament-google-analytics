@@ -1,21 +1,15 @@
-<x-filament::widget class="filament-wigets-chart-widget">
-    <div @class([
-        'relative p-6 rounded-2xl filament-stats-card bg-white shadow',
-        'dark:bg-gray-800' => config('filament.dark_mode'),
-    ])>
+<x-filament-widgets::widget class="filament-stats-overview-widget">
+    <div @class(['filament-stats-overview-widget-card relative rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-950/5 dark:bg-gray-800 dark:ring-white/20'])>
         <div @class(['space-y-2'])>
             <div @class([
                 'flex flex-wrap justify-between items-center space-y-1' => $filters,
             ])>
-                <div @class([
-                    'text-sm font-medium text-gray-500',
-                    'dark:text-gray-200' => config('filament.dark_mode'),
-                ])>
+                <div class="text-sm font-medium text-gray-500 dark:text-gray-200">
                     {{ $this->label() }}
                 </div>
                 <div x-id="['stats-widget-filter']">
                     <select :id="$id('stats-widget-filter')" :name="$id('stats-widget-filter')" wire:model="filter"
-                        class="text-sm font-medium text-gray-500 block transition duration-75 rounded-lg shadow-sm focus:border-primary-600 focus:ring-1 focus:ring-inset focus:ring-primary-600 disabled:opacity-70 filament-forms-select-component dark:bg-gray-700 dark:text-white border-gray-300 dark:border-gray-600"
+                        class="block text-sm font-medium text-gray-500 transition duration-75 border-gray-300 rounded-lg shadow-sm focus:border-primary-600 focus:ring-1 focus:ring-inset focus:ring-primary-600 disabled:opacity-70 filament-forms-select-component dark:bg-gray-700 dark:text-white dark:border-gray-600"
                         style="padding-block: 4px">
                         @foreach ($filters as $val => $title)
                             <option value="{{ $val }}">
@@ -30,26 +24,21 @@
                     <div class="text-3xl">
                         {{ $data['value'] }}
                     </div>
-
-                    <div @class([
-                        'flex items-center space-x-1 rtl:space-x-reverse text-sm font-medium',
-                        match ($data['color']) {
-                            'danger' => 'text-danger-600',
-                            'primary' => 'text-primary-600',
-                            'success' => 'text-success-600',
-                            'warning' => 'text-warning-600',
-                            default => 'text-gray-600'
-                        },
-                    ])>
+                    <div
+                        class="flex items-center space-x-1 text-sm font-medium text-custom-600 rtl:space-x-reverse"
+                        style="{{ \Filament\Support\get_color_css_variables($data['color'] ?? 'gray', shades: [600]) }}"
+                    >
                         <span>{{ $data['description'] }}</span>
 
-                        @if ($data['icon'])
-                            <x-dynamic-component :component="$data['icon']" class="w-4 h-4" />
-                        @endif
+                        <x-filament::icon
+                                :name="$data['icon']"
+                                alias="widgets::stats-overview.card.description"
+                                size="h-4 w-4"
+                            />
                     </div>
                 @else
-                    <div class="absolute inset-0 flex justify-center items-center">
-                        <div class="flex justify-center items-center h-12 w-12 rounded-lg shadow-lg">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="flex items-center justify-center w-12 h-12 rounded-lg shadow-lg">
                             <x-filament-google-analytics::loading-indicator />
                         </div>
                     </div>
@@ -59,7 +48,7 @@
         </div>
 
         @if ($data && $data['chart'])
-            <div class="absolute bottom-0 inset-x-0 rounded-b-2xl overflow-hidden">
+            <div class="absolute inset-x-0 bottom-0 overflow-hidden rounded-b-2xl">
                 <canvas x-data="{
                     chart: null,
 
@@ -67,10 +56,8 @@
                         let chart = this.initChart()
 
                         window.addEventListener('updateStatsChartData', (event) => {
-                            {{-- if (@js($id) === event.detail.id) { --}}
                                 chart.destroy()
                                 chart = this.initChart(event.detail.data)
-                            {{-- } --}}
                         })
                     },
 
@@ -155,10 +142,10 @@
             </div>
         @endif
         <div wire:loading.delay.long wire:target='filter'>
-            <div class="absolute inset-0 flex justify-center items-center">
+            <div class="absolute inset-0 flex items-center justify-center">
                 <x-filament-google-analytics::loading-indicator />
             </div>
         </div>
     </div>
 
-</x-filament::widget>
+</x-filament-widgets::widget>

@@ -4,6 +4,7 @@ namespace BezhanSalleh\FilamentGoogleAnalytics\Pages;
 
 use BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 use Filament\Pages\Page;
+use Illuminate\Contracts\Support\Htmlable;
 
 class FilamentGoogleAnalyticsDashboard extends Page
 {
@@ -11,22 +12,24 @@ class FilamentGoogleAnalyticsDashboard extends Page
 
     public function mount()
     {
+        parent::mount();
+        
         if (! static::canView()) {
             return redirect(config('filament.path'));
         }
     }
 
-    protected static function getNavigationIcon(): string
+    public static function getNavigationIcon(): string
     {
         return config('filament-google-analytics.dashboard_icon') ?? 'heroicon-o-chart-bar';
     }
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return __('filament-google-analytics::widgets.navigation_label');
     }
 
-    protected function getTitle(): string
+    public function getTitle(): string | Htmlable
     {
         return __('filament-google-analytics::widgets.title');
     }
@@ -36,11 +39,14 @@ class FilamentGoogleAnalyticsDashboard extends Page
         return config('filament-google-analytics.dedicated_dashboard');
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return static::canView() && static::$shouldRegisterNavigation;
     }
 
+    /**
+     * @return array<class-string>
+     */
     protected function getHeaderWidgets(): array
     {
         return [

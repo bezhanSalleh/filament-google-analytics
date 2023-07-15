@@ -11,6 +11,7 @@ class VisitorsWidget extends Widget
 {
     use Traits\Visitors;
     use Traits\CanViewWidget;
+    use Traits\Discoverable;
 
     protected static string $view = 'filament-google-analytics::widgets.visitors-widget';
 
@@ -19,6 +20,8 @@ class VisitorsWidget extends Widget
     public ?string $filter = 'T';
 
     public $readyToLoad = false;
+
+    public $hasFilterLoadingIndicator = true;
 
     public function init()
     {

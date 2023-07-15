@@ -11,12 +11,15 @@ class ActiveUsersSevenDayWidget extends Widget
 {
     use Traits\ActiveUsers;
     use Traits\CanViewWidget;
+    use Traits\Discoverable;
 
     protected static string $view = 'filament-google-analytics::widgets.active-users-seven-day-widget';
 
     protected static ?int $sort = 3;
 
     public ?string $filter = '5';
+
+    public bool $hasFilterLoadingIndicator = true;
 
     public $readyToLoad = false;
 

@@ -1,12 +1,9 @@
-<x-filament::widget class="filament-wigets-chart-widget">
+<x-filament-widgets::widget class="filament-wigets-chart-widget">
     <x-filament::card>
         <div wire:init='init'>
             @if ($readyToLoad)
                 <div class="flex items-center justify-between gap-8">
-                    <div @class([
-                        'text-lg font-medium text-gray-500',
-                        'dark:text-gray-200' => config('filament.dark_mode'),
-                    ])>
+                    <div class="font-medium text-gray-500 text-md dark:text-gray-200">
                         {{ $this->label() }}
                     </div>
                     <span
@@ -15,53 +12,20 @@
                     </span>
                 </div>
 
-                <div>
-                    <canvas x-data="{
-                    chart: null,
-
-                    init: function () {
-                        let chart = this.initChart()
-
-                        $wire.on('updateChartData', async ({ data }) => {
-                            chart.data = this.applyColorToData(data)
-                            chart.update('resize')
-                        })
-                    },
-
-                    initChart: function (data = null) {
-                        data = data ?? @js($data['chartData'])
-
-                        return this.chart = new Chart($el, {
+                <div wire:ignore>
+                    <div x-ignore ax-load
+                        ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('chart', 'filament/widgets') }}"
+                        x-data="chart({
+                            cachedData: @js($data['chartData']),
+                            options: @js($data['chartOptions']),
                             type: 'doughnut',
-                            data: this.applyColorToData(data),
-                            options: @js($data['chartOptions']) ?? {},
-                        })
-                    },
+                        })" wire:ignore>
+                        <canvas x-ref="canvas"></canvas>
 
-                    applyColorToData: function (data) {
-                        data.datasets.forEach((dataset, datasetIndex) => {
-                            if (! dataset.backgroundColor) {
-                                data.datasets[datasetIndex].backgroundColor = getComputedStyle($refs.backgroundColorElement).color
-                            }
+                        <span x-ref="backgroundColorElement" class="text-gray-50 dark:text-gray-300"></span>
 
-                            if (! dataset.borderColor) {
-                                data.datasets[datasetIndex].borderColor = getComputedStyle($refs.borderColorElement).color
-                            }
-                        })
-
-                        return data
-                    },
-                }" wire:ignore>
-                        <span x-ref="backgroundColorElement" @class([
-                            'text-gray-50',
-                            'dark:text-gray-300' => config('filament.dark_mode'),
-                        ])></span>
-
-                        <span x-ref="borderColorElement" @class([
-                            'text-gray-500',
-                            'dark:text-gray-200' => config('filament.dark_mode'),
-                        ])></span>
-                    </canvas>
+                        <span x-ref="borderColorElement" class="text-gray-500 dark:text-gray-200"></span>
+                    </div>
                 </div>
             @else
                 <div class="flex justify-center items-center h-[270px] w-full">
@@ -70,4 +34,4 @@
             @endif
         </div>
     </x-filament::card>
-</x-filament::widget>
+</x-filament-widgets::widget>

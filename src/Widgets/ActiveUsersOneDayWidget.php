@@ -11,6 +11,7 @@ class ActiveUsersOneDayWidget extends Widget
 {
     use Traits\ActiveUsers;
     use Traits\CanViewWidget;
+    use Traits\Discoverable;
 
     protected static string $view = 'filament-google-analytics::widgets.active-users-one-day-widget';
 
@@ -20,6 +21,8 @@ class ActiveUsersOneDayWidget extends Widget
 
     public $readyToLoad = false;
 
+    public bool $hasFilterLoadingIndicator = true;
+
     public function init()
     {
         $this->readyToLoad = true;
@@ -28,13 +31,6 @@ class ActiveUsersOneDayWidget extends Widget
     public function label(): ?string
     {
         return __('filament-google-analytics::widgets.one_day_active_users');
-    }
-
-    public function updatedFilter()
-    {
-        $this->emitSelf('filterChartData', [
-            'data' => array_values($this->initializeData()['results']),
-        ]);
     }
 
     protected static function filters(): array
@@ -80,5 +76,12 @@ class ActiveUsersOneDayWidget extends Widget
             'data' => $this->readyToLoad ? $this->getData() : [],
             'filters' => static::filters(),
         ];
+    }
+
+    public function updatedFilter()
+    {
+        $this->emitSelf('filterChartData', [
+            'data' => array_values($this->initializeData()['results']),
+        ]);
     }
 }

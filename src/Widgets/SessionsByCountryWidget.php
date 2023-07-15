@@ -12,6 +12,7 @@ use Spatie\Analytics\Period;
 class SessionsByCountryWidget extends Widget
 {
     use Traits\CanViewWidget;
+    use Traits\Discoverable;
 
     protected static string $view = 'filament-google-analytics::widgets.sessions-by-country-widget';
 

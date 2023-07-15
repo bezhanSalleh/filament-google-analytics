@@ -24,7 +24,7 @@
     ],
     "require": {
         "php": "^8.1",
-        "filament/filament": "^2.0",
+        "filament/filament": "^3.0",
         "illuminate/contracts": "^10.0",
         "spatie/laravel-analytics": "^5.0",
         "spatie/laravel-package-tools": "^1.9.2"

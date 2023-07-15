@@ -11,12 +11,15 @@ use Spatie\Analytics\Period;
 class TopReferrersListWidget extends Widget
 {
     use Traits\CanViewWidget;
+    use Traits\Discoverable;
 
     protected static string $view = 'filament-google-analytics::widgets.top-referrers-list-widget';
 
     protected static ?int $sort = 3;
 
     public ?string $filter = 'T';
+
+    public $hasFilterLoadingIndicator = true;
 
     public bool $readyToLoad = false;
 

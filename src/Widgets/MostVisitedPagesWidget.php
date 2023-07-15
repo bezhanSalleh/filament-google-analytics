@@ -11,12 +11,15 @@ use Spatie\Analytics\Period;
 class MostVisitedPagesWidget extends Widget
 {
     use Traits\CanViewWidget;
+    use Traits\Discoverable;
 
     protected static string $view = 'filament-google-analytics::widgets.most-visited-pages-widget';
 
     protected static ?int $sort = 3;
 
     public ?string $filter = 'T';
+
+    public bool $hasFilterLoadingIndicator = true;
 
     public bool $readyToLoad = false;
 

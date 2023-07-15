@@ -11,6 +11,7 @@ class PageViewsWidget extends Widget
 {
     use Traits\PageViews;
     use Traits\CanViewWidget;
+    use Traits\Discoverable;
 
     protected static string $view = 'filament-google-analytics::widgets.page-views-widget';
 
@@ -19,6 +20,8 @@ class PageViewsWidget extends Widget
     public ?string $filter = 'T';
 
     public $readyToLoad = false;
+
+    public bool $hasFilterLoadingIndicator = true;
 
     public function init()
     {
@@ -30,7 +33,7 @@ class PageViewsWidget extends Widget
         return __('filament-google-analytics::widgets.page_views');
     }
 
-    protected static function filters(): array
+    protected static function getFilters(): array
     {
         return [
             'T' => __('filament-google-analytics::widgets.T'),
@@ -83,7 +86,7 @@ class PageViewsWidget extends Widget
     {
         return [
             'data' => $this->readyToLoad ? $this->getData() : [],
-            'filters' => static::filters(),
+            'filters' => static::getFilters(),
         ];
     }
 }

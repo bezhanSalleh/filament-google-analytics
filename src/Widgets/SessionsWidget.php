@@ -11,6 +11,7 @@ class SessionsWidget extends Widget
 {
     use Traits\Sessions;
     use Traits\CanViewWidget;
+    use Traits\Discoverable;
 
     protected static string $view = 'filament-google-analytics::widgets.sessions-widget';
 

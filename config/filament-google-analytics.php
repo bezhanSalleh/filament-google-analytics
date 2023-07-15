@@ -12,7 +12,7 @@ return [
      * Widgets
      */
     'page_views' => [
-        'filament_dashboard' => false,
+        'filament_dashboard' => true,
         'global' => true,
     ],
     'visitors' => [
@@ -68,9 +68,9 @@ return [
     /**
      * Trajectory Icons
      */
-    'trending_up_icon' => 'heroicon-o-trending-up',
-    'trending_down_icon' => 'heroicon-o-trending-down',
-    'steady_icon' => 'heroicon-o-switch-horizontal',
+    'trending_up_icon' => 'heroicon-o-arrow-trending-up',
+    'trending_down_icon' => 'heroicon-o-arrow-trending-down',
+    'steady_icon' => 'heroicon-o-arrows-right-left',
 
     /**
      * Trajectory Colors

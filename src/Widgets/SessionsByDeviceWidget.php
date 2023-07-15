@@ -11,6 +11,7 @@ use Spatie\Analytics\Period;
 class SessionsByDeviceWidget extends Widget
 {
     use Traits\CanViewWidget;
+    use Traits\Discoverable;
 
     protected static string $view = 'filament-google-analytics::widgets.sessions-by-device-widget';
 

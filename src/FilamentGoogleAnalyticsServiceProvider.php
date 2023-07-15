@@ -2,29 +2,13 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics;
 
-use Filament\PluginServiceProvider;
 use Spatie\LaravelPackageTools\Package;
+use Filament\Support\Facades\FilamentAsset;
+use Filament\Support\Assets\AlpineComponent;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentGoogleAnalyticsServiceProvider extends PluginServiceProvider
+class FilamentGoogleAnalyticsServiceProvider extends PackageServiceProvider
 {
-    protected array $pages = [
-        Pages\FilamentGoogleAnalyticsDashboard::class,
-    ];
-
-    protected array $widgets = [
-        Widgets\PageViewsWidget::class,
-        Widgets\VisitorsWidget::class,
-        Widgets\ActiveUsersOneDayWidget::class,
-        Widgets\ActiveUsersSevenDayWidget::class,
-        Widgets\ActiveUsersTwentyEightDayWidget::class,
-        Widgets\SessionsWidget::class,
-        Widgets\SessionsDurationWidget::class,
-        Widgets\SessionsByCountryWidget::class,
-        Widgets\SessionsByDeviceWidget::class,
-        Widgets\MostVisitedPagesWidget::class,
-        Widgets\TopReferrersListWidget::class,
-    ];
-
     public function configurePackage(Package $package): void
     {
         $package
@@ -32,5 +16,12 @@ class FilamentGoogleAnalyticsServiceProvider extends PluginServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasTranslations();
+    }
+
+    public function packageBooted(): void
+    {
+        FilamentAsset::register([
+            AlpineComponent::make('fGAChart', __DIR__ . '/../resources/dist/fGAChart.js'),
+        ], 'bezhansalleh/filament-google-analytics');
     }
 }
