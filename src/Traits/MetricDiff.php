@@ -4,30 +4,25 @@ namespace BezhanSalleh\FilamentGoogleAnalytics\Traits;
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
-use Spatie\Analytics\Analytics;
+use Spatie\Analytics\Facades\Analytics;
 use Spatie\Analytics\Period;
 
 trait MetricDiff
 {
-    private function performQuery(string $metric, string $dimensions, Period $period): Collection
+    private function get(string $metric, string $dimensions, Period $period): Collection
     {
-        $analyticsData = app(Analytics::class)
-            ->performQuery(
+        $analyticsData = Analytics::get(
                 $period,
-                $metric,
-                [
-                    'metrics' => $metric,
-                    'dimensions' => $dimensions,
-                    'samplingLevel' => 'HIGHER_PRECISION',
-                ]
+                [$metric],
+                [$dimensions],
             );
 
-        $results = collect($analyticsData->getRows());
+        $results = $analyticsData;
 
-        return collect($results ?? [])->map(function (array $dateRow) {
+        return collect($results ?? [])->map(function (array $dateRow) use ($metric,$dimensions){
             return [
-                'date' => $dateRow[0],
-                'value' => $dateRow[1],
+                'date' => $dateRow[$dimensions],
+                'value' => $dateRow[$metric],
             ];
         });
     }

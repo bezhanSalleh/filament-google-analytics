@@ -3,9 +3,11 @@
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
+
+use Spatie\Analytics\OrderBy;
 use Filament\Widgets\Widget;
 use Illuminate\Support\Str;
-use Spatie\Analytics\Analytics;
+use Spatie\Analytics\Facades\Analytics;
 use Spatie\Analytics\Period;
 
 class SessionsByCountryWidget extends Widget
@@ -32,23 +34,27 @@ class SessionsByCountryWidget extends Widget
 
     protected function getChartData()
     {
-        $analyticsData = app(Analytics::class)->performQuery(
+
+        //$analyticsData = Analytics::get(Period::days(7));
+        $analyticsData = Analytics::get(
             Period::months(1),
-            'ga:sessions',
-            [
-                'metrics' => 'ga:sessions',
-                'dimensions' => 'ga:country',
-                'sort' => '-ga:sessions',
-                'max-results' => 10,
-            ]
+            ['sessions'],
+            ['country'],
+            10,
+            [OrderBy::metric('sessions', true)],
         );
 
         $results = [];
-        foreach (collect($analyticsData->getRows()) as $row) {
-            $results[Str::studly($row[0])] = $row[1];
+        foreach ($analyticsData as $row) {
+            $results[Str::studly($row['country'])] = $row['sessions'];
         }
 
-        $this->total = number_format($analyticsData->totalsForAllResults['ga:sessions']);
+        $total = 0;
+        foreach($results as $result){
+                $total += $result;
+        }
+        $this->total = number_format($total);
+        //$this->total = number_format($analyticsData->totalsForAllResults['sessions']);
 
         return [
             'labels' => array_keys($results),
