@@ -35,6 +35,7 @@ trait PageViews
         $lastWeek = $this->getLastWeek();
         $currentResults = $this->get('screenPageViews', 'year', $lastWeek['current']);
         $previousResults = $this->get('screenPageViews', 'year', $lastWeek['previous']);
+
         return [
             'previous' => $previousResults->pluck('value')->sum() ?? 0,
             'result' => $currentResults->pluck('value')->sum() ?? 0,
