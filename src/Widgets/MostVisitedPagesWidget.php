@@ -50,7 +50,7 @@ class MostVisitedPagesWidget extends Widget
         $analyticsData = Analytics::get(
             $lookups[$this->filter],
             ['screenPageViews'],
-            ['pageTitle','hostName','pagePath'],
+            ['pageTitle', 'hostName', 'pagePath'],
             10,
             [OrderBy::metric('screenPageViews', true)],
         );

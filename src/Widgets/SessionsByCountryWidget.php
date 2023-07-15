@@ -3,7 +3,6 @@
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
-
 use Filament\Widgets\Widget;
 use Illuminate\Support\Str;
 use Spatie\Analytics\Facades\Analytics;
@@ -50,7 +49,7 @@ class SessionsByCountryWidget extends Widget
         }
 
         $total = 0;
-        foreach($results as $result) {
+        foreach ($results as $result) {
             $total += $result;
         }
         $this->total = number_format($total);
