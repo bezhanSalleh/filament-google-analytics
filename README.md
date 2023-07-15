@@ -22,7 +22,7 @@
     </a>
 <p>
 
-# Filament Google Analytics
+# Filament Google Analytics (GA4)
 Google Analytics integration for [Filament (FilamentAdmin)](https://filamentphp.com)
 
 # Installation
@@ -42,7 +42,7 @@ yourapp/storage/app/analytics/service-account-credentials.json
 Also add this to the `.env` for your Filament PHP app:
 
 ```ini
-ANALYTICS_VIEW_ID=
+ANALYTICS_PROPERTY_ID=
 ```
 
 # Usage
@@ -61,7 +61,6 @@ php artisan vendor:publish --tag=filament-google-analytics-config
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersOneDayWidget::class,
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersSevenDayWidget::class,
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersFourteenDayWidget::class,
-\BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersTwentyEightDayWidget::class,
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsWidget::class,
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsDurationWidget::class,
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsByCountryWidget::class,
