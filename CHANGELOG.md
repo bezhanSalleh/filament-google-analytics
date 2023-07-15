@@ -2,6 +2,23 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 1.1.0 - 2023-07-15
+
+### What's Changed
+
+- GA4 Support by @rafayrty in https://github.com/bezhanSalleh/filament-google-analytics/pull/34
+- Bump actions/checkout from 3.4.0 to 3.5.0 by @dependabot in https://github.com/bezhanSalleh/filament-google-analytics/pull/27
+- Bump actions/checkout from 3.5.0 to 3.5.2 by @dependabot in https://github.com/bezhanSalleh/filament-google-analytics/pull/29
+- Bump dependabot/fetch-metadata from 1.3.6 to 1.4.0 by @dependabot in https://github.com/bezhanSalleh/filament-google-analytics/pull/30
+- Bump dependabot/fetch-metadata from 1.4.0 to 1.5.1 by @dependabot in https://github.com/bezhanSalleh/filament-google-analytics/pull/31
+- Bump actions/checkout from 3.5.2 to 3.5.3 by @dependabot in https://github.com/bezhanSalleh/filament-google-analytics/pull/32
+- Bump dependabot/fetch-metadata from 1.5.1 to 1.6.0 by @dependabot in https://github.com/bezhanSalleh/filament-google-analytics/pull/35
+
+### New Contributors
+
+- @rafayrty made their first contribution in https://github.com/bezhanSalleh/filament-google-analytics/pull/34
+- **Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/1.0.1...1.1.0
+
 ## 1.0.1 - 2023-04-03
 
 ### What's Changed
