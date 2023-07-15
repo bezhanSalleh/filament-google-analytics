@@ -12,14 +12,14 @@ trait MetricDiff
     private function get(string $metric, string $dimensions, Period $period): Collection
     {
         $analyticsData = Analytics::get(
-                $period,
-                [$metric],
-                [$dimensions],
-            );
+            $period,
+            [$metric],
+            [$dimensions],
+        );
 
         $results = $analyticsData;
 
-        return collect($results ?? [])->map(function (array $dateRow) use ($metric,$dimensions){
+        return collect($results ?? [])->map(function (array $dateRow) use ($metric, $dimensions) {
             return [
                 'date' => $dateRow[$dimensions],
                 'value' => $dateRow[$metric],

@@ -48,12 +48,12 @@ class TopReferrersListWidget extends Widget
         ];
 
         $analyticsData = Analytics::get(
-                $lookups[$this->filter],
-                ['activeUsers'],
-                ['pageReferrer'],
-                10,
-                [OrderBy::dimension('activeUsers',true)],
-            );
+            $lookups[$this->filter],
+            ['activeUsers'],
+            ['pageReferrer'],
+            10,
+            [OrderBy::dimension('activeUsers', true)],
+        );
 
         return $analyticsData->map(function (array $pageRow) {
             return [

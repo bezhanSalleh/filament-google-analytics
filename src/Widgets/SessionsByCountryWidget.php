@@ -4,10 +4,10 @@ namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 
-use Spatie\Analytics\OrderBy;
 use Filament\Widgets\Widget;
 use Illuminate\Support\Str;
 use Spatie\Analytics\Facades\Analytics;
+use Spatie\Analytics\OrderBy;
 use Spatie\Analytics\Period;
 
 class SessionsByCountryWidget extends Widget
@@ -50,8 +50,8 @@ class SessionsByCountryWidget extends Widget
         }
 
         $total = 0;
-        foreach($results as $result){
-                $total += $result;
+        foreach($results as $result) {
+            $total += $result;
         }
         $this->total = number_format($total);
         //$this->total = number_format($analyticsData->totalsForAllResults['sessions']);

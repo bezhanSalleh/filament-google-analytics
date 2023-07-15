@@ -45,8 +45,8 @@ class SessionsByDeviceWidget extends Widget
         }
 
         $total = 0;
-        foreach($results as $result){
-                $total += $result;
+        foreach($results as $result) {
+            $total += $result;
         }
         $this->total = number_format($total);
         //$this->total = number_format($analyticsData->totalsForAllResults['sessions']);

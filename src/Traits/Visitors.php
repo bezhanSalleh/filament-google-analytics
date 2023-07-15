@@ -16,7 +16,7 @@ trait Visitors
 
         return [
             'result' => $analyticsData[0]['activeUsers'],
-            'previous' => $analyticsData[1]['activeUsers']
+            'previous' => $analyticsData[1]['activeUsers'],
         ];
     }
 
@@ -26,7 +26,7 @@ trait Visitors
 
         return [
             'result' => $analyticsData[0]['activeUsers'],
-            'previous' => $analyticsData[1]['activeUsers']
+            'previous' => $analyticsData[1]['activeUsers'],
         ];
     }
 
