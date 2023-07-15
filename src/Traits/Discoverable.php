@@ -11,6 +11,7 @@ trait Discoverable
     public static function isDiscovered(): bool
     {
         static::$isDiscovered = static::canView();
+
         return static::$isDiscovered;
     }
 }

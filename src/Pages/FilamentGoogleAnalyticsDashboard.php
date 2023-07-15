@@ -13,7 +13,7 @@ class FilamentGoogleAnalyticsDashboard extends Page
     public function mount()
     {
         parent::mount();
-        
+
         if (! static::canView()) {
             return redirect(config('filament.path'));
         }

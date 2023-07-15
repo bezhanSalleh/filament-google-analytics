@@ -2,9 +2,9 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics;
 
-use Spatie\LaravelPackageTools\Package;
-use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Assets\AlpineComponent;
+use Filament\Support\Facades\FilamentAsset;
+use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class FilamentGoogleAnalyticsServiceProvider extends PackageServiceProvider

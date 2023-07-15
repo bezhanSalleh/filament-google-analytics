@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace BezhanSalleh\FilamentGoogleAnalytics;
 
-use Filament\Panel;
 use Filament\Contracts\Plugin;
+use Filament\Panel;
 
 class FilamentGoogleAnalyticsPlugin implements Plugin
 {
@@ -13,7 +13,7 @@ class FilamentGoogleAnalyticsPlugin implements Plugin
     {
         return app(static::class);
     }
-    
+
     public function getId(): string
     {
         return 'filament-google-analytics';
