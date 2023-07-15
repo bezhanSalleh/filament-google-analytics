@@ -8,7 +8,7 @@ trait CanViewWidget
 {
     public static function canView(): bool
     {
-        $filamentPagesRoutePrefix ='filament.'.filament()->getCurrentPanel()->getId().'.pages.';
+        $filamentPagesRoutePrefix = 'filament.'.filament()->getCurrentPanel()->getId().'.pages.';
         $filamentDashboardStatus = config('filament-google-analytics.'.Str::of(static::class)->after('Widgets\\')->before('Widget')->snake().'.filament_dashboard');
 
         $globalStatus = config('filament-google-analytics.'.Str::of(static::class)->after('Widgets\\')->before('Widget')->snake().'.global');
