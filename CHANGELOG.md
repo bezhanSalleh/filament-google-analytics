@@ -2,6 +2,18 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 1.1.2 - 2023-07-24
+
+### What's Changed
+
+- Fixes for new setup of GA4 by @timsinakiran in https://github.com/bezhanSalleh/filament-google-analytics/pull/40
+
+### New Contributors
+
+- @timsinakiran made their first contribution in https://github.com/bezhanSalleh/filament-google-analytics/pull/40
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/1.1.1...1.1.2
+
 ## 1.1.1 - 2023-07-15
 
 ### What's Changed
