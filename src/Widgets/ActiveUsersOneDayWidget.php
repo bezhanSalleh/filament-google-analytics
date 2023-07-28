@@ -4,36 +4,35 @@ namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
 use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
-use Filament\Widgets\Widget;
+use Filament\Support\RawJs;
+use Filament\Widgets\ChartWidget;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Arr;
 
-class ActiveUsersOneDayWidget extends Widget
+class ActiveUsersOneDayWidget extends ChartWidget
 {
     use Traits\ActiveUsers;
     use Traits\CanViewWidget;
-    use Traits\Discoverable;
 
-    protected static string $view = 'filament-google-analytics::widgets.active-users-one-day-widget';
+    protected static bool $isLazy = false;
+
+    /**
+     * @var view-string
+     */
+    protected static string $view = 'filament-google-analytics::widgets.active-users-widget';
+
+    protected static ?string $pollingInterval = null;
 
     protected static ?int $sort = 3;
 
     public ?string $filter = '5';
 
-    public $readyToLoad = false;
-
-    public bool $hasFilterLoadingIndicator = true;
-
-    public function init()
+    protected function getType(): string
     {
-        $this->readyToLoad = true;
+        return 'line';
     }
 
-    public function label(): ?string
-    {
-        return __('filament-google-analytics::widgets.one_day_active_users');
-    }
-
-    protected static function filters(): array
+    protected function getFilters(): array
     {
         return [
             '5' => __('filament-google-analytics::widgets.FD'),
@@ -42,12 +41,24 @@ class ActiveUsersOneDayWidget extends Widget
         ];
     }
 
+    public function getHeading(): string | Htmlable | null
+    {
+        return FilamentGoogleAnalytics::for(last($this->initializeData()['results']))->trajectoryValue();
+    }
+
+    public function getDescription(): string | Htmlable | null
+    {
+        return
+            __('filament-google-analytics::widgets.one_day_active_users')
+            ?? static::$description;
+    }
+
     protected function initializeData()
     {
         $lookups = [
-            '5' => $this->performActiveUsersQuery('active1dayUsers', 5),
-            '10' => $this->performActiveUsersQuery('active1dayUsers', 10),
-            '15' => $this->performActiveUsersQuery('active1dayUsers', 15),
+            '5' => $this->performActiveUsersQuery('active1DayUsers', 5),
+            '10' => $this->performActiveUsersQuery('active1DayUsers', 10),
+            '15' => $this->performActiveUsersQuery('active1DayUsers', 15),
         ];
 
         $data = Arr::get(
@@ -64,24 +75,54 @@ class ActiveUsersOneDayWidget extends Widget
     protected function getData(): array
     {
         return [
-            'value' => FilamentGoogleAnalytics::for(last($this->initializeData()['results']))->trajectoryValue(),
-            'color' => 'primary',
-            'chart' => array_values($this->initializeData()['results']),
+            'datasets' => [
+                [
+                    'data' => array_values($this->initializeData()['results']),
+                    'borderWidth' => 2,
+                    'fill' => 'start',
+                    'tension' => 0.5,
+                    'borderColor' => ['rgb(245, 158, 11)'],
+                ],
+            ],
+            'labels' => array_values($this->initializeData()['results']),
         ];
     }
 
-    protected function getViewData(): array
+    protected function getOptions(): array | RawJs | null
     {
-        return [
-            'data' => $this->readyToLoad ? $this->getData() : [],
-            'filters' => static::filters(),
-        ];
+        return RawJs::make(<<<'JS'
+            {
+                animation: {
+                    duration: 0,
+                },
+                elements: {
+                    point: {
+                        radius: 0,
+                    },
+                },
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                },
+                scales: {
+                    x: {
+                        display: false,
+                    },
+                    y: {
+                        display: false,
+                    },
+                },
+                tooltips: {
+                    enabled: false,
+                },
+            }
+        JS);
     }
 
-    public function updatedFilter()
-    {
-        $this->emitSelf('filterChartData', [
-            'data' => array_values($this->initializeData()['results']),
-        ]);
-    }
+    // public function placeholder()
+    // {
+    //     return view('filament-google-analytics::widgets.active-users-placeholder');
+    // }
 }

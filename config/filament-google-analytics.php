@@ -6,7 +6,7 @@ return [
      * Dashboard Page
      */
     'dedicated_dashboard' => true,
-    'dashboard_icon' => 'heroicon-o-chart-bar',
+    'dashboard_icon' => 'heroicon-m-chart-bar',
 
     /**
      * Widgets
@@ -17,52 +17,52 @@ return [
     ],
     'visitors' => [
         'filament_dashboard' => false,
-        'global' => true,
+        'global' => false,
     ],
 
     'active_users_one_day' => [
-        'filament_dashboard' => false,
+        'filament_dashboard' => true,
         'global' => true,
     ],
 
     'active_users_seven_day' => [
-        'filament_dashboard' => false,
+        'filament_dashboard' => true,
         'global' => true,
     ],
 
     'active_users_twenty_eight_day' => [
-        'filament_dashboard' => false,
-        'global' => false,
+        'filament_dashboard' => true,
+        'global' => true,
     ],
 
     'sessions' => [
         'filament_dashboard' => false,
-        'global' => true,
+        'global' => false,
     ],
 
     'sessions_duration' => [
         'filament_dashboard' => false,
-        'global' => true,
+        'global' => false,
     ],
 
     'sessions_by_country' => [
         'filament_dashboard' => false,
-        'global' => true,
+        'global' => false,
     ],
 
     'sessions_by_device' => [
         'filament_dashboard' => false,
-        'global' => true,
+        'global' => false,
     ],
 
     'most_visited_pages' => [
         'filament_dashboard' => false,
-        'global' => true,
+        'global' => false,
     ],
 
     'top_referrers_list' => [
         'filament_dashboard' => false,
-        'global' => true,
+        'global' => false,
     ],
 
     /**

@@ -10,18 +10,9 @@ class FilamentGoogleAnalyticsDashboard extends Page
 {
     protected static string $view = 'filament-google-analytics::pages.google-analytics-dashboard';
 
-    public function mount()
+    public static function getNavigationIcon(): ?string
     {
-        parent::mount();
-
-        if (! static::canView()) {
-            return redirect(config('filament.path'));
-        }
-    }
-
-    public static function getNavigationIcon(): string
-    {
-        return config('filament-google-analytics.dashboard_icon') ?? 'heroicon-o-chart-bar';
+        return (string) config('filament-google-analytics.dashboard_icon') ?? 'heroicon-m-chart-bar';
     }
 
     public static function getNavigationLabel(): string
@@ -31,7 +22,7 @@ class FilamentGoogleAnalyticsDashboard extends Page
 
     public function getTitle(): string | Htmlable
     {
-        return __('filament-google-analytics::widgets.title');
+        return (string) __('filament-google-analytics::widgets.title');
     }
 
     public static function canView(): bool
@@ -45,22 +36,22 @@ class FilamentGoogleAnalyticsDashboard extends Page
     }
 
     /**
-     * @return array<class-string>
+     * @return array<class-string<Widget> | WidgetConfiguration>
      */
     protected function getHeaderWidgets(): array
     {
         return [
             Widgets\PageViewsWidget::class,
-            Widgets\VisitorsWidget::class,
+            // Widgets\VisitorsWidget::class,
             Widgets\ActiveUsersOneDayWidget::class,
             Widgets\ActiveUsersSevenDayWidget::class,
             Widgets\ActiveUsersTwentyEightDayWidget::class,
-            Widgets\SessionsWidget::class,
-            Widgets\SessionsDurationWidget::class,
-            Widgets\SessionsByCountryWidget::class,
-            Widgets\SessionsByDeviceWidget::class,
-            Widgets\MostVisitedPagesWidget::class,
-            Widgets\TopReferrersListWidget::class,
+            // Widgets\SessionsWidget::class,
+            // Widgets\SessionsDurationWidget::class,
+            // Widgets\SessionsByCountryWidget::class,
+            // Widgets\SessionsByDeviceWidget::class,
+            // Widgets\MostVisitedPagesWidget::class,
+            // Widgets\TopReferrersListWidget::class,
         ];
     }
 }

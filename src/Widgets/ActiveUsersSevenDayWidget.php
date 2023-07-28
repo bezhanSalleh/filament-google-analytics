@@ -4,43 +4,35 @@ namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
 use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
-use Filament\Widgets\Widget;
+use Filament\Support\RawJs;
+use Filament\Widgets\ChartWidget;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Arr;
 
-class ActiveUsersSevenDayWidget extends Widget
+class ActiveUsersSevenDayWidget extends ChartWidget
 {
     use Traits\ActiveUsers;
     use Traits\CanViewWidget;
-    use Traits\Discoverable;
 
-    protected static string $view = 'filament-google-analytics::widgets.active-users-seven-day-widget';
+    protected static bool $isLazy = false;
+
+    /**
+     * @var view-string
+     */
+    protected static string $view = 'filament-google-analytics::widgets.active-users-widget';
+
+    protected static ?string $pollingInterval = null;
 
     protected static ?int $sort = 3;
 
     public ?string $filter = '5';
 
-    public bool $hasFilterLoadingIndicator = true;
-
-    public $readyToLoad = false;
-
-    public function init()
+    protected function getType(): string
     {
-        $this->readyToLoad = true;
+        return 'line';
     }
 
-    public function label(): ?string
-    {
-        return __('filament-google-analytics::widgets.seven_day_active_users');
-    }
-
-    public function updatedFilter()
-    {
-        $this->emitSelf('filterChartData', [
-            'data' => array_values($this->initializeData()['results']),
-        ]);
-    }
-
-    protected static function filters(): array
+    protected function getFilters(): array
     {
         return [
             '5' => __('filament-google-analytics::widgets.FD'),
@@ -49,12 +41,24 @@ class ActiveUsersSevenDayWidget extends Widget
         ];
     }
 
+    public function getHeading(): string | Htmlable | null
+    {
+        return FilamentGoogleAnalytics::for(last($this->initializeData()['results']))->trajectoryValue();
+    }
+
+    public function getDescription(): string | Htmlable | null
+    {
+        return
+            __('filament-google-analytics::widgets.seven_day_active_users')
+            ?? static::$description;
+    }
+
     protected function initializeData()
     {
         $lookups = [
-            '5' => $this->performActiveUsersQuery('active7dayUsers', 5),
-            '10' => $this->performActiveUsersQuery('active7dayUsers', 10),
-            '15' => $this->performActiveUsersQuery('active7dayUsers', 15),
+            '5' => $this->performActiveUsersQuery('active7DayUsers', 5),
+            '10' => $this->performActiveUsersQuery('active7DayUsers', 10),
+            '15' => $this->performActiveUsersQuery('active7DayUsers', 15),
         ];
 
         $data = Arr::get(
@@ -71,17 +75,93 @@ class ActiveUsersSevenDayWidget extends Widget
     protected function getData(): array
     {
         return [
-            'value' => FilamentGoogleAnalytics::for(last($this->initializeData()['results']))->trajectoryValue(),
-            'color' => 'primary',
-            'chart' => array_values($this->initializeData()['results']),
+            'datasets' => [
+                [
+                    'data' => array_values($this->initializeData()['results']),
+                    'borderWidth' => 2,
+                    'fill' => 'start',
+                    'tension' => 0.5,
+                    'borderColor' => ['rgb(245, 158, 11)'],
+                ],
+            ],
+            'labels' => array_values($this->initializeData()['results']),
         ];
     }
 
-    protected function getViewData(): array
+    protected function getOptions(): array | RawJs | null
     {
-        return [
-            'data' => $this->readyToLoad ? $this->getData() : [],
-            'filters' => static::filters(),
-        ];
+        return RawJs::make(<<<'JS'
+            {
+                animation: {
+                    duration: 0,
+                },
+                elements: {
+                    point: {
+                        radius: 0,
+                    },
+                },
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                },
+                scales: {
+                    x: {
+                        display: false,
+                    },
+                    y: {
+                        display: false,
+                    },
+                },
+                tooltips: {
+                    enabled: false,
+                },
+            }
+        JS);
     }
+
+    // public function placeholder()
+    // {
+    //     return <<<'HTML'
+    //         <div role="status" class="max-w-md p-4 space-y-4 border border-gray-200 divide-y divide-gray-200 rounded shadow animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
+    //             <div class="flex items-center justify-between">
+    //                 <div>
+    //                     <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+    //                     <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+    //                 </div>
+    //                 <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+    //             </div>
+    //             <div class="flex items-center justify-between pt-4">
+    //                 <div>
+    //                     <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+    //                     <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+    //                 </div>
+    //                 <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+    //             </div>
+    //             <div class="flex items-center justify-between pt-4">
+    //                 <div>
+    //                     <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+    //                     <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+    //                 </div>
+    //                 <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+    //             </div>
+    //             <div class="flex items-center justify-between pt-4">
+    //                 <div>
+    //                     <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+    //                     <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+    //                 </div>
+    //                 <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+    //             </div>
+    //             <div class="flex items-center justify-between pt-4">
+    //                 <div>
+    //                     <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+    //                     <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+    //                 </div>
+    //                 <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+    //             </div>
+    //             <span class="sr-only">Loading...</span>
+    //         </div>
+    //     HTML;
+    // }
 }

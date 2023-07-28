@@ -27,16 +27,16 @@ class FilamentGoogleAnalyticsPlugin implements Plugin
             ])
             ->widgets([
                 Widgets\PageViewsWidget::class,
-                Widgets\VisitorsWidget::class,
+                // Widgets\VisitorsWidget::class,
                 Widgets\ActiveUsersOneDayWidget::class,
                 Widgets\ActiveUsersSevenDayWidget::class,
                 Widgets\ActiveUsersTwentyEightDayWidget::class,
-                Widgets\SessionsWidget::class,
-                Widgets\SessionsDurationWidget::class,
-                Widgets\SessionsByCountryWidget::class,
-                Widgets\SessionsByDeviceWidget::class,
-                Widgets\MostVisitedPagesWidget::class,
-                Widgets\TopReferrersListWidget::class,
+                //     Widgets\SessionsWidget::class,
+                //     Widgets\SessionsDurationWidget::class,
+                //     Widgets\SessionsByCountryWidget::class,
+                //     Widgets\SessionsByDeviceWidget::class,
+                //     Widgets\MostVisitedPagesWidget::class,
+                //     Widgets\TopReferrersListWidget::class,
             ]);
     }
 

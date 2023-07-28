@@ -11,7 +11,6 @@ class PageViewsWidget extends Widget
 {
     use Traits\PageViews;
     use Traits\CanViewWidget;
-    use Traits\Discoverable;
 
     protected static string $view = 'filament-google-analytics::widgets.page-views-widget';
 
@@ -20,8 +19,6 @@ class PageViewsWidget extends Widget
     public ?string $filter = 'T';
 
     public $readyToLoad = false;
-
-    public bool $hasFilterLoadingIndicator = true;
 
     public function init()
     {

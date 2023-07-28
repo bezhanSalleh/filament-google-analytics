@@ -1,35 +1,22 @@
 <x-filament-widgets::widget class="filament-wigets-chart-widget">
-    <x-filament::card>
-        <div class="flex items-center justify-between gap-8">
-                <x-filament::card.header>
-                        <x-filament::card.heading>
-                            {{ $this->getHeading() }}
-                        </x-filament::card.heading>
-                </x-filament::card.header>
-
-                    <div class="flex items-center gap-3">
-                        @if ($hasFilterLoadingIndicator)
-                            <div wire:loading wire:target='filter'>
-                                <x-filament-google-analytics::loading-indicator />
-                            </div>
-                        @endif
-
-                        <select
-                            class="block text-gray-900 transition duration-75 border-gray-300 rounded-lg shadow-sm outline-none !focus:border-primary-500 focus:ring-1 focus:ring-inset focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:focus:border-primary-500"
-                            wire:model="filter"
-                            wire:loading.class="animate-pulse"
-                            style="padding-block: 4px"
-                        >
-                            @foreach ($filters as $value => $label)
-                                <option value="{{ $value }}">
-                                    {{ $label }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
+    <x-filament::card class="fi-wi-chart grid gap-y-4">
+        <div class="flex items-center gap-x-4">
+            <div class="grid gap-y-1">
+                <h3 class="text-base font-semibold leading-6">
+                    {{ $this->getHeading() }}
+                </h3>
             </div>
+            <x-filament-forms::affixes inline-prefix wire:target="filter" class="ms-auto">
+                <x-filament::input.select inline-prefix wire:model.live="filter">
+                    @foreach ($filters as $value => $label)
+                    <option value="{{ $value }}">
+                        {{ $label }}
+                    </option>
+                    @endforeach
+                </x-filament::input.select>
+            </x-filament-forms::affixes>
+        </div>
 
-        <x-filament::hr />
 
         <div class="relative space-y-2 max-auto" wire:init='init'>
             <ul>

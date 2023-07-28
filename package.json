@@ -2,19 +2,23 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev:styles": "npx tailwindcss -i resources/css/plugin.css -o resources/dist/curator.css --postcss --watch",
-        "dev:scripts": "node bin/build.js --dev",
-        "build:styles": "npx tailwindcss -i resources/css/plugin.css -o resources/dist/curator.css --postcss --minify && npm run purge",
-        "build:scripts": "node bin/build.js",
-        "purge": "filament-purge -i resources/dist/curator.css -o resources/dist/curator.css -v 3.x",
-        "dev": "npm-run-all --parallel dev:*",
-        "build": "npm-run-all build:*",
-        "prettier": "npx prettier --write ."
-    },
-    "dependencies": {
-        "chart.js": "^4.3.0"
+        "dev": "npx tailwindcss -i resources/css/filament-google-analytics.css -o resources/dist/filament-google-analytics.css --postcss --watch",
+        "build": "npx tailwindcss -i resources/css/filament-google-analytics.css -o resources/dist/filament-google-analytics.css --postcss --minify && npm run purge",
+        "purge": "filament-purge -i resources/dist/filament-google-analytics.css -o resources/dist/filament-google-analytics.css -v 3.x",
+        "prettier": "npx prettier --write .",
+        "deploy": "npm run build && npm run purge && npm run prettier"
     },
     "devDependencies": {
-        "esbuild": "^0.18.13"
+        "@awcodes/filament-plugin-purge": "^1.1.1",
+        "@tailwindcss/forms": "^0.5.4",
+        "@tailwindcss/typography": "^0.5.9",
+        "autoprefixer": "^10.4.14",
+        "esbuild": "^0.18.13",
+        "postcss": "^8.4.26",
+        "postcss-import": "^15.1.0",
+        "prettier": "^3.0.0",
+        "prettier-plugin-blade": "^1.6.10",
+        "prettier-plugin-tailwindcss": "^0.4.1",
+        "tailwindcss": "^3.3.3"
     }
 }

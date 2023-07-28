@@ -2,7 +2,7 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics;
 
-use Filament\Support\Assets\AlpineComponent;
+use Filament\Support\Assets\Css;
 use Filament\Support\Facades\FilamentAsset;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -21,7 +21,7 @@ class FilamentGoogleAnalyticsServiceProvider extends PackageServiceProvider
     public function packageBooted(): void
     {
         FilamentAsset::register([
-            AlpineComponent::make('fGAChart', __DIR__ . '/../resources/dist/fGAChart.js'),
+            Css::make('filament-google-analytics', __DIR__ . '/../resources/dist/filament-google-analytics.css'),
         ], 'bezhansalleh/filament-google-analytics');
     }
 }

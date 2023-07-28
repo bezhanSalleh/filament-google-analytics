@@ -66,6 +66,7 @@ const defaultOptions = {
 
 compile({
     ...defaultOptions,
-    entryPoints: ["./resources/js/fGAChart.js"],
-    outfile: "./resources/dist/fGAChart.js",
+    entryPoints: ["./resources/js/fgaChart.js"],
+    outfile: "./resources/dist/fgaChart.js",
 });
+
