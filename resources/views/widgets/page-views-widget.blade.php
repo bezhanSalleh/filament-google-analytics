@@ -1,5 +1,5 @@
 <x-filament-widgets::widget class="filament-stats-overview-widget">
-    <div @class(['filament-stats-overview-widget-card relative rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-950/5 dark:bg-gray-800 dark:ring-white/20'])>
+    <div @class(['filament-stats-overview-widget-card relative rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-950/5 dark:bg-gray-800 dark:ring-white/20 h-[148px]'])>
         <div @class(['space-y-2'])>
             <div class="flex items-center gap-x-4">
                 <div class="grid gap-y-1">
@@ -35,8 +35,8 @@
                             />
                     </div>
                 @else
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="flex items-center justify-center w-12 h-12 rounded-lg shadow-lg">
+                    <div class="absolute inset-0 flex items-center justify-center bg-white/70 rounded-xl">
+                        <div class="flex items-center justify-center w-12 h-12 text-primary-500">
                             <x-filament-google-analytics::loading-indicator />
                         </div>
                     </div>

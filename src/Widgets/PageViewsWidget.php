@@ -44,6 +44,7 @@ class PageViewsWidget extends Widget
 
     protected function initializeData()
     {
+        sleep(10);
         $lookups = [
             'T' => $this->pageViewsToday(),
             'Y' => $this->pageViewsYesterday(),
@@ -52,7 +53,6 @@ class PageViewsWidget extends Widget
             'LSD' => $this->pageViewsLastSevenDays(),
             'LTD' => $this->pageViewsLastThirtyDays(),
         ];
-
         $data = Arr::get(
             $lookups,
             $this->filter,

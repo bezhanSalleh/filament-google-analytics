@@ -116,6 +116,10 @@
   height: 2.25rem;
 }
 
+.h-\[148px\] {
+  height: 148px;
+}
+
 .w-12 {
   width: 3rem;
 }
@@ -336,6 +340,42 @@
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-primary-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(var(--primary-500), var(--tw-bg-opacity));
+}
+
+.bg-slate-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.bg-slate-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.bg-slate-100\/25 {
+  background-color: rgb(241 245 249 / 0.25);
+}
+
+.bg-white\/50 {
+  background-color: rgb(255 255 255 / 0.5);
+}
+
+.bg-white\/25 {
+  background-color: rgb(255 255 255 / 0.25);
+}
+
+.bg-white\/70 {
+  background-color: rgb(255 255 255 / 0.7);
+}
+
 .fill-primary-500 {
   fill: rgba(var(--primary-500), 1);
 }
@@ -495,6 +535,11 @@
 .text-warning-50 {
   --tw-text-opacity: 1;
   color: rgba(var(--warning-50), var(--tw-text-opacity));
+}
+
+.text-primary-500 {
+  --tw-text-opacity: 1;
+  color: rgba(var(--primary-500), var(--tw-text-opacity));
 }
 
 .opacity-25 {
