@@ -40,6 +40,7 @@
         @if ($pollingInterval = $this->getPollingInterval())
             wire:poll.{{ $pollingInterval }}="updateChartData"
         @endif
+
     >
         <div
             ax-load
@@ -57,14 +58,26 @@
             @style([
                 \Filament\Support\get_color_css_variables($color, shades: [50, 400, 500]) => $color !== 'gray',
             ])
+            @updateChartData.camel="console.log('updateChartData')"
         >
-            <canvas x-ref="canvas" class="h-6"></canvas>
+            <canvas :id="$id('fi-wi-stats-overview-card')" x-ref="canvas" class="h-6"></canvas>
+
             <span
-                x-ref="colorElement"
+                x-ref="backgroundColorElement"
                 @class([
                     match ($color) {
                         'gray' => 'text-gray-100 dark:text-gray-800',
                         default => 'text-custom-50 dark:text-custom-400/10',
+                    },
+                ])
+            ></span>
+
+            <span
+                x-ref="borderColorElement"
+                @class([
+                    match ($color) {
+                        'gray' => 'text-gray-400',
+                        default => 'text-custom-500 dark:text-custom-400',
                     },
                 ])
             ></span>
@@ -77,15 +90,6 @@
             <span
                 x-ref="textColorElement"
                 class="text-gray-500 dark:text-gray-400"
-            ></span>
-            <span
-                x-ref="borderColorElement"
-                @class([
-                    match ($color) {
-                        'gray' => 'text-gray-400',
-                        default => 'text-custom-500 dark:text-custom-400',
-                    },
-                ])
             ></span>
         </div>
     </div>

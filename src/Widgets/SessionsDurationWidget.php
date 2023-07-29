@@ -2,36 +2,31 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits;
-use Filament\Widgets\Widget;
 use Illuminate\Support\Arr;
+use Filament\Widgets\ChartWidget;
+use Illuminate\Contracts\Support\Htmlable;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits;
+use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
 
-class SessionsDurationWidget extends Widget
+class SessionsDurationWidget extends ChartWidget
 {
     use Traits\SessionsDuration;
     use Traits\CanViewWidget;
-    use Traits\Discoverable;
 
-    protected static string $view = 'filament-google-analytics::widgets.sessions-duration-widget';
+    protected static ?string $pollingInterval = null;
+
+    protected static string $view = 'filament-google-analytics::widgets.stat-views-widget';
 
     protected static ?int $sort = 3;
 
     public ?string $filter = 'T';
 
-    public $readyToLoad = false;
-
-    public function init()
-    {
-        $this->readyToLoad = true;
-    }
-
-    public function label(): ?string
+    public function getHeading(): string | Htmlable | null
     {
         return __('filament-google-analytics::widgets.sessions_duration');
     }
 
-    protected static function filters(): array
+    protected function getFilters(): array
     {
         return [
             'T' => __('filament-google-analytics::widgets.T'),
@@ -75,16 +70,16 @@ class SessionsDurationWidget extends Widget
             'icon' => $this->initializeData()->trajectoryIcon(),
             'color' => $this->initializeData()->trajectoryColor(),
             'description' => $this->initializeData()->trajectoryDescription(),
-            'chart' => [],
-            'chartColor' => '',
         ];
     }
 
-    protected function getViewData(): array
+    public function placeholder()
     {
-        return [
-            'data' => $this->readyToLoad ? $this->getData() : [],
-            'filters' => static::filters(),
-        ];
+        return view('filament-google-analytics::widgets.no-chart-placeholder');
+    }
+
+    protected function getType(): string
+    {
+        return 'line';
     }
 }

@@ -2,18 +2,18 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use BezhanSalleh\FilamentGoogleAnalytics\Traits;
-use Filament\Widgets\Widget;
+use Filament\Support\RawJs;
 use Illuminate\Support\Str;
-use Spatie\Analytics\Facades\Analytics;
+use Filament\Widgets\Widget;
 use Spatie\Analytics\Period;
+use Spatie\Analytics\Facades\Analytics;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 
 class SessionsByDeviceWidget extends Widget
 {
     use Traits\CanViewWidget;
-    use Traits\Discoverable;
 
-    protected static string $view = 'filament-google-analytics::widgets.sessions-by-device-widget';
+    protected static string $view = 'filament-google-analytics::widgets.sessions-by-country-widget';
 
     protected static ?int $sort = 3;
 
@@ -61,34 +61,60 @@ class SessionsByDeviceWidget extends Widget
                     'backgroundColor' => [
                         '#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe',
                     ],
-                    'cutout' => '75%',
+                    'cutout' => '55%',
                     'hoverOffset' => 7,
-                    'borderColor' => config('filament.dark_mode') ? 'transparent' : '#fff',
+                    'borderColor' => 'transparent',
 
                 ],
             ],
         ];
     }
 
-    protected function getOptions(): ?array
+    protected function getOptions(): array | RawJs | null
     {
-        return [
-            'plugins' => [
-                'legend' => [
-                    'display' => true,
-                    'position' => 'left',
-                    'align' => 'bottom',
-                    'labels' => [
-                        'usePointStyle' => true,
-                    ],
-                ],
-            ],
-            'maintainAspectRatio' => false,
-            'radius' => '70%',
-            'borderRadius' => 4,
-            'cutout' => 95,
-            'scaleBeginAtZero' => true,
-        ];
+        return RawJs::make(<<<'JS'
+            {
+                animation: {
+                    duration: 0,
+                },
+                elements: {
+                    point: {
+                        radius: 0,
+                    },
+                    hit: {
+                        radius: 0,
+                    },
+
+                },
+                maintainAspectRatio: false,
+                borderRadius: 4,
+                scaleBeginAtZero: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'left',
+                        align: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            font: {
+                                size: 10
+                            }
+                        }
+                    },
+                },
+                scales: {
+                    x: {
+                        display: false,
+                    },
+                    y: {
+                        display: false,
+                    },
+                },
+                tooltips: {
+                    enabled: false,
+                },
+            }
+        JS);
     }
 
     protected function getData()

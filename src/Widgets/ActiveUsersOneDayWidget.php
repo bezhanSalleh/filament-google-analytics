@@ -16,9 +16,6 @@ class ActiveUsersOneDayWidget extends ChartWidget
 
     protected static bool $isLazy = false;
 
-    /**
-     * @var view-string
-     */
     protected static string $view = 'filament-google-analytics::widgets.active-users-widget';
 
     protected static ?string $pollingInterval = null;
@@ -26,6 +23,10 @@ class ActiveUsersOneDayWidget extends ChartWidget
     protected static ?int $sort = 3;
 
     public ?string $filter = '5';
+
+    public ?string $bgColor = null;
+
+    public ?string $borderColor = null;
 
     protected function getType(): string
     {
@@ -48,9 +49,7 @@ class ActiveUsersOneDayWidget extends ChartWidget
 
     public function getDescription(): string | Htmlable | null
     {
-        return
-            __('filament-google-analytics::widgets.one_day_active_users')
-            ?? static::$description;
+        return __('filament-google-analytics::widgets.one_day_active_users');
     }
 
     protected function initializeData()
@@ -81,7 +80,10 @@ class ActiveUsersOneDayWidget extends ChartWidget
                     'borderWidth' => 2,
                     'fill' => 'start',
                     'tension' => 0.5,
-                    'borderColor' => ['rgb(245, 158, 11)'],
+                    'pointRadius' => 0,
+                    'pointHitRadius' => 0,
+                    'backgroundColor' => ['rgba(251, 191, 36, 0.1)'],
+                    'borderColor' => ['rgba(245, 158, 11, 1)']
                 ],
             ],
             'labels' => array_values($this->initializeData()['results']),
@@ -99,11 +101,18 @@ class ActiveUsersOneDayWidget extends ChartWidget
                     point: {
                         radius: 0,
                     },
+                    hit: {
+                        radius: 0,
+                    },
+
                 },
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         display: false,
+                        labels: {
+                            usePointStyle: false,
+                        }
                     },
                 },
                 scales: {

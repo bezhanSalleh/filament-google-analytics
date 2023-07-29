@@ -2,17 +2,17 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use BezhanSalleh\FilamentGoogleAnalytics\Traits;
-use Filament\Widgets\Widget;
+use Filament\Support\RawJs;
 use Illuminate\Support\Str;
-use Spatie\Analytics\Facades\Analytics;
-use Spatie\Analytics\OrderBy;
+use Filament\Widgets\Widget;
 use Spatie\Analytics\Period;
+use Spatie\Analytics\OrderBy;
+use Spatie\Analytics\Facades\Analytics;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 
 class SessionsByCountryWidget extends Widget
 {
     use Traits\CanViewWidget;
-    use Traits\Discoverable;
 
     protected static string $view = 'filament-google-analytics::widgets.sessions-by-country-widget';
 
@@ -40,7 +40,7 @@ class SessionsByCountryWidget extends Widget
             Period::months(1),
             ['sessions'],
             ['country'],
-            10,
+            6,
             [OrderBy::metric('sessions', true)],
         );
 
@@ -65,34 +65,60 @@ class SessionsByCountryWidget extends Widget
                     'backgroundColor' => [
                         '#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe',
                     ],
-                    'cutout' => '75%',
+                    'cutout' => '55%',
                     'hoverOffset' => 4,
-                    'borderColor' => config('filament.dark_mode') ? 'transparent' : '#fff',
+                    'borderColor' => 'transparent',
 
                 ],
             ],
         ];
     }
 
-    protected function getOptions(): ?array
+    protected function getOptions(): array | RawJs | null
     {
-        return [
-            'plugins' => [
-                'legend' => [
-                    'display' => true,
-                    'position' => 'left',
-                    'align' => 'bottom',
-                    'labels' => [
-                        'usePointStyle' => true,
-                    ],
-                ],
-            ],
-            'maintainAspectRatio' => false,
-            'radius' => '70%',
-            'borderRadius' => 4,
-            'cutout' => 95,
-            'scaleBeginAtZero' => true,
-        ];
+        return RawJs::make(<<<'JS'
+            {
+                animation: {
+                    duration: 0,
+                },
+                elements: {
+                    point: {
+                        radius: 0,
+                    },
+                    hit: {
+                        radius: 0,
+                    },
+
+                },
+                maintainAspectRatio: false,
+                borderRadius: 4,
+                scaleBeginAtZero: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'left',
+                        align: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            font: {
+                                size: 10
+                            }
+                        }
+                    },
+                },
+                scales: {
+                    x: {
+                        display: false,
+                    },
+                    y: {
+                        display: false,
+                    },
+                },
+                tooltips: {
+                    enabled: false,
+                },
+            }
+        JS);
     }
 
     protected function getData()

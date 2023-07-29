@@ -20,11 +20,38 @@
                             options: @js($data['chartOptions']),
                             type: 'doughnut',
                         })" wire:ignore>
-                        <canvas x-ref="canvas"></canvas>
 
-                        <span x-ref="backgroundColorElement" class="text-gray-50 dark:text-gray-300"></span>
+                        <canvas x-ref="canvas" style="height:80px; width:80px"></canvas>
 
-                        <span x-ref="borderColorElement" class="text-gray-500 dark:text-gray-200"></span>
+                        <span
+                            x-ref="backgroundColorElement"
+                            @class([
+                                match ('primary') {
+                                    'gray' => 'text-gray-100 dark:text-gray-800',
+                                    default => 'text-custom-50 dark:text-custom-400/10',
+                                },
+                            ])
+                        ></span>
+
+                        <span
+                            x-ref="borderColorElement"
+                            @class([
+                                match ('primary') {
+                                    'gray' => 'text-gray-400',
+                                    default => 'text-custom-500 dark:text-custom-400',
+                                },
+                            ])
+                        ></span>
+
+                        <span
+                            x-ref="gridColorElement"
+                            class="text-gray-300 dark:text-gray-700"
+                        ></span>
+
+                        <span
+                            x-ref="textColorElement"
+                            class="text-gray-500 dark:text-gray-400"
+                        ></span>
                     </div>
                 </div>
             @else

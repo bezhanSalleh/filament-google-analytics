@@ -16,9 +16,6 @@ class ActiveUsersSevenDayWidget extends ChartWidget
 
     protected static bool $isLazy = false;
 
-    /**
-     * @var view-string
-     */
     protected static string $view = 'filament-google-analytics::widgets.active-users-widget';
 
     protected static ?string $pollingInterval = null;
@@ -48,9 +45,7 @@ class ActiveUsersSevenDayWidget extends ChartWidget
 
     public function getDescription(): string | Htmlable | null
     {
-        return
-            __('filament-google-analytics::widgets.seven_day_active_users')
-            ?? static::$description;
+        return __('filament-google-analytics::widgets.seven_day_active_users');
     }
 
     protected function initializeData()
@@ -81,7 +76,10 @@ class ActiveUsersSevenDayWidget extends ChartWidget
                     'borderWidth' => 2,
                     'fill' => 'start',
                     'tension' => 0.5,
-                    'borderColor' => ['rgb(245, 158, 11)'],
+                    'pointRadius' => 0,
+                    'pointHitRadius' => 0,
+                    'backgroundColor' => ['rgba(251, 191, 36, 0.1)'],
+                    'borderColor' => ['rgba(245, 158, 11, 1)']
                 ],
             ],
             'labels' => array_values($this->initializeData()['results']),
@@ -123,45 +121,6 @@ class ActiveUsersSevenDayWidget extends ChartWidget
 
     // public function placeholder()
     // {
-    //     return <<<'HTML'
-    //         <div role="status" class="max-w-md p-4 space-y-4 border border-gray-200 divide-y divide-gray-200 rounded shadow animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
-    //             <div class="flex items-center justify-between">
-    //                 <div>
-    //                     <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
-    //                     <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-    //                 </div>
-    //                 <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
-    //             </div>
-    //             <div class="flex items-center justify-between pt-4">
-    //                 <div>
-    //                     <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
-    //                     <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-    //                 </div>
-    //                 <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
-    //             </div>
-    //             <div class="flex items-center justify-between pt-4">
-    //                 <div>
-    //                     <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
-    //                     <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-    //                 </div>
-    //                 <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
-    //             </div>
-    //             <div class="flex items-center justify-between pt-4">
-    //                 <div>
-    //                     <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
-    //                     <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-    //                 </div>
-    //                 <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
-    //             </div>
-    //             <div class="flex items-center justify-between pt-4">
-    //                 <div>
-    //                     <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
-    //                     <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-    //                 </div>
-    //                 <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
-    //             </div>
-    //             <span class="sr-only">Loading...</span>
-    //         </div>
-    //     HTML;
+    //     return view('filament-google-analytics::widgets.active-users-placeholder');
     // }
 }

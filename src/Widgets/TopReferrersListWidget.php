@@ -11,7 +11,6 @@ use Spatie\Analytics\Period;
 class TopReferrersListWidget extends Widget
 {
     use Traits\CanViewWidget;
-    use Traits\Discoverable;
 
     protected static string $view = 'filament-google-analytics::widgets.top-referrers-list-widget';
 
