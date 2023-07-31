@@ -2,39 +2,95 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Filament\Support\RawJs;
-use Illuminate\Support\Str;
-use Filament\Widgets\Widget;
-use Spatie\Analytics\Period;
-use Spatie\Analytics\Facades\Analytics;
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
+use Carbon\Carbon;
+use Filament\Support\RawJs;
+use Filament\Widgets\ChartWidget;
+use Illuminate\Contracts\Support\Htmlable;
+use Spatie\Analytics\Facades\Analytics;
+use Spatie\Analytics\Period;
 
-class SessionsByDeviceWidget extends Widget
+class SessionsByDeviceWidget extends ChartWidget
 {
     use Traits\CanViewWidget;
 
-    protected static string $view = 'filament-google-analytics::widgets.sessions-by-country-widget';
+    protected static string $view = 'filament-google-analytics::widgets.sessions-by-category';
+
+    protected static ?string $pollingInterval = null;
 
     protected static ?int $sort = 3;
 
     public ?string $total = null;
 
-    public bool $readyToLoad = false;
+    public ?string $filter = 'T';
 
-    public function init()
+    public string $category = 'device';
+
+    protected function getType(): string
     {
-        $this->readyToLoad = true;
+        return 'doughnut';
     }
 
-    protected function label(): ?string
+    public function getHeading(): string | Htmlable | null
     {
-        return __('filament-google-analytics::widgets.sessions_by_device');
+        return __('filament-google-analytics::widgets.sessions');
     }
 
-    protected function getChartData()
+    protected function getFilters(): array
     {
+        return [
+            'T' => __('filament-google-analytics::widgets.T'),
+            'Y' => __('filament-google-analytics::widgets.Y'),
+            'LW' => __('filament-google-analytics::widgets.LW'),
+            'LM' => __('filament-google-analytics::widgets.LM'),
+            'LSD' => __('filament-google-analytics::widgets.LSD'),
+            'LTD' => __('filament-google-analytics::widgets.LTD'),
+        ];
+    }
+
+    protected function initializeData()
+    {
+
+        $lookups = [
+            'T' => Period::days(1),
+            'Y' => Period::create(Carbon::yesterday()->clone()->subDay(), Carbon::yesterday()),
+            'LW' => Period::create(
+                Carbon::today()
+                    ->clone()
+                    ->startOfWeek(Carbon::SUNDAY)
+                    ->subWeek(),
+                Carbon::today()
+                    ->clone()
+                    ->subWeek()
+                    ->endOfWeek(Carbon::SATURDAY)
+            ),
+            'LM' => Period::create(
+                Carbon::today()
+                    ->clone()
+                    ->startOfMonth()
+                    ->subMonth(),
+                Carbon::today()
+                    ->clone()
+                    ->startOfMonth()
+                    ->subMonth()
+                    ->endOfMonth()
+            ),
+            'LSD' => Period::create(
+                Carbon::yesterday()
+                    ->clone()
+                    ->subDays(6),
+                Carbon::yesterday()
+            ),
+            'LTD' => Period::create(
+                Carbon::yesterday()
+                    ->clone()
+                    ->subDays(29),
+                Carbon::yesterday()
+            ),
+        ];
+
         $analyticsData = Analytics::get(
-            Period::months(1),
+            $lookups[$this->filter],
             ['sessions'],
             ['deviceCategory']
         );
@@ -42,29 +98,33 @@ class SessionsByDeviceWidget extends Widget
         $results = [];
 
         foreach ($analyticsData as $row) {
-            $results[Str::studly($row['deviceCategory'])] = $row['sessions'];
+            $results[str($row['deviceCategory'])->studly()->append(' (' . number_format($row['sessions']) . ')')->toString()] = $row['sessions'];
         }
 
         $total = 0;
         foreach ($results as $result) {
             $total += $result;
         }
-        $this->total = number_format($total);
-        //$this->total = number_format($analyticsData->totalsForAllResults['sessions']);
 
+        $this->total = number_format($total);
+
+        return $results;
+    }
+
+    protected function getData(): array
+    {
         return [
-            'labels' => array_keys($results),
+            'labels' => array_keys($this->initializeData()),
             'datasets' => [
                 [
                     'label' => 'Device',
-                    'data' => array_map('intval', array_values($results)),
+                    'data' => array_map('intval', array_values($this->initializeData())),
                     'backgroundColor' => [
                         '#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe',
                     ],
                     'cutout' => '55%',
-                    'hoverOffset' => 7,
+                    'hoverOffset' => 5,
                     'borderColor' => 'transparent',
-
                 ],
             ],
         ];
@@ -89,6 +149,7 @@ class SessionsByDeviceWidget extends Widget
                 maintainAspectRatio: false,
                 borderRadius: 4,
                 scaleBeginAtZero: true,
+                radius: '85%',
                 plugins: {
                     legend: {
                         display: true,
@@ -115,21 +176,5 @@ class SessionsByDeviceWidget extends Widget
                 },
             }
         JS);
-    }
-
-    protected function getData()
-    {
-        return [
-            'chartData' => $this->getChartData(),
-            'chartOptions' => $this->getOptions(),
-            'total' => $this->total,
-        ];
-    }
-
-    protected function getViewData(): array
-    {
-        return [
-            'data' => $this->readyToLoad ? $this->getData() : [],
-        ];
     }
 }

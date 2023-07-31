@@ -11,7 +11,7 @@
                     {{ $heading }}
                 </span>
                 @if ($filters)
-                <x-filament-forms::affixes inline-prefix wire:target="filter" class="ms-auto">
+                <x-filament::input.wrapper inline-prefix wire:target="filter" class="ms-auto">
                     <x-filament::input.select inline-prefix wire:model.live="filter">
                         @foreach ($filters as $val => $label)
                         <option value="{{ $val }}">
@@ -19,7 +19,7 @@
                         </option>
                         @endforeach
                     </x-filament::input.select>
-                </x-filament-forms::affixes>
+                </x-filament::input.wrapper>
                 @endif
             </div>
 
@@ -33,12 +33,12 @@
                     'fi-wi-stats-overview-card-description-icon h-5 w-5',
                     match ($color) {
                         'gray' => 'text-gray-400 dark:text-gray-500',
-                        default => 'text-custom-500',
+                        default => 'text-custom-600 dark:text-custom-500',
                     },
                 ]);
 
                 $descriptionIconStyles = \Illuminate\Support\Arr::toCssStyles([
-                    \Filament\Support\get_color_css_variables($color, shades: [500]) => $color !== 'gray',
+                    \Filament\Support\get_color_css_variables($color, shades: [500,600]) => $color !== 'gray',
                 ]);
             @endphp
             <div class="text-3xl font-semibold tracking-tight text-gray-950 dark:text-white">
@@ -47,14 +47,15 @@
 
             <div class="flex items-center gap-x-1">
                 <span
-                    @class([ 'fi-wi-stats-overview-card-description text-sm' ,
+                    @class([
+                        'fi-wi-stats-overview-card-description text-sm font-medium',
                         match ($color) {
-                            'gray'=> 'text-gray-500 dark:text-gray-400',
-                            default => 'text-custom-600 dark:text-custom-400',
+                            'gray' => 'text-gray-500 dark:text-gray-400',
+                            default => 'text-custom-600 dark:text-custom-500',
                         },
                     ])
                     @style([
-                        \Filament\Support\get_color_css_variables($color, shades: [400, 600]) => $color !== 'gray',
+                        \Filament\Support\get_color_css_variables($color, shades: [500, 600]) => $color !== 'gray',
                     ])
                 >
                     {{ $description }}

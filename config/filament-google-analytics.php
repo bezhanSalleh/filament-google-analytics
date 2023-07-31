@@ -22,12 +22,12 @@ return [
 
     'active_users_one_day' => [
         'filament_dashboard' => false,
-        'global' => false,
+        'global' => true,
     ],
 
     'active_users_seven_day' => [
         'filament_dashboard' => false,
-        'global' => false,
+        'global' => true,
     ],
 
     'active_users_twenty_eight_day' => [

@@ -2,11 +2,11 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Illuminate\Support\Arr;
+use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits;
 use Filament\Widgets\ChartWidget;
 use Illuminate\Contracts\Support\Htmlable;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits;
-use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
+use Illuminate\Support\Arr;
 
 class VisitorsWidget extends ChartWidget
 {
@@ -15,7 +15,7 @@ class VisitorsWidget extends ChartWidget
 
     protected static ?string $pollingInterval = null;
 
-    protected static string $view = 'filament-google-analytics::widgets.stat-views-widget';
+    protected static string $view = 'filament-google-analytics::widgets.stats-overview';
 
     protected static ?int $sort = 3;
 
@@ -71,11 +71,6 @@ class VisitorsWidget extends ChartWidget
             'color' => $this->initializeData()->trajectoryColor(),
             'description' => $this->initializeData()->trajectoryDescription(),
         ];
-    }
-
-    public function placeholder()
-    {
-        return view('filament-google-analytics::widgets.no-chart-placeholder');
     }
 
     protected function getType(): string

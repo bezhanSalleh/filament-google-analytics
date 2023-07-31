@@ -14,19 +14,13 @@ class ActiveUsersOneDayWidget extends ChartWidget
     use Traits\ActiveUsers;
     use Traits\CanViewWidget;
 
-    protected static bool $isLazy = false;
-
-    protected static string $view = 'filament-google-analytics::widgets.active-users-widget';
+    protected static string $view = 'filament-google-analytics::widgets.active-users';
 
     protected static ?string $pollingInterval = null;
 
     protected static ?int $sort = 3;
 
     public ?string $filter = '5';
-
-    public ?string $bgColor = null;
-
-    public ?string $borderColor = null;
 
     protected function getType(): string
     {
@@ -83,7 +77,7 @@ class ActiveUsersOneDayWidget extends ChartWidget
                     'pointRadius' => 0,
                     'pointHitRadius' => 0,
                     'backgroundColor' => ['rgba(251, 191, 36, 0.1)'],
-                    'borderColor' => ['rgba(245, 158, 11, 1)']
+                    'borderColor' => ['rgba(245, 158, 11, 1)'],
                 ],
             ],
             'labels' => array_values($this->initializeData()['results']),
@@ -129,9 +123,4 @@ class ActiveUsersOneDayWidget extends ChartWidget
             }
         JS);
     }
-
-    // public function placeholder()
-    // {
-    //     return view('filament-google-analytics::widgets.active-users-placeholder');
-    // }
 }

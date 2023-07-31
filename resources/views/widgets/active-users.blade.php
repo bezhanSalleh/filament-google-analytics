@@ -12,7 +12,7 @@
                 {{ $description }}
             </span>
             @if ($filters)
-                    <x-filament-forms::affixes
+                    <x-filament::input.wrapper
                         inline-prefix
                         wire:target="filter"
                         class="ms-auto"
@@ -27,7 +27,7 @@
                                 </option>
                             @endforeach
                         </x-filament::input.select>
-                    </x-filament-forms::affixes>
+                    </x-filament::input.wrapper>
                 @endif
         </div>
 
