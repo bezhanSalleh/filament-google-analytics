@@ -2,6 +2,14 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 2.0.1 - 2023-08-01
+
+**What's new in 2.0.1?**
+
+- Standalone Widgets Support be used with any Livewire Application
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/1.1.2...2.0.1
+
 ## 1.1.2 - 2023-07-24
 
 ### What's Changed
