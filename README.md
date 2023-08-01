@@ -3,7 +3,7 @@
 </a>
 
 
-<p align="left">
+<p align="center" class="flex justify-center items-center">
     <a href="https://filamentadmin.com/docs/2.x/admin/installation">
         <img alt="FILAMENT 8.x" src="https://img.shields.io/badge/FILAMENT-2.x-EBB304?style=for-the-badge">
     </a>
