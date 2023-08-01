@@ -14,7 +14,7 @@ class FilamentGoogleAnalytics
     {
     }
 
-    public static function for(?string $value = null)
+    public static function for(string $value = null)
     {
         return new static($value);
     }
@@ -86,7 +86,7 @@ class FilamentGoogleAnalytics
      */
     public function trajectoryDescription(): string
     {
-        return static::thousandsFormater(abs($this->compute())).$this->format.' '.$this->trajectoryLabel();
+        return static::thousandsFormater(abs($this->compute())) . $this->format . ' ' . $this->trajectoryLabel();
     }
 
     public static function thousandsFormater($value)
@@ -100,7 +100,7 @@ class FilamentGoogleAnalytics
             $x_parts = ['k', 'm', 'b', 't'];
             $x_count_parts = count($x_array) - 1;
             $x_display = $x;
-            $x_display = $x_array[0].((int) $x_array[1][0] !== 0 ? '.'.$x_array[1][0] : '');
+            $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
             $x_display .= $x_parts[$x_count_parts - 1];
 
             return $x_display;

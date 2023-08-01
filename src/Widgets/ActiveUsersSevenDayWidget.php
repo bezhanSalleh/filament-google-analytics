@@ -4,40 +4,30 @@ namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
 use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
-use Filament\Widgets\Widget;
+use Filament\Support\RawJs;
+use Filament\Widgets\ChartWidget;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Arr;
 
-class ActiveUsersSevenDayWidget extends Widget
+class ActiveUsersSevenDayWidget extends ChartWidget
 {
     use Traits\ActiveUsers;
     use Traits\CanViewWidget;
 
-    protected static string $view = 'filament-google-analytics::widgets.active-users-seven-day-widget';
+    protected static string $view = 'filament-google-analytics::widgets.active-users';
+
+    protected static ?string $pollingInterval = null;
 
     protected static ?int $sort = 3;
 
     public ?string $filter = '5';
 
-    public $readyToLoad = false;
-
-    public function init()
+    protected function getType(): string
     {
-        $this->readyToLoad = true;
+        return 'line';
     }
 
-    public function label(): ?string
-    {
-        return __('filament-google-analytics::widgets.seven_day_active_users');
-    }
-
-    public function updatedFilter()
-    {
-        $this->emitSelf('filterChartData', [
-            'data' => array_values($this->initializeData()['results']),
-        ]);
-    }
-
-    protected static function filters(): array
+    protected function getFilters(): array
     {
         return [
             '5' => __('filament-google-analytics::widgets.FD'),
@@ -46,12 +36,22 @@ class ActiveUsersSevenDayWidget extends Widget
         ];
     }
 
+    public function getHeading(): string | Htmlable | null
+    {
+        return FilamentGoogleAnalytics::for(last($this->initializeData()['results']))->trajectoryValue();
+    }
+
+    public function getDescription(): string | Htmlable | null
+    {
+        return __('filament-google-analytics::widgets.seven_day_active_users');
+    }
+
     protected function initializeData()
     {
         $lookups = [
-            '5' => $this->performActiveUsersQuery('active7dayUsers', 5),
-            '10' => $this->performActiveUsersQuery('active7dayUsers', 10),
-            '15' => $this->performActiveUsersQuery('active7dayUsers', 15),
+            '5' => $this->performActiveUsersQuery('active7DayUsers', 5),
+            '10' => $this->performActiveUsersQuery('active7DayUsers', 10),
+            '15' => $this->performActiveUsersQuery('active7DayUsers', 15),
         ];
 
         $data = Arr::get(
@@ -68,17 +68,52 @@ class ActiveUsersSevenDayWidget extends Widget
     protected function getData(): array
     {
         return [
-            'value' => FilamentGoogleAnalytics::for(last($this->initializeData()['results']))->trajectoryValue(),
-            'color' => 'primary',
-            'chart' => array_values($this->initializeData()['results']),
+            'datasets' => [
+                [
+                    'data' => array_values($this->initializeData()['results']),
+                    'borderWidth' => 2,
+                    'fill' => 'start',
+                    'tension' => 0.5,
+                    'pointRadius' => 0,
+                    'pointHitRadius' => 0,
+                    'backgroundColor' => ['rgba(251, 191, 36, 0.1)'],
+                    'borderColor' => ['rgba(245, 158, 11, 1)'],
+                ],
+            ],
+            'labels' => array_values($this->initializeData()['results']),
         ];
     }
 
-    protected function getViewData(): array
+    protected function getOptions(): array | RawJs | null
     {
-        return [
-            'data' => $this->readyToLoad ? $this->getData() : [],
-            'filters' => static::filters(),
-        ];
+        return RawJs::make(<<<'JS'
+            {
+                animation: {
+                    duration: 0,
+                },
+                elements: {
+                    point: {
+                        radius: 0,
+                    },
+                },
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                },
+                scales: {
+                    x: {
+                        display: false,
+                    },
+                    y: {
+                        display: false,
+                    },
+                },
+                tooltips: {
+                    enabled: false,
+                },
+            }
+        JS);
     }
 }

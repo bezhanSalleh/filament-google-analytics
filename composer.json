@@ -24,7 +24,7 @@
     ],
     "require": {
         "php": "^8.1",
-        "filament/filament": "^2.0",
+        "filament/filament": "^3.0",
         "illuminate/contracts": "^10.0",
         "spatie/laravel-analytics": "^5.0",
         "spatie/laravel-package-tools": "^1.9.2"
@@ -51,7 +51,8 @@
     },
     "scripts": {
         "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage"
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
     },
     "config": {
         "sort-packages": true,

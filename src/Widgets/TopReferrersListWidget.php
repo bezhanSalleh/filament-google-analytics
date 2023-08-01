@@ -3,42 +3,40 @@
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
-use Filament\Widgets\Widget;
+use Filament\Widgets\ChartWidget;
+use Illuminate\Contracts\Support\Htmlable;
 use Spatie\Analytics\Facades\Analytics;
 use Spatie\Analytics\OrderBy;
 use Spatie\Analytics\Period;
 
-class TopReferrersListWidget extends Widget
+class TopReferrersListWidget extends ChartWidget
 {
     use Traits\CanViewWidget;
 
-    protected static string $view = 'filament-google-analytics::widgets.top-referrers-list-widget';
+    protected static ?string $pollingInterval = null;
+
+    protected static string $view = 'filament-google-analytics::widgets.top-referrers-list';
 
     protected static ?int $sort = 3;
 
     public ?string $filter = 'T';
 
-    public bool $readyToLoad = false;
-
-    public function init()
-    {
-        $this->readyToLoad = true;
-    }
-
-    protected function getHeading(): ?string
+    public function getHeading(): string | Htmlable | null
     {
         return __('filament-google-analytics::widgets.top_referrers');
     }
 
-    protected function getViewData(): array
+    protected function getFilters(): array
     {
         return [
-            'data' => $this->readyToLoad ? $this->getData() : [],
-            'filters' => static::filters(),
+            'T' => __('filament-google-analytics::widgets.T'),
+            'TW' => __('filament-google-analytics::widgets.TW'),
+            'TM' => __('filament-google-analytics::widgets.TM'),
+            'TY' => __('filament-google-analytics::widgets.TY'),
         ];
     }
 
-    protected function getData()
+    protected function getData(): array
     {
         $lookups = [
             'T' => Period::days(1),
@@ -60,16 +58,11 @@ class TopReferrersListWidget extends Widget
                 'url' => $pageRow['pageReferrer'],
                 'pageViews' => (int) $pageRow['activeUsers'],
             ];
-        });
+        })->all();
     }
 
-    protected static function filters(): array
+    protected function getType(): string
     {
-        return [
-            'T' => __('filament-google-analytics::widgets.T'),
-            'TW' => __('filament-google-analytics::widgets.TW'),
-            'TM' => __('filament-google-analytics::widgets.TM'),
-            'TY' => __('filament-google-analytics::widgets.TY'),
-        ];
+        return 'line';
     }
 }

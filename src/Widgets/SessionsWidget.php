@@ -4,33 +4,29 @@ namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
 use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
 use BezhanSalleh\FilamentGoogleAnalytics\Traits;
-use Filament\Widgets\Widget;
+use Filament\Widgets\ChartWidget;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Arr;
 
-class SessionsWidget extends Widget
+class SessionsWidget extends ChartWidget
 {
     use Traits\Sessions;
     use Traits\CanViewWidget;
 
-    protected static string $view = 'filament-google-analytics::widgets.sessions-widget';
+    protected static ?string $pollingInterval = null;
+
+    protected static string $view = 'filament-google-analytics::widgets.stats-overview';
 
     protected static ?int $sort = 3;
 
     public ?string $filter = 'T';
 
-    public $readyToLoad = false;
-
-    public function init()
-    {
-        $this->readyToLoad = true;
-    }
-
-    public function label(): ?string
+    public function getHeading(): string | Htmlable | null
     {
         return __('filament-google-analytics::widgets.sessions');
     }
 
-    protected static function filters(): array
+    protected function getFilters(): array
     {
         return [
             'T' => __('filament-google-analytics::widgets.T'),
@@ -74,16 +70,11 @@ class SessionsWidget extends Widget
             'icon' => $this->initializeData()->trajectoryIcon(),
             'color' => $this->initializeData()->trajectoryColor(),
             'description' => $this->initializeData()->trajectoryDescription(),
-            'chart' => [],
-            'chartColor' => '',
         ];
     }
 
-    protected function getViewData(): array
+    protected function getType(): string
     {
-        return [
-            'data' => $this->readyToLoad ? $this->getData() : [],
-            'filters' => static::filters(),
-        ];
+        return 'line';
     }
 }

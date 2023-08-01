@@ -6,7 +6,7 @@ return [
      * Dashboard Page
      */
     'dedicated_dashboard' => true,
-    'dashboard_icon' => 'heroicon-o-chart-bar',
+    'dashboard_icon' => 'heroicon-m-chart-bar',
 
     /**
      * Widgets
@@ -68,9 +68,9 @@ return [
     /**
      * Trajectory Icons
      */
-    'trending_up_icon' => 'heroicon-o-trending-up',
-    'trending_down_icon' => 'heroicon-o-trending-down',
-    'steady_icon' => 'heroicon-o-switch-horizontal',
+    'trending_up_icon' => 'heroicon-o-arrow-trending-up',
+    'trending_down_icon' => 'heroicon-o-arrow-trending-down',
+    'steady_icon' => 'heroicon-o-arrows-right-left',
 
     /**
      * Trajectory Colors

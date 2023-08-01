@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static thousandsFormater()
+ * @method static for()
  *
  * @see \BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics
  */
