@@ -13,7 +13,7 @@ trait CanViewWidget
 
         $globalStatus = config('filament-google-analytics.' . Str::of(static::class)->after('Widgets\\')->before('Widget')->snake() . '.global');
 
-        if ($filamentDashboardStatus && request()->routeIs($filamentPagesRoutePrefix . 'dashboard')) {
+        if ($filamentDashboardStatus) {
             return true;
         }
 
