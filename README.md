@@ -45,6 +45,19 @@ Also add this to the `.env` for your Filament PHP app:
 ANALYTICS_PROPERTY_ID=
 ```
 
+Finally, register the plugin in the Filament Panel Provider (This is by default AdminPanelProvider.php)
+```php
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            ...
+            \BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalyticsPlugin::make()
+        ]);
+}
+```
+
+
 # Usage
 
 All the widgets are enabled by default in a dedicated `Google Analytics Dashboard`. You can enable or disable a specific widget or the dedicated dashboard all together or show and hide some from the main `Filament Dashboard` from the config `filament-google-analytics`.
