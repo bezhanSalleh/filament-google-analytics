@@ -10,7 +10,7 @@ return [
     /**
      * Widget Heading/Labels
      */
-    'page_views' => 'Page Views',
+    'page_views' => 'Pages vues',
     'visitors' => 'Utilisateurs uniques',
     'sessions' => 'Sessions',
     'sessions_duration' => 'Durée moyenne des sessions',
