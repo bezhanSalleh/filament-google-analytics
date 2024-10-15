@@ -26,7 +26,7 @@ return [
     /**
      * Filter Labels
      */
-    'T' => 'Aujourd\'hui',
+    'T' => 'Aujourd’hui',
     'Y' => 'Hier',
     'TW' => 'Cette semaine',
     'LW' => 'La semaine dernière',
