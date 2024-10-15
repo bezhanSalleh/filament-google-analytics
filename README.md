@@ -45,7 +45,11 @@ Also add this to the `.env` for your Filament PHP app:
 ANALYTICS_PROPERTY_ID=
 ```
 
-Finally, register the plugin in the Filament Panel Provider (This is by default AdminPanelProvider.php)
+
+> [!NOTE]  
+> The plugin is developed to work in any Livewire project that uses the standalone `filament/widgets` package. But it also comes with a dedicated dashboard, which is a normal filament page. You can enable it by registering the plugin for the panels you want to use it in. If you are not using filament panels then you can skip this step.
+> 
+
 ```php
 public function panel(Panel $panel): Panel
 {
@@ -57,10 +61,9 @@ public function panel(Panel $panel): Panel
 }
 ```
 
-
 # Usage
 
-All the widgets are enabled by default in a dedicated `Google Analytics Dashboard`. You can enable or disable a specific widget or the dedicated dashboard all together or show and hide some from the main `Filament Dashboard` from the config `filament-google-analytics`.
+All the widgets are enabled by default for you to use them in your filament pages/resources. In order to enable the widgets for the default filament dashboard, you need to set the `filament_dashboard` option to `true` in the config file `filament-google-analytics.php` for each widget you want to enable.
 
 Publish the config files and set your settings:
 ```bash
