@@ -2,6 +2,45 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 2.0.2 - 2024-10-15
+
+### What's Changed
+
+* Updates
+  
+  - Fixed `PageViews` result data for `today|yesterday`
+  - Fixed `MostVisitedPages` and `TopReferrers` overflow issue
+  - Replaced `gmp` extension usage with custom function
+  
+* explicit float to int conversion by @kylekanderson in https://github.com/bezhanSalleh/filament-google-analytics/pull/44
+  
+* chore: turkish translation by @mrfade in https://github.com/bezhanSalleh/filament-google-analytics/pull/47
+  
+* Update doc removing replacing ActiveUsersFourteenDayWidget by ActiveUsersTwentyEightDayWidget by @django23 in https://github.com/bezhanSalleh/filament-google-analytics/pull/50
+  
+* Add French Translations for Dashboard Widgets by @diego-at in https://github.com/bezhanSalleh/filament-google-analytics/pull/60
+  
+* Spanish transaltion by @marzioperez in https://github.com/bezhanSalleh/filament-google-analytics/pull/61
+  
+* Chore/french translation by @Thomas-DL in https://github.com/bezhanSalleh/filament-google-analytics/pull/69
+  
+* Added Spanish Translations by @edeoliv in https://github.com/bezhanSalleh/filament-google-analytics/pull/70
+  
+* Bump dependabot/fetch-metadata from 1.6.0 to 2.2.0 by @dependabot in https://github.com/bezhanSalleh/filament-google-analytics/pull/73
+  
+
+### New Contributors
+
+* @kylekanderson made their first contribution in https://github.com/bezhanSalleh/filament-google-analytics/pull/44
+* @mrfade made their first contribution in https://github.com/bezhanSalleh/filament-google-analytics/pull/47
+* @django23 made their first contribution in https://github.com/bezhanSalleh/filament-google-analytics/pull/50
+* @diego-at made their first contribution in https://github.com/bezhanSalleh/filament-google-analytics/pull/60
+* @marzioperez made their first contribution in https://github.com/bezhanSalleh/filament-google-analytics/pull/61
+* @Thomas-DL made their first contribution in https://github.com/bezhanSalleh/filament-google-analytics/pull/69
+* @edeoliv made their first contribution in https://github.com/bezhanSalleh/filament-google-analytics/pull/70
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/2.0.0...2.0.2
+
 ## 2.0.1 - 2023-08-01
 
 **What's new in 2.0.1?**
