@@ -109,7 +109,7 @@ class MyCustomDashboardPage extends Page
 }
 ```
 > [!NOTE]  
-> In order to enable the widgets for the default filament dashboard, you need to set the `enabled` option to `true` in the config file `filament-google-analytics.php` for each widget you want to enable.
+> In order to enable the widgets for the default filament dashboard, you need to set the `filament_dashboard` option to `true` in the config file `filament-google-analytics.php` for each widget you want to enable.
 
 # Demo
 Widgets rendered in a dedicated dashboard (or any other page you create)
