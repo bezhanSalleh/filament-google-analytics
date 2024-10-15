@@ -1,4 +1,4 @@
-const preset = require("./vendor/filament/filament/tailwind.config.preset");
+const preset = require("./vendor/filament/support/tailwind.config.preset");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

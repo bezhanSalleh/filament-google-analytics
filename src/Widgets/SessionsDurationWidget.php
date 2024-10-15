@@ -10,8 +10,8 @@ use Illuminate\Support\Arr;
 
 class SessionsDurationWidget extends ChartWidget
 {
-    use Traits\SessionsDuration;
     use Traits\CanViewWidget;
+    use Traits\SessionsDuration;
 
     protected static ?string $pollingInterval = null;
 

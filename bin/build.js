@@ -32,10 +32,10 @@ const defaultOptions = {
                 build.onStart(() => {
                     console.log(
                         `Build started at ${new Date(
-                            Date.now()
+                            Date.now(),
                         ).toLocaleTimeString()}: ${
                             build.initialOptions.outfile
-                        }`
+                        }`,
                     );
                 });
 
@@ -43,19 +43,19 @@ const defaultOptions = {
                     if (result.errors.length > 0) {
                         console.log(
                             `Build failed at ${new Date(
-                                Date.now()
+                                Date.now(),
                             ).toLocaleTimeString()}: ${
                                 build.initialOptions.outfile
                             }`,
-                            result.errors
+                            result.errors,
                         );
                     } else {
                         console.log(
                             `Build finished at ${new Date(
-                                Date.now()
+                                Date.now(),
                             ).toLocaleTimeString()}: ${
                                 build.initialOptions.outfile
-                            }`
+                            }`,
                         );
                     }
                 });
@@ -69,4 +69,3 @@ compile({
     entryPoints: ["./resources/js/fgaChart.js"],
     outfile: "./resources/dist/fgaChart.js",
 });
-

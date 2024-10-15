@@ -14,7 +14,7 @@ class FilamentGoogleAnalytics
     {
     }
 
-    public static function for(string $value = null)
+    public static function for(?string $value = null)
     {
         return new static($value);
     }
@@ -111,7 +111,7 @@ class FilamentGoogleAnalytics
 
     protected function getSign(): int
     {
-        return (int)  match(true) {
+        return (int) match (true) {
             $this->compute() > 0 => 1,
             $this->compute() < 0 => -1,
             default => 0
