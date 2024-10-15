@@ -26,15 +26,11 @@
         <div class="relative space-y-2 max-auto">
             <ul class="divide-y divide-gray-300 dark:divide-gray-700">
                 @foreach ($this->getCachedData() as $record)
-                    <li class="group">
-                        <div class="block p-2">
-                            <div class="flex items-center justify-between">
-                                <h5 class="text-sm font-medium text-gray-500 dark:text-gray-400 group-hover:text-primary-500 dark:group-hover:text-primary-400">{{ filled($record['url']) ? $record['url'] : 'Unknown' }}</h5>
-                                <x-filament::badge :color="$color">
-                                    {{ FilamentGoogleAnalytics::thousandsFormater($record['pageViews']) }}
-                                </x-filament::badge>
-                            </div>
-                        </div>
+                    <li class="flex flex-row items-center justify-between p-2 group gap-x-1">
+                        <h5 class="grow text-sm font-medium text-gray-500 dark:text-gray-400 group-hover:text-primary-500 dark:group-hover:text-primary-400 cursor-pointer truncate w-10 sm:w-full">{{ filled($record['url']) ? $record['url'] : 'Unknown' }}</h5>
+                        <x-filament::badge :color="$color" class="tabular-nums shrink-0">
+                            {{ FilamentGoogleAnalytics::thousandsFormater($record['pageViews']) }}
+                        </x-filament::badge>
                     </li>
                 @endforeach
             </ul>

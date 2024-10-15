@@ -28,8 +28,8 @@
                 @foreach ($this->getCachedData() as $record)
                     <li class="group">
                         <div class="block p-2">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center justify-start space-x-1">
+                            <div class="flex items-center justify-between gap-x-1">
+                                <div class="flex items-center justify-start space-x-1 flex-wrap sm:flex-nowrap">
                                     <h5 class="text-sm font-medium text-gray-500 dark:text-gray-400 group-hover:text-primary-500 dark:group-hover:text-primary-400">
                                         {{ $record['name'] }}
                                     </h5>
@@ -43,7 +43,7 @@
                                     </span>
                                 </div>
 
-                                <x-filament::badge :color="$color">
+                                <x-filament::badge :color="$color" class="tabular-nums shrink-0">
                                     {{ FilamentGoogleAnalytics::thousandsFormater($record['visits']) }}
                                 </x-filament::badge>
                             </div>

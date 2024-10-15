@@ -10,8 +10,8 @@ use Illuminate\Support\Arr;
 
 class PageViewsWidget extends ChartWidget
 {
-    use Traits\PageViews;
     use Traits\CanViewWidget;
+    use Traits\PageViews;
 
     protected static ?string $pollingInterval = null;
 

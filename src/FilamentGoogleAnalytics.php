@@ -10,11 +10,9 @@ class FilamentGoogleAnalytics
 
     public string $format;
 
-    public function __construct(public ?string $value = null)
-    {
-    }
+    public function __construct(public ?string $value = null) {}
 
-    public static function for(string $value = null)
+    public static function for(?string $value = null)
     {
         return new static($value);
     }
@@ -39,7 +37,7 @@ class FilamentGoogleAnalytics
             return 0;
         }
 
-        return (($this->value - $this->previous) / $this->previous) * 100;
+        return intval((($this->value - $this->previous) / $this->previous) * 100);
     }
 
     public function trajectoryValue()
@@ -54,7 +52,7 @@ class FilamentGoogleAnalytics
 
     public function trajectoryLabel()
     {
-        return match (gmp_sign($this->compute())) {
+        return match ($this->getSign()) {
             -1 => __('filament-google-analytics::widgets.trending_down'),
             0 => __('filament-google-analytics::widgets.steady'),
             1 => __('filament-google-analytics::widgets.trending_up'),
@@ -64,7 +62,7 @@ class FilamentGoogleAnalytics
 
     public function trajectoryColor()
     {
-        return match (gmp_sign($this->compute())) {
+        return match ($this->getSign()) {
             -1 => config('filament-google-analytics.trending_down_color'),
             0 => config('filament-google-analytics.trending_steady_color'),
             1 => config('filament-google-analytics.trending_up_color'),
@@ -74,7 +72,7 @@ class FilamentGoogleAnalytics
 
     public function trajectoryIcon()
     {
-        return match (gmp_sign($this->compute())) {
+        return match ($this->getSign()) {
             1 => config('filament-google-analytics.trending_up_icon'),
             -1 => config('filament-google-analytics.trending_down_icon'),
             default => config('filament-google-analytics.steady_icon')
@@ -107,5 +105,14 @@ class FilamentGoogleAnalytics
         }
 
         return $number;
+    }
+
+    protected function getSign(): int
+    {
+        return (int) match (true) {
+            $this->compute() > 0 => 1,
+            $this->compute() < 0 => -1,
+            default => 0
+        };
     }
 }

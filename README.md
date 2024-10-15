@@ -73,7 +73,7 @@ php artisan vendor:publish --tag=filament-google-analytics-config
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\VisitorsWidget::class,
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersOneDayWidget::class,
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersSevenDayWidget::class,
-\BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersFourteenDayWidget::class,
+\BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersTwentyEightDayWidget::class,
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsWidget::class,
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsDurationWidget::class,
 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsByCountryWidget::class,
@@ -110,7 +110,6 @@ class MyCustomDashboardPage extends Page
             Widgets\VisitorsWidget::class,
             Widgets\ActiveUsersOneDayWidget::class,
             Widgets\ActiveUsersSevenDayWidget::class,
-            Widgets\ActiveUsersFourteenDayWidget::class,
             Widgets\ActiveUsersTwentyEightDayWidget::class,
             Widgets\SessionsWidget::class,
             Widgets\SessionsDurationWidget::class,
@@ -122,23 +121,12 @@ class MyCustomDashboardPage extends Page
     }
 }
 ```
+> [!NOTE]  
+> In order to enable the widgets for the default filament dashboard, you need to set the `filament_dashboard` option to `true` in the config file `filament-google-analytics.php` for each widget you want to enable.
 
-# Features
-#### View the Visitors and Pageview Metrics
-<img width="756" alt="Screen Shot 2022-02-26 at 12 35 41 PM" src="https://user-images.githubusercontent.com/10007504/155835519-d1fbb973-110d-4341-af50-8f5abea5f2f4.png">
-
-#### View the Active Users Metrics
-<img width="773" alt="Screen Shot 2022-02-26 at 12 48 57 PM" src="https://user-images.githubusercontent.com/10007504/155835949-beb4de3f-4d93-4f92-88fa-dd1678b907c8.png">
-
-
-#### View the Sessions and Avg. Session Duration Metrics
-<img width="756" alt="Screen Shot 2022-02-26 at 12 37 42 PM" src="https://user-images.githubusercontent.com/10007504/155835567-d88b644e-8f73-4c9d-b513-2abf2e704a16.png">
-
-#### View the Devices and Country Metrics by Session (WIP)
-<img width="850" alt="Screen Shot 2022-02-26 at 12 44 00 PM" src="https://user-images.githubusercontent.com/10007504/155835896-e20c4f8b-1cb1-4c5c-bb41-344025fbbf7a.png">
-
-#### View the lists of Most Visited Pages and Referrers
-<img width="902" alt="Screen Shot 2022-02-26 at 12 44 34 PM" src="https://user-images.githubusercontent.com/10007504/155835898-debb3935-81d4-4963-9b02-9734230be387.png">
+# Demo
+Widgets rendered in a dedicated dashboard (or any other page you create)
+![Demo](https://raw.githubusercontent.com/bezhanSalleh/filament-google-analytics/master/bin/v2-art.png?raw=true "Simple Demo")
 
 # Changelog
 

@@ -10,8 +10,8 @@ use Illuminate\Support\Arr;
 
 class VisitorsWidget extends ChartWidget
 {
-    use Traits\Visitors;
     use Traits\CanViewWidget;
+    use Traits\Visitors;
 
     protected static ?string $pollingInterval = null;
 
