@@ -15,8 +15,8 @@ trait PageViews
         $analyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::days(1));
 
         return [
-            'result' => $analyticsData->last()['screenPageViews'] ?? 0,
-            'previous' => $analyticsData->first()['screenPageViews'] ?? 0,
+            'result' => $analyticsData->first()['screenPageViews'] ?? 0,
+            'previous' => $analyticsData->last()['screenPageViews'] ?? 0,
         ];
     }
 
@@ -25,8 +25,8 @@ trait PageViews
         $analyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::create(Carbon::yesterday()->clone()->subDay(), Carbon::yesterday()));
 
         return [
-            'result' => $analyticsData->last()['screenPageViews'] ?? 0,
-            'previous' => $analyticsData->first()['screenPageViews'] ?? 0,
+            'result' => $analyticsData->first()['screenPageViews'] ?? 0,
+            'previous' => $analyticsData->last()['screenPageViews'] ?? 0,
         ];
     }
 

@@ -18,7 +18,6 @@ trait ActiveUsers
 
         $results = $analyticsData->mapWithKeys(function ($row) use ($metric) {
             return [
-                //(new Carbon($row['date']))->format('M j') => intval($row[1]),
                 (new Carbon($row['date']))->format('M j') => $row[$metric],
             ];
         });
