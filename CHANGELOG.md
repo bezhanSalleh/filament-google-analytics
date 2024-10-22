@@ -2,6 +2,14 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 1.1.4 - 2024-10-22
+
+### What's Changed
+
+* [Fix] Session Duration trajectory timezone(UTC) & Today filter order by @bezhanSalleh in https://github.com/bezhanSalleh/filament-google-analytics/pull/78
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/1.1.3...1.1.4
+
 ## 1.1.3 - 2024-10-22
 
 ### What's Changed
