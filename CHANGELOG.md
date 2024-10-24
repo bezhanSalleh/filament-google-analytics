@@ -2,6 +2,14 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 1.2.0 - 2024-10-24
+
+### What's Changed
+
+* patched metric-diff by @bezhanSalleh in https://github.com/bezhanSalleh/filament-google-analytics/pull/81
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/1.1.4...1.2.0
+
 ## 2.1.0 - 2024-10-24
 
 ### What's Changed
