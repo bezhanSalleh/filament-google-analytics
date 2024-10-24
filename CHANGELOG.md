@@ -2,6 +2,16 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 2.1.0 - 2024-10-24
+
+### What's Changed
+
+* fixes Pages views result for today/yesterday by @bezhanSalleh in https://github.com/bezhanSalleh/filament-google-analytics/pull/77
+* [Fix] Session Duration trajectory timezone(UTC) & Today filter order by @bezhanSalleh in https://github.com/bezhanSalleh/filament-google-analytics/pull/78
+* [fix] Session & Session Duration for today/yesterday by @bezhanSalleh in https://github.com/bezhanSalleh/filament-google-analytics/pull/80
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/2.0.3...2.1.0
+
 ## 2.0.3 - 2024-10-22
 
 ### What's Changed
