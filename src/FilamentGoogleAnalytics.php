@@ -6,18 +6,18 @@ use Illuminate\Support\Carbon;
 
 class FilamentGoogleAnalytics
 {
-    public int|float $previous = 0;
+    public int | float $previous = 0;
 
     public string $format;
 
-    public function __construct(public int|float $value = 0) {}
+    public function __construct(public int | float $value = 0) {}
 
-    public static function for(int|float $value = 0): static
+    public static function for(int | float $value = 0): static
     {
         return new static($value);
     }
 
-    public function previous(int|float $previous): static
+    public function previous(int | float $previous): static
     {
         $this->previous = $previous;
 

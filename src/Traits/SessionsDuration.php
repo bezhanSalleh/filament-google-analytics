@@ -13,7 +13,7 @@ trait SessionsDuration
     {
         $results = $this->get('averageSessionDuration', 'date', Period::days(1));
 
-        return match(true) {
+        return match (true) {
             ($results->containsOneItem() && ($results->first()['date'])->isYesterday()) => [
                 'previous' => $results->first()['value'],
                 'result' => 0,
