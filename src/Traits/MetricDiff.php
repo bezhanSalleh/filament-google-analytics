@@ -3,9 +3,10 @@
 namespace BezhanSalleh\FilamentGoogleAnalytics\Traits;
 
 use Carbon\Carbon;
+use Spatie\Analytics\Period;
+use Spatie\Analytics\OrderBy;
 use Illuminate\Support\Collection;
 use Spatie\Analytics\Facades\Analytics;
-use Spatie\Analytics\Period;
 
 trait MetricDiff
 {
@@ -15,6 +16,9 @@ trait MetricDiff
             $period,
             [$metric],
             [$dimensions],
+            orderBy: [
+                OrderBy::dimension($dimensions, true),
+            ],
         );
 
         $results = $analyticsData;
