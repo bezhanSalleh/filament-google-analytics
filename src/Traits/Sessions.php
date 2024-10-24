@@ -13,10 +13,24 @@ trait Sessions
     {
         $results = $this->get('sessions', 'date', Period::days(1));
 
-        return [
-            'previous' => $results->first()['value'] ?? 0,
-            'result' => $results->last()['value'] ?? 0,
-        ];
+        return match (true) {
+            ($results->containsOneItem() && ($results->first()['date'])->isYesterday()) => [
+                'previous' => $results->first()['value'],
+                'result' => 0,
+            ],
+            ($results->containsOneItem() && ($results->first()['date'])->isToday()) => [
+                'previous' => 0,
+                'result' => $results->first()['value'],
+            ],
+            $results->isEmpty() => [
+                'previous' => 0,
+                'result' => 0,
+            ],
+            default => [
+                'previous' => $results->last()['value'] ?? 0,
+                'result' => $results->first()['value'] ?? 0,
+            ]
+        };
     }
 
     private function sessionsYesterday(): array
@@ -24,8 +38,8 @@ trait Sessions
         $results = $this->get('sessions', 'date', Period::create(Carbon::yesterday()->clone()->subDay(), Carbon::yesterday()));
 
         return [
-            'previous' => $results->first()['value'] ?? 0,
-            'result' => $results->last()['value'] ?? 0,
+            'previous' => $results->last()['value'] ?? 0,
+            'result' => $results->first()['value'] ?? 0,
         ];
     }
 
