@@ -10,7 +10,9 @@ class FilamentGoogleAnalytics
 
     public string $format;
 
-    public function __construct(public int | float $value = 0) {}
+    public function __construct(public int | float $value = 0)
+    {
+    }
 
     public static function for(int | float $value = 0): static
     {
