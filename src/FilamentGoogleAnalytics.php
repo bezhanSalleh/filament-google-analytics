@@ -6,27 +6,27 @@ use Illuminate\Support\Carbon;
 
 class FilamentGoogleAnalytics
 {
-    public string $previous;
+    public int | float $previous = 0;
 
     public string $format;
 
-    public function __construct(public ?string $value = null)
+    public function __construct(public int | float $value = 0)
     {
     }
 
-    public static function for(?string $value = null)
+    public static function for(int | float $value = 0): static
     {
         return new static($value);
     }
 
-    public function previous(string $previous)
+    public function previous(int | float $previous): static
     {
         $this->previous = $previous;
 
         return $this;
     }
 
-    public function format(string $format)
+    public function format(string $format): static
     {
         $this->format = $format;
 
@@ -35,11 +35,12 @@ class FilamentGoogleAnalytics
 
     public function compute(): int
     {
-        if ($this->value == 0 || $this->previous == 0 || $this->previous == null) {
-            return 0;
-        }
-
-        return (($this->value - $this->previous) / $this->previous) * 100;
+        return match (true) {
+            $this->value == 0 && $this->previous == 0 => 0,
+            $this->value > 0 && $this->previous == 0 => $this->value,
+            $this->previous != 0 => intval((($this->value - $this->previous) / $this->previous) * 100),
+            default => 0,
+        };
     }
 
     public function trajectoryValue()
@@ -86,7 +87,7 @@ class FilamentGoogleAnalytics
      */
     public function trajectoryDescription(): string
     {
-        return static::thousandsFormater(abs($this->compute())).$this->format.' '.$this->trajectoryLabel();
+        return static::thousandsFormater(abs($this->compute())) . $this->format . ' ' . $this->trajectoryLabel();
     }
 
     public static function thousandsFormater($value)
@@ -100,7 +101,7 @@ class FilamentGoogleAnalytics
             $x_parts = ['k', 'm', 'b', 't'];
             $x_count_parts = count($x_array) - 1;
             $x_display = $x;
-            $x_display = $x_array[0].((int) $x_array[1][0] !== 0 ? '.'.$x_array[1][0] : '');
+            $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
             $x_display .= $x_parts[$x_count_parts - 1];
 
             return $x_display;
