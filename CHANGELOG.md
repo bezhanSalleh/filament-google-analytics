@@ -2,6 +2,15 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 2.1.1 - 2024-11-12
+
+### What's Changed
+
+* patched metric-diff by @bezhanSalleh in https://github.com/bezhanSalleh/filament-google-analytics/pull/81
+* Add Russian language to v.2 by @RChutchev in https://github.com/bezhanSalleh/filament-google-analytics/pull/83
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/2.1.0...2.1.1
+
 ## 1.2.1 - 2024-11-12
 
 ### What's Changed
