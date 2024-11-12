@@ -2,6 +2,14 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 1.2.1 - 2024-11-12
+
+### What's Changed
+
+* Add Russian language by @RChutchev in https://github.com/bezhanSalleh/filament-google-analytics/pull/82
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/1.2.0...1.2.1
+
 ## 1.2.0 - 2024-10-24
 
 ### What's Changed
