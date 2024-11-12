@@ -39,7 +39,6 @@ return [
     'TD' => '10 дней',
     'FFD' => '15 дней',
 
-
     /**
      * Trajectory Label Descriptions
      */
