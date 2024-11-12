@@ -21,7 +21,7 @@ trait CanViewWidget
             return true;
         }
 
-        if ($globalStatus && ! $filamentDashboardStatus && ! request()->routeIs($filamentPagesRoutePrefix . 'dashboard') && ! request()->routeIs($filamentPagesRoutePrefix . 'filament-google-analytics-dashboard')) {
+        if ($globalStatus && ! request()->routeIs($filamentPagesRoutePrefix . 'dashboard') && ! request()->routeIs($filamentPagesRoutePrefix . 'filament-google-analytics-dashboard')) {
             return true;
         }
 
