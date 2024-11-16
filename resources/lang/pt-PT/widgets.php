@@ -5,7 +5,7 @@ return [
      * Dashboard Page
      */
     'navigation_label' => 'Painel Analytics',
-    'title' => 'Painel do Google Analytics',
+    'title' => 'Painel Analytics',
 
     /**
      * Widget Heading/Labels
