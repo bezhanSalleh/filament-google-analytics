@@ -4,7 +4,7 @@ return [
     /**
      * Dashboard Page
      */
-    'navigation_label' => 'Painel do Google Analytics',
+    'navigation_label' => 'Painel Analytics',
     'title' => 'Painel do Google Analytics',
 
      /**
