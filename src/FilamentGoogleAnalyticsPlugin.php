@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace BezhanSalleh\FilamentGoogleAnalytics;
 
+use BezhanSalleh\FilamentGoogleAnalytics\Pages\FilamentGoogleAnalyticsDashboard;
+use BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
@@ -23,20 +25,20 @@ class FilamentGoogleAnalyticsPlugin implements Plugin
     {
         $panel
             ->pages([
-                Pages\FilamentGoogleAnalyticsDashboard::class,
+                FilamentGoogleAnalyticsDashboard::class,
             ])
             ->widgets([
-                Widgets\PageViewsWidget::class,
-                Widgets\VisitorsWidget::class,
-                Widgets\ActiveUsersOneDayWidget::class,
-                Widgets\ActiveUsersSevenDayWidget::class,
-                Widgets\ActiveUsersTwentyEightDayWidget::class,
-                Widgets\SessionsWidget::class,
-                Widgets\SessionsDurationWidget::class,
-                Widgets\SessionsByCountryWidget::class,
-                Widgets\SessionsByDeviceWidget::class,
-                Widgets\MostVisitedPagesWidget::class,
-                Widgets\TopReferrersListWidget::class,
+                Widgets\GAPageViewsOverview::class,
+                Widgets\GAUniqueVisitorsOverview::class,
+                Widgets\GAActiveUsersOneDayOverview::class,
+                Widgets\GAActiveUsersSevenDayOverview::class,
+                Widgets\GAActiveUsersTwentyEightDayOverview::class,
+                Widgets\GASessionsOverview::class,
+                Widgets\GASessionsDurationOverview::class,
+                Widgets\GASessionsByCountryOverview::class,
+                Widgets\GASessionsByDeviceOverview::class,
+                Widgets\GAMostVisitedPagesList::class,
+                Widgets\GATopReferrersList::class,
             ]);
     }
 

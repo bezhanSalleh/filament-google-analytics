@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BezhanSalleh\FilamentGoogleAnalytics;
 
+use BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 use Filament\Widgets\WidgetConfiguration;
 use Livewire\Livewire;
 use Livewire\Mechanisms\ComponentRegistry;
@@ -16,17 +17,17 @@ class WidgetManager
     protected array $livewireComponents = [];
 
     protected array $widgets = [
-        Widgets\PageViewsWidget::class,
-        Widgets\VisitorsWidget::class,
-        Widgets\ActiveUsersOneDayWidget::class,
-        Widgets\ActiveUsersSevenDayWidget::class,
-        Widgets\ActiveUsersTwentyEightDayWidget::class,
-        Widgets\SessionsWidget::class,
-        Widgets\SessionsDurationWidget::class,
-        Widgets\SessionsByCountryWidget::class,
-        Widgets\SessionsByDeviceWidget::class,
-        Widgets\MostVisitedPagesWidget::class,
-        Widgets\TopReferrersListWidget::class,
+        Widgets\GAPageViewsOverview::class,
+        Widgets\GAUniqueVisitorsOverview::class,
+        Widgets\GAActiveUsersOneDayOverview::class,
+        Widgets\GAActiveUsersSevenDayOverview::class,
+        Widgets\GAActiveUsersTwentyEightDayOverview::class,
+        Widgets\GASessionsOverview::class,
+        Widgets\GASessionsDurationOverview::class,
+        Widgets\GASessionsByCountryOverview::class,
+        Widgets\GASessionsByDeviceOverview::class,
+        Widgets\GAMostVisitedPagesList::class,
+        Widgets\GATopReferrersList::class,
     ];
 
     public static function make(): static

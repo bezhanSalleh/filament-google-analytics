@@ -8,7 +8,7 @@ use Illuminate\Contracts\Support\Htmlable;
 
 class FilamentGoogleAnalyticsDashboard extends Page
 {
-    protected static string $view = 'filament-google-analytics::pages.google-analytics-dashboard';
+    protected string $view = 'filament-google-analytics::pages.google-analytics-dashboard';
 
     public static function getNavigationIcon(): ?string
     {
@@ -41,17 +41,17 @@ class FilamentGoogleAnalyticsDashboard extends Page
     protected function getHeaderWidgets(): array
     {
         return [
-            Widgets\PageViewsWidget::class,
-            Widgets\VisitorsWidget::class,
-            Widgets\ActiveUsersOneDayWidget::class,
-            Widgets\ActiveUsersSevenDayWidget::class,
-            Widgets\ActiveUsersTwentyEightDayWidget::class,
-            Widgets\SessionsWidget::class,
-            Widgets\SessionsDurationWidget::class,
-            Widgets\SessionsByCountryWidget::class,
-            Widgets\SessionsByDeviceWidget::class,
-            Widgets\MostVisitedPagesWidget::class,
-            Widgets\TopReferrersListWidget::class,
+            Widgets\GAPageViewsOverview::class,
+            Widgets\GAUniqueVisitorsOverview::class,
+            Widgets\GAActiveUsersOneDayOverview::class,
+            Widgets\GAActiveUsersSevenDayOverview::class,
+            Widgets\GAActiveUsersTwentyEightDayOverview::class,
+            Widgets\GASessionsOverview::class,
+            Widgets\GASessionsDurationOverview::class,
+            Widgets\GASessionsByCountryOverview::class,
+            Widgets\GASessionsByDeviceOverview::class,
+            Widgets\GAMostVisitedPagesList::class,
+            Widgets\GATopReferrersList::class,
         ];
     }
 }
