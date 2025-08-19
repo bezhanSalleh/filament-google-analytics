@@ -10,6 +10,7 @@ use Spatie\Analytics\Period;
 
 trait MetricDiff
 {
+    /** @return Collection<int, array{date: string, value: mixed}> */
     private function get(string $metric, string $dimensions, Period $period): Collection
     {
         $analyticsData = Analytics::get(
@@ -23,17 +24,16 @@ trait MetricDiff
 
         $results = $analyticsData;
 
-        return collect($results ?? [])->map(function (array $dateRow) use ($metric, $dimensions) {
-            return [
-                'date' => $dateRow[$dimensions],
-                'value' => $dateRow[$metric],
-            ];
-        });
+        return collect($results)->map(fn (array $dateRow): array => [
+            'date' => (string) $dateRow[$dimensions],
+            'value' => $dateRow[$metric],
+        ])->values();
     }
 
+    /** @return array{current: Period, previous: Period} */
     private function getLastWeek(): array
     {
-        $current = Period::create(
+        $period = Period::create(
             Carbon::today()
                 ->clone()
                 ->startOfWeek(Carbon::SUNDAY)
@@ -56,14 +56,15 @@ trait MetricDiff
         );
 
         return [
-            'current' => $current,
+            'current' => $period,
             'previous' => $previous,
         ];
     }
 
+    /** @return array{current: Period, previous: Period} */
     private function getLastMonth(): array
     {
-        $current = Period::create(
+        $period = Period::create(
             Carbon::today()
                 ->clone()
                 ->startOfMonth()
@@ -88,14 +89,15 @@ trait MetricDiff
         );
 
         return [
-            'current' => $current,
+            'current' => $period,
             'previous' => $previous,
         ];
     }
 
+    /** @return array{current: Period, previous: Period} */
     private function getLastSevenDays(): array
     {
-        $current = Period::create(
+        $period = Period::create(
             Carbon::yesterday()
                 ->clone()
                 ->subDays(6),
@@ -112,14 +114,15 @@ trait MetricDiff
         );
 
         return [
-            'current' => $current,
+            'current' => $period,
             'previous' => $previous,
         ];
     }
 
+    /** @return array{current: Period, previous: Period} */
     private function getLastThirtyDays(): array
     {
-        $current = Period::create(
+        $period = Period::create(
             Carbon::yesterday()
                 ->clone()
                 ->subDays(29),
@@ -136,7 +139,7 @@ trait MetricDiff
         );
 
         return [
-            'current' => $current,
+            'current' => $period,
             'previous' => $previous,
         ];
     }

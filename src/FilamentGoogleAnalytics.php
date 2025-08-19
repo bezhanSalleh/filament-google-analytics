@@ -14,7 +14,9 @@ class FilamentGoogleAnalytics
 
     public static function for(int | float $value = 0): static
     {
-        return new static($value);
+        return app(static::class, [
+            'value' => $value,
+        ]);
     }
 
     public function previous(int | float $previous): static
@@ -31,7 +33,7 @@ class FilamentGoogleAnalytics
         return $this;
     }
 
-    public function compute(): int
+    public function compute(): int | float
     {
         return match (true) {
             $this->value == 0 && $this->previous == 0 => 0,
@@ -41,17 +43,17 @@ class FilamentGoogleAnalytics
         };
     }
 
-    public function trajectoryValue()
+    public function trajectoryValue(): int | string
     {
         return static::thousandsFormater($this->value);
     }
 
-    public function trajectoryValueAsTimeString()
+    public function trajectoryValueAsTimeString(): string
     {
         return Carbon::createFromTimestampUTC($this->value)->toTimeString();
     }
 
-    public function trajectoryLabel()
+    public function trajectoryLabel(): string
     {
         return match ($this->getSign()) {
             -1 => __('filament-google-analytics::widgets.trending_down'),
@@ -61,7 +63,7 @@ class FilamentGoogleAnalytics
         };
     }
 
-    public function trajectoryColor()
+    public function trajectoryColor(): string
     {
         return match ($this->getSign()) {
             -1 => config('filament-google-analytics.trending_down_color'),
@@ -71,7 +73,7 @@ class FilamentGoogleAnalytics
         };
     }
 
-    public function trajectoryIcon()
+    public function trajectoryIcon(): string
     {
         return match ($this->getSign()) {
             1 => config('filament-google-analytics.trending_up_icon'),
@@ -80,15 +82,12 @@ class FilamentGoogleAnalytics
         };
     }
 
-    /**
-     * Undocumented function
-     */
     public function trajectoryDescription(): string
     {
         return static::thousandsFormater(abs($this->compute())) . $this->format . ' ' . $this->trajectoryLabel();
     }
 
-    public static function thousandsFormater($value)
+    public static function thousandsFormater(int | float $value): string | int
     {
         $number = (int) $value;
 
@@ -98,11 +97,9 @@ class FilamentGoogleAnalytics
             $x_array = explode(',', $x_number_format);
             $x_parts = ['k', 'm', 'b', 't'];
             $x_count_parts = count($x_array) - 1;
-            $x_display = $x;
             $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
-            $x_display .= $x_parts[$x_count_parts - 1];
 
-            return $x_display;
+            return $x_display . $x_parts[$x_count_parts - 1];
         }
 
         return $number;

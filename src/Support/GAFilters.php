@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Support;
 
-
 final class GAFilters
 {
     /**
@@ -26,6 +25,7 @@ final class GAFilters
      *  - Sessions
      *  - Sessions Duration
      *  - Sessions by Device and Country
+     *
      * @return array<string, string>
      */
     public static function common(): array

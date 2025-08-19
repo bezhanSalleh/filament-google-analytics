@@ -2,14 +2,17 @@
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-use Filament\Support\RawJs;
-use Filament\Widgets\ChartWidget;
 use BezhanSalleh\FilamentGoogleAnalytics\Support\GAFilters;
 use BezhanSalleh\FilamentGoogleAnalytics\Support\GAResponse;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits\CanViewWidget;
+use Filament\Support\RawJs;
+use Filament\Widgets\ChartWidget;
 use Illuminate\Contracts\Support\Htmlable;
 
 class GASessionsByDeviceOverview extends ChartWidget
 {
+    use CanViewWidget;
+
     public ?string $filter = 'T';
 
     protected static ?int $sort = 4;
@@ -17,9 +20,10 @@ class GASessionsByDeviceOverview extends ChartWidget
     protected function getData(): array
     {
         $data = collect(GAResponse::sessionsByDevice($this->filter))
-            ->filter(fn ($item, $key) => str($key)->doesntStartWith('total'))
+            ->filter(fn (mixed $item, string $key): bool => str($key)->doesntStartWith('total'))
             ->values()
             ->toArray();
+
         return [
             'labels' => array_keys(GAResponse::sessionsByDevice($this->filter)),
             'datasets' => [

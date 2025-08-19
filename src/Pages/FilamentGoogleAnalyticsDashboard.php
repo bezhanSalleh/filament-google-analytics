@@ -12,7 +12,7 @@ class FilamentGoogleAnalyticsDashboard extends Page
 
     public static function getNavigationIcon(): ?string
     {
-        return (string) config('filament-google-analytics.dashboard_icon') ?? 'heroicon-m-chart-bar';
+        return (string) config('filament-google-analytics.dashboard_icon', 'heroicon-m-chart-bar');
     }
 
     public static function getNavigationLabel(): string
@@ -36,7 +36,7 @@ class FilamentGoogleAnalyticsDashboard extends Page
     }
 
     /**
-     * @return array<class-string<Widget> | WidgetConfiguration>
+     * @return array<class-string<\Filament\Widgets\Widget>>
      */
     protected function getHeaderWidgets(): array
     {

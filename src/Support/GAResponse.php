@@ -4,21 +4,23 @@ declare(strict_types=1);
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Support;
 
-use Illuminate\Support\Arr;
-use Spatie\Analytics\OrderBy;
-use Facades\App\Services\GADataLookups;
-use Spatie\Analytics\Facades\Analytics;
 use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
+use Facades\App\Services\GADataLookups;
+use Illuminate\Support\Arr;
+use Spatie\Analytics\Facades\Analytics;
+use Spatie\Analytics\OrderBy;
 
 final class GAResponse
 {
     /**
      * Active Users data for stats widgets
+     *
+     * @param  array<int, array<string, mixed>>  $dataLookup
      * @return array{results: array<int>}
      */
     public static function activeUsers(array $dataLookup, ?string $filter = null): array
     {
-        $filter = $filter ?? 'T';
+        $filter ??= 'T';
 
         return Arr::get(
             $dataLookup,
@@ -35,11 +37,12 @@ final class GAResponse
      *  - Visitors
      *  - Sessions
      *  - Sessions Duration
-     * @param array<string, array<string, int>> $dataLookup
+     *
+     * @param  array<string, array<string, int>>  $dataLookup
      */
     public static function common(array $dataLookup, ?string $filter = null): FilamentGoogleAnalytics
     {
-        $filter = $filter ?? 'T';
+        $filter ??= 'T';
 
         $data = Arr::get(
             $dataLookup,
@@ -50,21 +53,22 @@ final class GAResponse
             ],
         );
 
-        return FilamentGoogleAnalytics::for((int)$data['result'])
-            ->previous((int)$data['previous'])
+        return FilamentGoogleAnalytics::for((int) $data['result'])
+            ->previous((int) $data['previous'])
             ->format('%');
     }
 
     /**
      * Sessions by country data for pie chart widgets
+     *
      * @return array<string, int|string>
      */
     public static function sessionsByCountry(?string $filter = null): array
     {
-        $filter = $filter ?? 'T';
+        $filter ??= 'T';
 
         /** @var \Spatie\Analytics\Period $period */
-        $period = GADataLookups::sessionsByDeviceAndByCountry()[$filter];
+        $period = GADataLookups::sessionsByDeviceAndByCountry()[$filter]; // @phpstan-ignore-line
 
         $analyticsData = Analytics::get(
             $period,
@@ -75,8 +79,8 @@ final class GAResponse
         );
 
         $results = [];
-        foreach ($analyticsData as $row) {
-            $results[str($row['country'])->studly()->append(' (' . number_format((int)$row['sessions']) . ')')->toString()] = $row['sessions'];
+        foreach ($analyticsData as $analyticData) {
+            $results[str($analyticData['country'])->studly()->append(' (' . number_format((int) $analyticData['sessions']) . ')')->toString()] = $analyticData['sessions'];
         }
 
         $total = 0;
@@ -94,10 +98,10 @@ final class GAResponse
      */
     public static function sessionsByDevice(?string $filter = null): array
     {
-        $filter = $filter ?? 'T';
+        $filter ??= 'T';
 
         /** @var \Spatie\Analytics\Period $period */
-        $period = GADataLookups::sessionsByDeviceAndByCountry()[$filter];
+        $period = GADataLookups::sessionsByDeviceAndByCountry()[$filter]; // @phpstan-ignore-line
 
         $analyticsData = Analytics::get(
             $period,
@@ -107,8 +111,8 @@ final class GAResponse
 
         $results = [];
 
-        foreach ($analyticsData as $row) {
-            $results[str($row['deviceCategory'])->studly()->append(' (' . number_format((int)$row['sessions']) . ')')->toString()] = $row['sessions'];
+        foreach ($analyticsData as $analyticData) {
+            $results[str($analyticData['deviceCategory'])->studly()->append(' (' . number_format((int) $analyticData['sessions']) . ')')->toString()] = $analyticData['sessions'];
         }
 
         $total = 0;
@@ -126,10 +130,10 @@ final class GAResponse
      */
     public static function mostVisitedPages(?string $filter = null): array
     {
-        $filter = $filter ?? 'T';
+        $filter ??= 'T';
 
         /** @var \Spatie\Analytics\Period $period */
-        $period = GADataLookups::mostVisitedAndTopReferrers()[$filter];
+        $period = GADataLookups::mostVisitedAndTopReferrers()[$filter]; // @phpstan-ignore-line
 
         $analyticsData = Analytics::get(
             $period,
@@ -140,28 +144,27 @@ final class GAResponse
         );
 
         return array_map(
-            function ($row) {
-                return [
-                    'name' => (string) $row['pageTitle'],
-                    'hostname' => (string) $row['hostName'],
-                    'path' => (string) $row['pagePath'],
-                    'visits' => (int) $row['screenPageViews'],
-                ];
-            },
+            fn (array $row): array => [
+                'name' => (string) $row['pageTitle'],
+                'hostname' => (string) $row['hostName'],
+                'path' => (string) $row['pagePath'],
+                'visits' => (int) $row['screenPageViews'],
+            ],
             $analyticsData->toArray()
         );
     }
 
     /**
      * Top referrers data for table widgets
+     *
      * @return array<int, array{url: string, pageViews: int}>
      */
     public static function topReferrers(?string $filter = null): array
     {
-        $filter = $filter ?? 'T';
+        $filter ??= 'T';
 
         /** @var \Spatie\Analytics\Period $period */
-        $period = GADataLookups::mostVisitedAndTopReferrers()[$filter];
+        $period = GADataLookups::mostVisitedAndTopReferrers()[$filter]; // @phpstan-ignore-line
 
         $analyticsData = Analytics::get(
             $period,
@@ -171,11 +174,9 @@ final class GAResponse
             [OrderBy::dimension('activeUsers', true)],
         );
 
-        return $analyticsData->map(function (array $pageRow) {
-            return [
-                'url' => $pageRow['pageReferrer'],
-                'pageViews' => (int) $pageRow['activeUsers'],
-            ];
-        })->all();
+        return $analyticsData->map(fn (array $pageRow): array => [
+            'url' => $pageRow['pageReferrer'],
+            'pageViews' => (int) $pageRow['activeUsers'],
+        ])->all();
     }
 }

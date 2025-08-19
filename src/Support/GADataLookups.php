@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace BezhanSalleh\FilamentGoogleAnalytics\Support;
 
+use BezhanSalleh\FilamentGoogleAnalytics\Traits\ActiveUsers;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits\PageViews;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits\Sessions;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits\SessionsDuration;
+use BezhanSalleh\FilamentGoogleAnalytics\Traits\Visitors;
 use Carbon\Carbon;
 use Spatie\Analytics\Period;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\Sessions;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\Visitors;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\PageViews;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\ActiveUsers;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\SessionsDuration;
 
 final class GADataLookups
 {
@@ -20,12 +20,10 @@ final class GADataLookups
     use SessionsDuration;
     use Visitors;
 
-    /**
-     * @return array<int, array<string, mixed>>
-     */
+    /** @return array<int, array<string, mixed>> */
     public function activeUsers(string $variant = 'active1DayUsers'): array
     {
-        return match($variant) {
+        return match ($variant) {
             'active1DayUsers' => [
                 '5' => $this->performActiveUsersQuery('active1DayUsers', 5),
                 '10' => $this->performActiveUsersQuery('active1DayUsers', 10),

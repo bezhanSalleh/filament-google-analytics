@@ -8,6 +8,9 @@ use Spatie\Analytics\Period;
 
 trait ActiveUsers
 {
+    /**
+     * @return array{results: array<string, int>}
+     */
     private function performActiveUsersQuery(string $metric, int $days): array
     {
         $analyticsData = Analytics::get(
@@ -16,11 +19,9 @@ trait ActiveUsers
             ['date']
         );
 
-        $results = $analyticsData->mapWithKeys(function ($row) use ($metric) {
-            return [
-                (new Carbon($row['date']))->format('M j') => $row[$metric],
-            ];
-        })->sortKeys();
+        $results = $analyticsData->mapWithKeys(fn (array $row) => [
+            (new Carbon($row['date']))->format('M j') => $row[$metric],
+        ])->sortKeys();
 
         return ['results' => $results->toArray()];
     }

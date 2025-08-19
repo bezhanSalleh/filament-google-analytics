@@ -10,6 +10,7 @@ trait Visitors
 {
     use MetricDiff;
 
+    /** @return array{result: int, previous: int} */
     private function visitorsToday(): array
     {
         $analyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::days(1));
@@ -20,6 +21,7 @@ trait Visitors
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function visitorsYesterday(): array
     {
         $analyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::create(Carbon::yesterday()->clone()->subDay(), Carbon::yesterday()));
@@ -30,6 +32,7 @@ trait Visitors
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function visitorsLastWeek(): array
     {
         $lastWeek = $this->getLastWeek();
@@ -42,6 +45,7 @@ trait Visitors
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function visitorsLastMonth(): array
     {
         $lastMonth = $this->getLastMonth();
@@ -54,6 +58,7 @@ trait Visitors
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function visitorsLastSevenDays(): array
     {
         $lastSevenDays = $this->getLastSevenDays();
@@ -66,6 +71,7 @@ trait Visitors
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function visitorsLastThirtyDays(): array
     {
         $lastThirtyDays = $this->getLastThirtyDays();

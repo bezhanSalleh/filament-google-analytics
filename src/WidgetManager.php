@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BezhanSalleh\FilamentGoogleAnalytics;
 
-use BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 use Filament\Widgets\WidgetConfiguration;
 use Livewire\Livewire;
 use Livewire\Mechanisms\ComponentRegistry;
@@ -12,10 +11,13 @@ use Livewire\Mechanisms\ComponentRegistry;
 class WidgetManager
 {
     /**
-     * @var array<string, class-string>
+     * @var array<string, string>
      */
     protected array $livewireComponents = [];
 
+    /**
+     * @var array<int, class-string>
+     */
     protected array $widgets = [
         Widgets\GAPageViewsOverview::class,
         Widgets\GAUniqueVisitorsOverview::class,
@@ -54,8 +56,8 @@ class WidgetManager
     }
 
     /**
-     * @param  class-string<Widget> | WidgetConfiguration  $widget
-     * @return class-string<Widget>
+     * @param  class-string | WidgetConfiguration  $widget
+     * @return class-string
      */
     public function normalizeWidgetClass(string | WidgetConfiguration $widget): string
     {

@@ -7,6 +7,7 @@ namespace BezhanSalleh\FilamentGoogleAnalytics\Support;
 use Filament\Actions\SelectAction as BaseSelectAction;
 use Filament\Support\Enums\IconSize;
 use Illuminate\View\ComponentAttributeBag;
+
 use function Filament\Support\generate_loading_indicator_html;
 
 class SelectAction extends BaseSelectAction
@@ -16,9 +17,8 @@ class SelectAction extends BaseSelectAction
         $id = $this->getId();
         $isDisabled = $this->isDisabled();
         $name = $this->getName();
-        $delay = config('filament.livewire_loading_delay', 'default');
 
-        $inputWrapperAttributes = (new ComponentAttributeBag)
+        $componentAttributeBag = (new ComponentAttributeBag)
             ->class([
                 'fi-input-wrp relative',
                 'fi-disabled' => $isDisabled,
@@ -56,7 +56,7 @@ class SelectAction extends BaseSelectAction
                 <?= e($this->getLabel()) ?>
             </label>
 
-            <div <?= $inputWrapperAttributes->toHtml() ?>>
+            <div <?= $componentAttributeBag->toHtml() ?>>
                 <select <?= $inputAttributes->toHtml() ?>>
                     <?php if (($placeholder = $this->getPlaceholder()) !== null) { ?>
                         <option value=""><?= e($placeholder) ?></option>
@@ -78,6 +78,6 @@ class SelectAction extends BaseSelectAction
             </div>
         </div>
 
-        <?php return ob_get_clean();
+        <?php return ob_get_clean() ?: '';
     }
 }

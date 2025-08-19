@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Facade;
  */
 class FilamentGoogleAnalytics extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return FGA::class;
     }

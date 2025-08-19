@@ -8,19 +8,19 @@ use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
 
 class GAStatsBuilder
 {
-    protected string | null $filter = null;
+    protected ?string $filter = null;
 
     /** @var array<int|string, string>|null */
-    protected array|null $options = null;
+    protected ?array $options = null;
 
     protected mixed $response = null;
 
     final public function __construct(
         protected string $heading,
-        protected string | null $type = null
-    ){}
+        protected ?string $type = null
+    ) {}
 
-    public static function make(string $heading, string | null $type = null ): static
+    public static function make(string $heading, ?string $type = null): static
     {
         return app(static::class, ['heading' => $heading, 'type' => $type]);
     }
@@ -33,7 +33,7 @@ class GAStatsBuilder
     }
 
     /** @param array<int|string, string> | null $options */
-    public function withSelectFilter(array | null $options, string | null $filter = null): static
+    public function withSelectFilter(?array $options, ?string $filter = null): static
     {
         $this->options = $options;
         $this->filter = $filter;
@@ -41,7 +41,7 @@ class GAStatsBuilder
         return $this;
     }
 
-    public function getFilter(): string | null
+    public function getFilter(): ?string
     {
         return $this->filter;
     }
@@ -51,7 +51,7 @@ class GAStatsBuilder
         return $this->heading;
     }
 
-    public function getType(): string | null
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -59,7 +59,7 @@ class GAStatsBuilder
     /**
      * @return array<int|string, string> | null
      */
-    public function getOptions(): array | null
+    public function getOptions(): ?array
     {
         return $this->options;
     }
@@ -93,5 +93,4 @@ class GAStatsBuilder
             ->chartColor('primary')
             ->select($this->getOptions(), $this->getFilter());
     }
-
 }

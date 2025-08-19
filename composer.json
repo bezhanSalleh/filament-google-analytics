@@ -62,9 +62,15 @@
         "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/pest --no-coverage",
         "type": "vendor/bin/pest --type-coverage",
-        "format": "vendor/bin/pint",
+        "lint": "vendor/bin/pint",
         "refactor": "vendor/bin/rector",
-        "finalize": "@analyse && @refactor && @format && @test"
+        "finalize": [
+            "@analyse",
+            "@refactor",
+            "@lint",
+            "@type",
+            "@test"
+        ]
     },
     "config": {
         "sort-packages": true,

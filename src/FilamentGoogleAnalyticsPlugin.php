@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace BezhanSalleh\FilamentGoogleAnalytics;
 
 use BezhanSalleh\FilamentGoogleAnalytics\Pages\FilamentGoogleAnalyticsDashboard;
-use BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
