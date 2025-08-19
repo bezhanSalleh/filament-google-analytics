@@ -8,6 +8,7 @@ use BezhanSalleh\GoogleAnalytics\Traits\CanViewWidget;
 use Filament\Support\RawJs;
 use Filament\Widgets\ChartWidget;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Str;
 
 class SessionsByDeviceWidget extends ChartWidget
 {
@@ -20,7 +21,7 @@ class SessionsByDeviceWidget extends ChartWidget
     protected function getData(): array
     {
         $data = collect(GAResponse::sessionsByDevice($this->filter))
-            ->filter(fn (mixed $item, string $key): bool => str($key)->doesntStartWith('total'))
+            ->filter(fn (mixed $item, string $key): bool => Str::doesntContain($key, 'total', ignoreCase: true))
             ->values()
             ->toArray();
 
