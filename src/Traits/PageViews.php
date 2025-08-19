@@ -10,26 +10,29 @@ trait PageViews
 {
     use MetricDiff;
 
+    /** @return array{result: int, previous: int} */
     private function pageViewsToday(): array
     {
         $analyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::days(1));
 
         return [
-            'result' => $analyticsData->first()['screenPageViews'] ?? 0,
-            'previous' => $analyticsData->last()['screenPageViews'] ?? 0,
+            'result' => (int) ($analyticsData->first()['screenPageViews'] ?? 0),
+            'previous' => (int) ($analyticsData->last()['screenPageViews'] ?? 0),
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function pageViewsYesterday(): array
     {
         $analyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::create(Carbon::yesterday()->clone()->subDay(), Carbon::yesterday()));
 
         return [
-            'result' => $analyticsData->first()['screenPageViews'] ?? 0,
-            'previous' => $analyticsData->last()['screenPageViews'] ?? 0,
+            'result' => (int) ($analyticsData->first()['screenPageViews'] ?? 0),
+            'previous' => (int) ($analyticsData->last()['screenPageViews'] ?? 0),
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function pageViewsLastWeek(): array
     {
         $lastWeek = $this->getLastWeek();
@@ -38,11 +41,12 @@ trait PageViews
         $previousResults = $this->get('screenPageViews', 'year', $lastWeek['previous']);
 
         return [
-            'previous' => $previousResults->pluck('value')->sum() ?? 0,
-            'result' => $currentResults->pluck('value')->sum() ?? 0,
+            'previous' => (int) ($previousResults->pluck('value')->sum() ?? 0),
+            'result' => (int) ($currentResults->pluck('value')->sum() ?? 0),
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function pageViewsLastMonth(): array
     {
         $lastMonth = $this->getLastMonth();
@@ -50,11 +54,12 @@ trait PageViews
         $previousResults = $this->get('screenPageViews', 'year', $lastMonth['previous']);
 
         return [
-            'previous' => $previousResults->pluck('value')->sum() ?? 0,
-            'result' => $currentResults->pluck('value')->sum() ?? 0,
+            'previous' => (int) ($previousResults->pluck('value')->sum() ?? 0),
+            'result' => (int) ($currentResults->pluck('value')->sum() ?? 0),
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function pageViewsLastSevenDays(): array
     {
         $lastSevenDays = $this->getLastSevenDays();
@@ -62,11 +67,12 @@ trait PageViews
         $previousResults = $this->get('screenPageViews', 'year', $lastSevenDays['previous']);
 
         return [
-            'previous' => $previousResults->pluck('value')->sum() ?? 0,
-            'result' => $currentResults->pluck('value')->sum() ?? 0,
+            'previous' => (int) ($previousResults->pluck('value')->sum() ?? 0),
+            'result' => (int) ($currentResults->pluck('value')->sum() ?? 0),
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function pageViewsLastThirtyDays(): array
     {
         $lastThirtyDays = $this->getLastThirtyDays();
@@ -74,8 +80,8 @@ trait PageViews
         $previousResults = $this->get('screenPageViews', 'year', $lastThirtyDays['previous']);
 
         return [
-            'previous' => $previousResults->pluck('value')->sum() ?? 0,
-            'result' => $currentResults->pluck('value')->sum() ?? 0,
+            'previous' => (int) ($previousResults->pluck('value')->sum() ?? 0),
+            'result' => (int) ($currentResults->pluck('value')->sum() ?? 0),
         ];
     }
 }

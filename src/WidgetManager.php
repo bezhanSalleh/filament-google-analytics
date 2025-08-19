@@ -11,22 +11,25 @@ use Livewire\Mechanisms\ComponentRegistry;
 class WidgetManager
 {
     /**
-     * @var array<string, class-string>
+     * @var array<string, string>
      */
     protected array $livewireComponents = [];
 
+    /**
+     * @var array<int, class-string>
+     */
     protected array $widgets = [
-        Widgets\PageViewsWidget::class,
-        Widgets\VisitorsWidget::class,
-        Widgets\ActiveUsersOneDayWidget::class,
-        Widgets\ActiveUsersSevenDayWidget::class,
-        Widgets\ActiveUsersTwentyEightDayWidget::class,
-        Widgets\SessionsWidget::class,
-        Widgets\SessionsDurationWidget::class,
-        Widgets\SessionsByCountryWidget::class,
-        Widgets\SessionsByDeviceWidget::class,
-        Widgets\MostVisitedPagesWidget::class,
-        Widgets\TopReferrersListWidget::class,
+        Widgets\GAPageViewsOverview::class,
+        Widgets\GAUniqueVisitorsOverview::class,
+        Widgets\GAActiveUsersOneDayOverview::class,
+        Widgets\GAActiveUsersSevenDayOverview::class,
+        Widgets\GAActiveUsersTwentyEightDayOverview::class,
+        Widgets\GASessionsOverview::class,
+        Widgets\GASessionsDurationOverview::class,
+        Widgets\GASessionsByCountryOverview::class,
+        Widgets\GASessionsByDeviceOverview::class,
+        Widgets\GAMostVisitedPagesList::class,
+        Widgets\GATopReferrersList::class,
     ];
 
     public static function make(): static
@@ -53,8 +56,8 @@ class WidgetManager
     }
 
     /**
-     * @param  class-string<Widget> | WidgetConfiguration  $widget
-     * @return class-string<Widget>
+     * @param  class-string | WidgetConfiguration  $widget
+     * @return class-string
      */
     public function normalizeWidgetClass(string | WidgetConfiguration $widget): string
     {

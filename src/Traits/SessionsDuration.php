@@ -9,18 +9,19 @@ trait SessionsDuration
 {
     use MetricDiff;
 
+    /** @return array{result: int, previous: int} */
     private function sessionDurationToday(): array
     {
         $results = $this->get('averageSessionDuration', 'date', Period::days(1));
 
         return match (true) {
-            ($results->containsOneItem() && ($results->first()['date'])->isYesterday()) => [
-                'previous' => $results->first()['value'],
+            ($results->containsOneItem() && ($results->first()['date'])->isYesterday()) => [ // @phpstan-ignore-line
+                'previous' => ($results->first() !== null && array_key_exists('value', $results->first())) ? $results->first()['value'] : 0,
                 'result' => 0,
             ],
-            ($results->containsOneItem() && ($results->first()['date'])->isToday()) => [
+            ($results->containsOneItem() && ($results->first()['date'])->isToday()) => [ // @phpstan-ignore-line
                 'previous' => 0,
-                'result' => $results->first()['value'],
+                'result' => ($results->first() !== null && array_key_exists('value', $results->first())) ? $results->first()['value'] : 0,
             ],
             $results->isEmpty() => [
                 'previous' => 0,
@@ -33,6 +34,7 @@ trait SessionsDuration
         };
     }
 
+    /** @return array{result: int, previous: int} */
     private function sessionDurationYesterday(): array
     {
         $results = $this->get('averageSessionDuration', 'date', Period::create(Carbon::yesterday()->clone()->subDay(), Carbon::yesterday()));
@@ -43,6 +45,7 @@ trait SessionsDuration
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function sessionDurationLastWeek(): array
     {
         $lastWeek = $this->getLastWeek();
@@ -55,6 +58,7 @@ trait SessionsDuration
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function sessionDurationLastMonth(): array
     {
         $lastMonth = $this->getLastMonth();
@@ -67,6 +71,7 @@ trait SessionsDuration
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function sessionDurationLastSevenDays(): array
     {
         $lastSevenDays = $this->getLastSevenDays();
@@ -79,6 +84,7 @@ trait SessionsDuration
         ];
     }
 
+    /** @return array{result: int, previous: int} */
     private function sessionDurationLastThirtyDays(): array
     {
         $lastThirtyDays = $this->getLastThirtyDays();
