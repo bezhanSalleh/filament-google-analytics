@@ -2,6 +2,24 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 2.1.2 - 2025-08-19
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot[bot] in https://github.com/bezhanSalleh/filament-google-analytics/pull/88
+* Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot[bot] in https://github.com/bezhanSalleh/filament-google-analytics/pull/89
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot[bot] in https://github.com/bezhanSalleh/filament-google-analytics/pull/90
+* Bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/bezhanSalleh/filament-google-analytics/pull/93
+* Bump stefanzweifel/git-auto-commit-action from 5 to 6 by @dependabot[bot] in https://github.com/bezhanSalleh/filament-google-analytics/pull/91
+* Add Ukrainian translations for Google Analytics widgets by @CrazyFreeMan in https://github.com/bezhanSalleh/filament-google-analytics/pull/92
+* Bump actions/checkout from 4 to 5 by @dependabot[bot] in https://github.com/bezhanSalleh/filament-google-analytics/pull/94
+
+### New Contributors
+
+* @CrazyFreeMan made their first contribution in https://github.com/bezhanSalleh/filament-google-analytics/pull/92
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/2.1.1...2.1.2
+
 ## 2.1.1 - 2024-11-12
 
 ### What's Changed
