@@ -32,7 +32,7 @@ class MostVisitedPagesWidget extends TableWidget
             ->columns([
                 Split::make([
                     TextColumn::make('name')
-                        ->url(fn (array $record): string => str($record['hostname'])->append($record['path'])->prepend('https://')->toUri())
+                        ->url(fn (array $record): string => str($record['hostname'])->append($record['path'])->prepend('https://')->toString())
                         ->openUrlInNewTab()
                         ->alignStart()
                         ->weight(FontWeight::Medium)

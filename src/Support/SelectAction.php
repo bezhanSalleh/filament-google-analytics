@@ -38,7 +38,7 @@ class SelectAction extends BaseSelectAction
                 'pr-8',
             ]);
 
-        // Spinner attributes respecting the delay
+        // Loading indicator attributes
         $spinnerAttributes = (new ComponentAttributeBag)
             ->merge([
                 'wire:loading.flex' => true,
@@ -66,7 +66,7 @@ class SelectAction extends BaseSelectAction
                     <?php } ?>
                 </select>
 
-                <!-- absolutely positioned spinner, respects Livewire delay -->
+                <!-- ✨ loading indicator -->
                 <div <?= $spinnerAttributes->toHtml() ?> aria-hidden="true">
                     <?= generate_loading_indicator_html(
                         new ComponentAttributeBag([
