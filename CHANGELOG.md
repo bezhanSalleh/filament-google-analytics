@@ -2,6 +2,14 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 3.0.0 - 2025-08-19
+
+### What's Changed
+
+* Filament V4 Support by @bezhanSalleh in https://github.com/bezhanSalleh/filament-google-analytics/pull/95
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/2.1.2...3.0.0
+
 ## 2.1.2 - 2025-08-19
 
 ### What's Changed
