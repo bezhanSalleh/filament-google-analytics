@@ -70,12 +70,12 @@ return [
      */
     'trending_up_icon' => 'heroicon-o-arrow-trending-up',
     'trending_down_icon' => 'heroicon-o-arrow-trending-down',
-    'steady_icon' => 'heroicon-o-arrows-right-left',
+    'trending_steady_icon' => 'heroicon-o-arrows-right-left',
 
     /**
      * Trajectory Colors
      */
     'trending_up_color' => 'success',
     'trending_down_color' => 'danger',
-    'steady_color' => 'secondary',
+    'trending_steady_color' => 'gray',
 ];

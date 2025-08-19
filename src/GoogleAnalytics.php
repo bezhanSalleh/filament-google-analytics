@@ -38,13 +38,17 @@ class GoogleAnalytics
         return match (true) {
             $this->value == 0 && $this->previous == 0 => 0,
             $this->value > 0 && $this->previous == 0 => $this->value,
-            $this->previous != 0 => intval((($this->value - $this->previous) / $this->previous) * 100),
+            $this->previous != 0 => round((($this->value - $this->previous) / $this->previous) * 100),
             default => 0,
         };
     }
 
     public function trajectoryValue(): int | string
     {
+        if ($this->compute() == 0) {
+            $this->previous = $this->value;
+        }
+
         return static::thousandsFormater($this->value);
     }
 
@@ -65,6 +69,7 @@ class GoogleAnalytics
 
     public function trajectoryColor(): string
     {
+        ray($this->value, $this->previous, $this->compute());
         return match ($this->getSign()) {
             -1 => config('google-analytics.trending_down_color'),
             0 => config('google-analytics.trending_steady_color'),
@@ -78,7 +83,7 @@ class GoogleAnalytics
         return match ($this->getSign()) {
             1 => config('google-analytics.trending_up_icon'),
             -1 => config('google-analytics.trending_down_icon'),
-            default => config('google-analytics.steady_icon')
+            default => config('google-analytics.trending_steady_icon')
         };
     }
 
