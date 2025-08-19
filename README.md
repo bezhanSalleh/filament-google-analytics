@@ -3,7 +3,7 @@
 </a>
 
 
-<p align="center" class="flex justify-center items-center">
+<p align="center" class="flex items-center justify-center">
     <a href="https://filamentphp.com/docs/3.x/panels/installation">
         <img alt="FILAMENT 8.x" src="https://img.shields.io/badge/FILAMENT-3.x-EBB304?style=for-the-badge">
     </a>
@@ -23,7 +23,16 @@
 <p>
 
 # Filament Google Analytics (GA4)
-Google Analytics integration for [Filament (FilamentAdmin)](https://filamentphp.com)
+Google Analytics integration for [Filament Panels](https://filamentphp.com)
+
+#### Compatibility
+
+| Package Version | Filament Version | 
+|----------------|---------------------|
+| [v1](https://github.com/bezhanSalleh/filament-google-analytics/tree/1.x) | [v2](https://filamentphp.com/docs/2.x/admin/installation) |
+| [v2](https://github.com/bezhanSalleh/filament-google-analytics/tree/2.x) | [v3](https://filamentphp.com/docs/3.x/panels/installation) |
+| [v3](https://github.com/bezhanSalleh/filament-google-analytics) | [v4](https://filamentphp.com/docs/4.x/introduction/overview) |
+
 
 # Installation
 
@@ -44,11 +53,6 @@ Also add this to the `.env` for your Filament PHP app:
 ```ini
 ANALYTICS_PROPERTY_ID=
 ```
-
-
-> [!NOTE]  
-> The plugin is developed to work in any Livewire project that uses the standalone `filament/widgets` package. But it also comes with a dedicated dashboard, which is a normal filament page. You can enable it by registering the plugin for the panels you want to use it in. If you are not using filament panels then you can skip this step.
-> 
 
 ```php
 public function panel(Panel $panel): Panel
@@ -72,17 +76,19 @@ php artisan vendor:publish --tag=filament-google-analytics-config
 
 #### Available Widgets
 ```php
-\BezhanSalleh\FilamentGoogleAnalytics\Widgets\PageViewsWidget::class,
-\BezhanSalleh\FilamentGoogleAnalytics\Widgets\VisitorsWidget::class,
-\BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersOneDayWidget::class,
-\BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersSevenDayWidget::class,
-\BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersTwentyEightDayWidget::class,
-\BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsWidget::class,
-\BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsDurationWidget::class,
-\BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsByCountryWidget::class,
-\BezhanSalleh\FilamentGoogleAnalytics\Widgets\SessionsByDeviceWidget::class,
-\BezhanSalleh\FilamentGoogleAnalytics\Widgets\MostVisitedPagesWidget::class,
-\BezhanSalleh\FilamentGoogleAnalytics\Widgets\TopReferrersListWidget::class,
+use BezhanSalleh\FilamentGoogleAnalytics\Widgets;
+
+Widgets\GAPageViewsOverview::class,
+Widgets\GAUniqueVisitorsOverview::class,
+Widgets\GAActiveUsersOneDayOverview::class,
+Widgets\GAActiveUsersSevenDayOverview::class,
+Widgets\GAActiveUsersTwentyEightDayOverview::class,
+Widgets\GASessionsOverview::class,
+Widgets\GASessionsDurationOverview::class,
+Widgets\GASessionsByCountryOverview::class,
+Widgets\GASessionsByDeviceOverview::class,
+Widgets\GAMostVisitedPagesList::class,
+Widgets\GATopReferrersList::class,
 ```
 
 #### Custom Dashboard
@@ -109,17 +115,17 @@ class MyCustomDashboardPage extends Page
     protected function getHeaderWidgets(): array
     {
         return [
-            Widgets\PageViewsWidget::class,
-            Widgets\VisitorsWidget::class,
-            Widgets\ActiveUsersOneDayWidget::class,
-            Widgets\ActiveUsersSevenDayWidget::class,
-            Widgets\ActiveUsersTwentyEightDayWidget::class,
-            Widgets\SessionsWidget::class,
-            Widgets\SessionsDurationWidget::class,
-            Widgets\SessionsByCountryWidget::class,
-            Widgets\SessionsByDeviceWidget::class,
-            Widgets\MostVisitedPagesWidget::class,
-            Widgets\TopReferrersListWidget::class,
+            Widgets\GAPageViewsOverview::class,
+            Widgets\GAUniqueVisitorsOverview::class,
+            Widgets\GAActiveUsersOneDayOverview::class,
+            Widgets\GAActiveUsersSevenDayOverview::class,
+            Widgets\GAActiveUsersTwentyEightDayOverview::class,
+            Widgets\GASessionsOverview::class,
+            Widgets\GASessionsDurationOverview::class,
+            Widgets\GASessionsByCountryOverview::class,
+            Widgets\GASessionsByDeviceOverview::class,
+            Widgets\GAMostVisitedPagesList::class,
+            Widgets\GATopReferrersList::class,
         ];
     }
 }
