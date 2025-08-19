@@ -1,12 +1,12 @@
 <?php
 
-namespace BezhanSalleh\FilamentGoogleAnalytics\Support;
+namespace BezhanSalleh\GoogleAnalytics\Support;
 
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class GAStats extends Stat
 {
-    protected string $view = 'filament-google-analytics::widgets.ga-stats';
+    protected string $view = 'google-analytics::widgets.ga-stats';
 
     public ?string $filter = null;
 

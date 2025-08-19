@@ -1,15 +1,15 @@
 <?php
 
-namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
+namespace BezhanSalleh\GoogleAnalytics\Widgets;
 
-use BezhanSalleh\FilamentGoogleAnalytics\Support\GAFilters;
-use BezhanSalleh\FilamentGoogleAnalytics\Support\GAResponse;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\CanViewWidget;
+use BezhanSalleh\GoogleAnalytics\Support\GAFilters;
+use BezhanSalleh\GoogleAnalytics\Support\GAResponse;
+use BezhanSalleh\GoogleAnalytics\Traits\CanViewWidget;
 use Filament\Support\RawJs;
 use Filament\Widgets\ChartWidget;
 use Illuminate\Contracts\Support\Htmlable;
 
-class GASessionsByCountryOverview extends ChartWidget
+class SessionsByDeviceWidget extends ChartWidget
 {
     use CanViewWidget;
 
@@ -19,16 +19,16 @@ class GASessionsByCountryOverview extends ChartWidget
 
     protected function getData(): array
     {
-        $data = collect(GAResponse::sessionsByCountry($this->filter))
+        $data = collect(GAResponse::sessionsByDevice($this->filter))
             ->filter(fn (mixed $item, string $key): bool => str($key)->doesntStartWith('total'))
             ->values()
             ->toArray();
 
         return [
-            'labels' => array_keys(GAResponse::sessionsByCountry($this->filter)),
+            'labels' => array_keys(GAResponse::sessionsByDevice($this->filter)),
             'datasets' => [
                 [
-                    'label' => 'Country',
+                    'label' => 'Device',
                     'data' => $data,
                     'backgroundColor' => [
                         '#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe',
@@ -49,7 +49,7 @@ class GASessionsByCountryOverview extends ChartWidget
 
     public function getHeading(): string | Htmlable | null
     {
-        return __('filament-google-analytics::widgets.sessions_by_country');
+        return __('google-analytics::widgets.sessions_by_device');
     }
 
     protected function getOptions(): array | RawJs | null

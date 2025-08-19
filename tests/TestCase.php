@@ -1,9 +1,8 @@
 <?php
 
-namespace BezhanSalleh\FilamentGoogleAnalytics\Tests;
+namespace BezhanSalleh\GoogleAnalytics\Tests;
 
-use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalyticsServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use BezhanSalleh\GoogleAnalytics\GoogleAnalyticsServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -14,7 +13,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         // Factory::guessFactoryNamesUsing(
-        //     fn (string $modelName) => 'BezhanSalleh\\FilamentGoogleAnalytics\\Database\\Factories\\'.class_basename($modelName).'Factory'
+        //     fn (string $modelName) => 'BezhanSalleh\\GoogleAnalytics\\Database\\Factories\\'.class_basename($modelName).'Factory'
         // );
     }
 
@@ -22,7 +21,7 @@ class TestCase extends Orchestra
     {
         return [
             LivewireServiceProvider::class,
-            FilamentGoogleAnalyticsServiceProvider::class,
+            GoogleAnalyticsServiceProvider::class,
         ];
     }
 

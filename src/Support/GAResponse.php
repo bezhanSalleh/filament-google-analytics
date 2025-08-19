@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace BezhanSalleh\FilamentGoogleAnalytics\Support;
+namespace BezhanSalleh\GoogleAnalytics\Support;
 
-use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
-use Facades\App\Services\GADataLookups;
+use BezhanSalleh\GoogleAnalytics\GoogleAnalytics;
+use Facades\BezhanSalleh\GoogleAnalytics\Support\GADataLookups;
 use Illuminate\Support\Arr;
 use Spatie\Analytics\Facades\Analytics;
 use Spatie\Analytics\OrderBy;
@@ -40,7 +40,7 @@ final class GAResponse
      *
      * @param  array<string, array<string, int>>  $dataLookup
      */
-    public static function common(array $dataLookup, ?string $filter = null): FilamentGoogleAnalytics
+    public static function common(array $dataLookup, ?string $filter = null): GoogleAnalytics
     {
         $filter ??= 'T';
 
@@ -53,7 +53,7 @@ final class GAResponse
             ],
         );
 
-        return FilamentGoogleAnalytics::for((int) $data['result'])
+        return GoogleAnalytics::for((int) $data['result'])
             ->previous((int) $data['previous'])
             ->format('%');
     }

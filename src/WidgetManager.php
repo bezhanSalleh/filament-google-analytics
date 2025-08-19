@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BezhanSalleh\FilamentGoogleAnalytics;
+namespace BezhanSalleh\GoogleAnalytics;
 
 use Filament\Widgets\WidgetConfiguration;
 use Livewire\Livewire;
@@ -19,17 +19,17 @@ class WidgetManager
      * @var array<int, class-string>
      */
     protected array $widgets = [
-        Widgets\GAPageViewsOverview::class,
-        Widgets\GAUniqueVisitorsOverview::class,
-        Widgets\GAActiveUsersOneDayOverview::class,
-        Widgets\GAActiveUsersSevenDayOverview::class,
-        Widgets\GAActiveUsersTwentyEightDayOverview::class,
-        Widgets\GASessionsOverview::class,
-        Widgets\GASessionsDurationOverview::class,
-        Widgets\GASessionsByCountryOverview::class,
-        Widgets\GASessionsByDeviceOverview::class,
-        Widgets\GAMostVisitedPagesList::class,
-        Widgets\GATopReferrersList::class,
+        Widgets\PageViewsWidget::class,
+        Widgets\VisitorsWidget::class,
+        Widgets\ActiveUsersOneDayWidget::class,
+        Widgets\ActiveUsersSevenDayWidget::class,
+        Widgets\ActiveUsersTwentyEightDayWidget::class,
+        Widgets\SessionsWidget::class,
+        Widgets\SessionsByCountryWidget::class,
+        Widgets\SessionsDurationWidget::class,
+        Widgets\SessionsByDeviceWidget::class,
+        Widgets\MostVisitedPagesWidget::class,
+        Widgets\TopReferrersListWidget::class,
     ];
 
     public static function make(): static

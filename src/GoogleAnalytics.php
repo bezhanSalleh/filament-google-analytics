@@ -1,10 +1,10 @@
 <?php
 
-namespace BezhanSalleh\FilamentGoogleAnalytics;
+namespace BezhanSalleh\GoogleAnalytics;
 
 use Illuminate\Support\Carbon;
 
-class FilamentGoogleAnalytics
+class GoogleAnalytics
 {
     public int | float $previous = 0;
 
@@ -56,29 +56,29 @@ class FilamentGoogleAnalytics
     public function trajectoryLabel(): string
     {
         return match ($this->getSign()) {
-            -1 => __('filament-google-analytics::widgets.trending_down'),
-            0 => __('filament-google-analytics::widgets.steady'),
-            1 => __('filament-google-analytics::widgets.trending_up'),
-            default => __('filament-google-analytics::widgets.steady')
+            -1 => __('google-analytics::widgets.trending_down'),
+            0 => __('google-analytics::widgets.steady'),
+            1 => __('google-analytics::widgets.trending_up'),
+            default => __('google-analytics::widgets.steady')
         };
     }
 
     public function trajectoryColor(): string
     {
         return match ($this->getSign()) {
-            -1 => config('filament-google-analytics.trending_down_color'),
-            0 => config('filament-google-analytics.trending_steady_color'),
-            1 => config('filament-google-analytics.trending_up_color'),
-            default => config('filament-google-analytics.trending_steady_color')
+            -1 => config('google-analytics.trending_down_color'),
+            0 => config('google-analytics.trending_steady_color'),
+            1 => config('google-analytics.trending_up_color'),
+            default => config('google-analytics.trending_steady_color')
         };
     }
 
     public function trajectoryIcon(): string
     {
         return match ($this->getSign()) {
-            1 => config('filament-google-analytics.trending_up_icon'),
-            -1 => config('filament-google-analytics.trending_down_icon'),
-            default => config('filament-google-analytics.steady_icon')
+            1 => config('google-analytics.trending_up_icon'),
+            -1 => config('google-analytics.trending_down_icon'),
+            default => config('google-analytics.steady_icon')
         };
     }
 
