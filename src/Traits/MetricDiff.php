@@ -10,7 +10,7 @@ use Spatie\Analytics\Period;
 
 trait MetricDiff
 {
-    /** @return Collection<int, array{date: string, value: mixed}> */
+    /** @return Collection<int, array{date: Carbon, value: mixed}> */
     private function get(string $metric, string $dimensions, Period $period): Collection
     {
         $analyticsData = Analytics::get(
@@ -25,7 +25,7 @@ trait MetricDiff
         $results = $analyticsData;
 
         return collect($results)->map(fn (array $dateRow): array => [
-            'date' => (string) $dateRow[$dimensions],
+            'date' => Carbon::parse($dateRow[$dimensions]),
             'value' => $dateRow[$metric],
         ])->values();
     }
