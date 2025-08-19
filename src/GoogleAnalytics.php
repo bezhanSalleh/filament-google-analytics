@@ -69,8 +69,6 @@ class GoogleAnalytics
 
     public function trajectoryColor(): string
     {
-        ray($this->value, $this->previous, $this->compute());
-
         return match ($this->getSign()) {
             -1 => config('google-analytics.trending_down_color'),
             0 => config('google-analytics.trending_steady_color'),
