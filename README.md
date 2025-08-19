@@ -149,8 +149,8 @@ class MyCustomDashboardPage extends Page
 
 # Preview
 Widgets rendered in a dedicated dashboard (or any other page you create)
-![Demo](https://raw.githubusercontent.com/bezhanSalleh/filament-google-analytics/main/previews/v4-art.png?raw=true Filament GA4 Preview")
-![Demo](https://raw.githubusercontent.com/bezhanSalleh/filament-google-analytics/main/previews/v4-art2.png?raw=true Filament GA4 Preview")
+![Demo](https://github.com/bezhanSalleh/filament-google-analytics/blob/main/previews/v4-art.png?raw=true "Filament GA4 Preview")
+![Demo](https://github.com/bezhanSalleh/filament-google-analytics/blob/main/previews/v4-art2.png?raw=true "Filament GA4 Preview")
 
 # Changelog
 
