@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace BezhanSalleh\FilamentGoogleAnalytics\Support;
+namespace BezhanSalleh\GoogleAnalytics\Support;
 
-use BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalytics;
+use BezhanSalleh\GoogleAnalytics\GoogleAnalytics;
 
 class GAStatsBuilder
 {
@@ -71,7 +71,7 @@ class GAStatsBuilder
 
     public function resolve(): GAStats
     {
-        if ($this->getResponse() instanceof FilamentGoogleAnalytics) {
+        if ($this->getResponse() instanceof GoogleAnalytics) {
             $value = blank($this->type)
                 ? $this->getResponse()->trajectoryValue()
                 : $this->getResponse()->trajectoryValueAsTimeString();
@@ -88,7 +88,7 @@ class GAStatsBuilder
 
         $data = data_get($this->getResponse(), 'results');
 
-        return GAStats::make($this->getHeading(), FilamentGoogleAnalytics::for(last($data))->trajectoryValue())
+        return GAStats::make($this->getHeading(), GoogleAnalytics::for(last($data))->trajectoryValue())
             ->chart($data)
             ->chartColor('primary')
             ->select($this->getOptions(), $this->getFilter());

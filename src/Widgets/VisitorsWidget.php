@@ -1,15 +1,15 @@
 <?php
 
-namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
+namespace BezhanSalleh\GoogleAnalytics\Widgets;
 
-use BezhanSalleh\FilamentGoogleAnalytics\Support\GAFilters;
-use BezhanSalleh\FilamentGoogleAnalytics\Support\GAResponse;
-use BezhanSalleh\FilamentGoogleAnalytics\Support\GAStatsBuilder;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\CanViewWidget;
-use Facades\BezhanSalleh\FilamentGoogleAnalytics\Support\GADataLookups;
+use BezhanSalleh\GoogleAnalytics\Support\GAFilters;
+use BezhanSalleh\GoogleAnalytics\Support\GAResponse;
+use BezhanSalleh\GoogleAnalytics\Support\GAStatsBuilder;
+use BezhanSalleh\GoogleAnalytics\Traits\CanViewWidget;
+use Facades\BezhanSalleh\GoogleAnalytics\Support\GADataLookups;
 use Filament\Widgets\StatsOverviewWidget;
 
-class GAUniqueVisitorsOverview extends StatsOverviewWidget
+class VisitorsWidget extends StatsOverviewWidget
 {
     use CanViewWidget;
 
@@ -29,7 +29,7 @@ class GAUniqueVisitorsOverview extends StatsOverviewWidget
     protected function getStats(): array
     {
         return [
-            GAStatsBuilder::make(__('filament-google-analytics::widgets.visitors'))
+            GAStatsBuilder::make(__('google-analytics::widgets.visitors'))
                 ->usingResponse(GAResponse::common(GADataLookups::visitors(), $this->filter))
                 ->withSelectFilter(GAFilters::common(), $this->filter)
                 ->resolve(),

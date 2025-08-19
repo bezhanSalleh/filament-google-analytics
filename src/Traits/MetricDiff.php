@@ -1,6 +1,6 @@
 <?php
 
-namespace BezhanSalleh\FilamentGoogleAnalytics\Traits;
+namespace BezhanSalleh\GoogleAnalytics\Traits;
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;

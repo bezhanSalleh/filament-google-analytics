@@ -8,7 +8,7 @@
         <img alt="FILAMENT 8.x" src="https://img.shields.io/badge/FILAMENT-3.x-EBB304?style=for-the-badge">
     </a>
     <a href="https://packagist.org/packages/bezhansalleh/filament-google-analytics">
-        <img alt="Packagist" src="https://img.shields.io/packagist/v/bezhansalleh/filament-google-analytics.svg?style=for-the-badge&logo=packagist">
+        <img alt="Packagist" src="https://img.shields.io/packagist/v/bezhansalleh/google-analytics.svg?style=for-the-badge&logo=packagist">
     </a>
 <!--     <a href="https://github.com/bezhansalleh/filament-google-analytics/actions?query=workflow%3Arun-tests+branch%3Amain" class="filament-hidden">
         <img alt="Tests Passing" src="https://img.shields.io/github/actions/workflow/status/bezhansalleh/filament-google-analytics/run-tests.yml?style=for-the-badge&logo=github&label=tests">
@@ -18,12 +18,12 @@
     </a>
 
 <a href="https://packagist.org/packages/bezhansalleh/filament-google-analytics">
-    <img alt="Downloads" src="https://img.shields.io/packagist/dt/bezhansalleh/filament-google-analytics.svg?style=for-the-badge" >
+    <img alt="Downloads" src="https://img.shields.io/packagist/dt/bezhansalleh/google-analytics.svg?style=for-the-badge" >
     </a>
 <p>
 
 # Filament Google Analytics (GA4)
-Google Analytics integration for [Filament Panels](https://filamentphp.com)
+Google Analytics integration for [Filament Panels](https://filamentphp.com) with a set of widgets to display your analytics data in a beautiful way.
 
 #### Compatibility
 
@@ -33,6 +33,9 @@ Google Analytics integration for [Filament Panels](https://filamentphp.com)
 | [v2](https://github.com/bezhanSalleh/filament-google-analytics/tree/2.x) | [v3](https://filamentphp.com/docs/3.x/panels/installation) |
 | [v3](https://github.com/bezhanSalleh/filament-google-analytics) | [v4](https://filamentphp.com/docs/4.x/introduction/overview) |
 
+## Upgrading from v2 to v3
+
+If you are upgrading from version 2 to version 3, you will need to update the namespace anywhere you are using the plugin from `BezhanSalleh\FilamentGoogleAnalytics` to `BezhanSalleh\GoogleAnalytics`.
 
 # Installation
 
@@ -53,6 +56,15 @@ Also add this to the `.env` for your Filament PHP app:
 ```ini
 ANALYTICS_PROPERTY_ID=
 ```
+> [!IMPORTANT]
+> If you have not set up a custom theme and are using Filament Panels follow the instructions in the [Filament Docs](https://filamentphp.com/docs/4.x/styling/overview#creating-a-custom-theme) first.
+
+After setting up a custom theme add the following to your theme css file.
+
+```css
+@source '../../../../vendor/bezhansalleh/filament-google-analytics/resources/views/**/*';
+@source '../../../../vendor/bezhansalleh/filament-google-analytics/src/{Widgets,Support}/*';
+```
 
 ```php
 public function panel(Panel $panel): Panel
@@ -60,14 +72,14 @@ public function panel(Panel $panel): Panel
     return $panel
         ->plugins([
             ...
-            \BezhanSalleh\FilamentGoogleAnalytics\FilamentGoogleAnalyticsPlugin::make()
+            \BezhanSalleh\GoogleAnalytics\GoogleAnalyticsPlugin::make()
         ]);
 }
 ```
 
 # Usage
 
-All the widgets are enabled by default for you to use them in your filament pages/resources. In order to enable the widgets for the default filament dashboard, you need to set the `filament_dashboard` option to `true` in the config file `filament-google-analytics.php` for each widget you want to enable.
+All the widgets are enabled by default for you to use them in your filament pages/resources. In order to enable the widgets for the default filament dashboard, you need to set the `filament_dashboard` option to `true` in the config file `google-analytics.php` for each widget you want to enable.
 
 Publish the config files and set your settings:
 ```bash
@@ -75,20 +87,21 @@ php artisan vendor:publish --tag=filament-google-analytics-config
 ```
 
 #### Available Widgets
-```php
-use BezhanSalleh\FilamentGoogleAnalytics\Widgets;
 
-Widgets\GAPageViewsOverview::class,
-Widgets\GAUniqueVisitorsOverview::class,
-Widgets\GAActiveUsersOneDayOverview::class,
-Widgets\GAActiveUsersSevenDayOverview::class,
-Widgets\GAActiveUsersTwentyEightDayOverview::class,
-Widgets\GASessionsOverview::class,
-Widgets\GASessionsDurationOverview::class,
-Widgets\GASessionsByCountryOverview::class,
-Widgets\GASessionsByDeviceOverview::class,
-Widgets\GAMostVisitedPagesList::class,
-Widgets\GATopReferrersList::class,
+```php
+use BezhanSalleh\GoogleAnalytics\Widgets;
+
+Widgets\PageViewsWidget::class,
+Widgets\VisitorsWidget::class,
+Widgets\ActiveUsersOneDayWidget::class,
+Widgets\ActiveUsersSevenDayWidget::class,
+Widgets\ActiveUsersTwentyEightDayWidget::class,
+Widgets\SessionsWidget::class,
+Widgets\SessionsByCountryWidget::class,
+Widgets\SessionsDurationWidget::class,
+Widgets\SessionsByDeviceWidget::class,
+Widgets\MostVisitedPagesWidget::class,
+Widgets\TopReferrersListWidget::class,
 ```
 
 #### Custom Dashboard
@@ -98,13 +111,14 @@ Though this plugin comes with a default dashboard, but sometimes you might want 
 php artisan filament:page MyCustomDashboardPage
 ```
 then register the widgets you want from the **Available Widgets** list either in the `getHeaderWidgets()` or `getFooterWidgets()`:
+
 ```php
 <?php
 
 namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
-use BezhanSalleh\FilamentGoogleAnalytics\Widgets;
+use BezhanSalleh\GoogleAnalytics\Widgets;
 
 class MyCustomDashboardPage extends Page
 {
@@ -115,28 +129,28 @@ class MyCustomDashboardPage extends Page
     protected function getHeaderWidgets(): array
     {
         return [
-            Widgets\GAPageViewsOverview::class,
-            Widgets\GAUniqueVisitorsOverview::class,
-            Widgets\GAActiveUsersOneDayOverview::class,
-            Widgets\GAActiveUsersSevenDayOverview::class,
-            Widgets\GAActiveUsersTwentyEightDayOverview::class,
-            Widgets\GASessionsOverview::class,
-            Widgets\GASessionsDurationOverview::class,
-            Widgets\GASessionsByCountryOverview::class,
-            Widgets\GASessionsByDeviceOverview::class,
-            Widgets\GAMostVisitedPagesList::class,
-            Widgets\GATopReferrersList::class,
+            Widgets\PageViewsWidget::class,
+            Widgets\VisitorsWidget::class,
+            Widgets\ActiveUsersOneDayWidget::class,
+            Widgets\ActiveUsersSevenDayWidget::class,
+            Widgets\ActiveUsersTwentyEightDayWidget::class,
+            Widgets\SessionsWidget::class,
+            Widgets\SessionsByCountryWidget::class,
+            Widgets\SessionsDurationWidget::class,
+            Widgets\SessionsByDeviceWidget::class,
+            Widgets\MostVisitedPagesWidget::class,
+            Widgets\TopReferrersListWidget::class,
         ];
     }
 }
 ```
 > [!NOTE]  
-> In order to enable the widgets for the default filament dashboard, you need to set the `filament_dashboard` option to `true` in the config file `filament-google-analytics.php` for each widget you want to enable.
+> In order to enable the widgets for the default filament dashboard, you need to set the `filament_dashboard` option to `true` in the config file `google-analytics.php` for each widget you want to enable.
 
 # Preview
 Widgets rendered in a dedicated dashboard (or any other page you create)
-<img width="2810" height="3612" alt="Filament GA4 Preview" src="https://github.com/user-attachments/assets/f4eb12d2-cf7f-4ec4-811c-9bb3bc64b2a4" />
-<img width="2250" height="1641" alt="Filament GA4 Preview 2" src="https://github.com/user-attachments/assets/c3693bf1-39eb-45b5-9d07-301f3b5c9f2d" />
+![Demo](https://raw.githubusercontent.com/bezhanSalleh/filament-google-analytics/master/bin/v4-art.png?raw=true Filament GA4 Preview")
+![Demo](https://raw.githubusercontent.com/bezhanSalleh/filament-google-analytics/master/bin/v4-art2.png?raw=true Filament GA4 Preview")
 
 # Changelog
 

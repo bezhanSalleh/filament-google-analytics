@@ -1,15 +1,15 @@
 <?php
 
-namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
+namespace BezhanSalleh\GoogleAnalytics\Widgets;
 
-use BezhanSalleh\FilamentGoogleAnalytics\Support\GAFilters;
-use BezhanSalleh\FilamentGoogleAnalytics\Support\GAResponse;
-use BezhanSalleh\FilamentGoogleAnalytics\Support\GAStatsBuilder;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\CanViewWidget;
-use Facades\BezhanSalleh\FilamentGoogleAnalytics\Support\GADataLookups;
+use BezhanSalleh\GoogleAnalytics\Support\GAFilters;
+use BezhanSalleh\GoogleAnalytics\Support\GAResponse;
+use BezhanSalleh\GoogleAnalytics\Support\GAStatsBuilder;
+use BezhanSalleh\GoogleAnalytics\Traits\CanViewWidget;
+use Facades\BezhanSalleh\GoogleAnalytics\Support\GADataLookups;
 use Filament\Widgets\StatsOverviewWidget;
 
-class GASessionsDurationOverview extends StatsOverviewWidget
+class SessionsByCountryWidget extends StatsOverviewWidget
 {
     use CanViewWidget;
 
@@ -29,7 +29,7 @@ class GASessionsDurationOverview extends StatsOverviewWidget
     protected function getStats(): array
     {
         return [
-            GAStatsBuilder::make(__('filament-google-analytics::widgets.sessions_duration'), 'time')
+            GAStatsBuilder::make(__('google-analytics::widgets.sessions_duration'), 'time')
                 ->usingResponse(GAResponse::common(GADataLookups::sessionsDuration(), $this->filter))
                 ->withSelectFilter(GAFilters::common(), $this->filter)
                 ->resolve(),

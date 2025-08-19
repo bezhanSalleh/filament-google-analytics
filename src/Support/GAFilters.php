@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BezhanSalleh\FilamentGoogleAnalytics\Support;
+namespace BezhanSalleh\GoogleAnalytics\Support;
 
 final class GAFilters
 {
@@ -12,9 +12,9 @@ final class GAFilters
     public static function activeUsers(): array
     {
         return [
-            '5' => __('filament-google-analytics::widgets.FD'),
-            '10' => __('filament-google-analytics::widgets.TD'),
-            '15' => __('filament-google-analytics::widgets.FFD'),
+            '5' => __('google-analytics::widgets.FD'),
+            '10' => __('google-analytics::widgets.TD'),
+            '15' => __('google-analytics::widgets.FFD'),
         ];
     }
 
@@ -31,12 +31,12 @@ final class GAFilters
     public static function common(): array
     {
         return [
-            'T' => __('filament-google-analytics::widgets.T'),
-            'Y' => __('filament-google-analytics::widgets.Y'),
-            'LW' => __('filament-google-analytics::widgets.LW'),
-            'LM' => __('filament-google-analytics::widgets.LM'),
-            'LSD' => __('filament-google-analytics::widgets.LSD'),
-            'LTD' => __('filament-google-analytics::widgets.LTD'),
+            'T' => __('google-analytics::widgets.T'),
+            'Y' => __('google-analytics::widgets.Y'),
+            'LW' => __('google-analytics::widgets.LW'),
+            'LM' => __('google-analytics::widgets.LM'),
+            'LSD' => __('google-analytics::widgets.LSD'),
+            'LTD' => __('google-analytics::widgets.LTD'),
         ];
     }
 
@@ -46,10 +46,10 @@ final class GAFilters
     public static function mostVisitedAndTopReferrers(): array
     {
         return [
-            'T' => __('filament-google-analytics::widgets.T'),
-            'TW' => __('filament-google-analytics::widgets.TW'),
-            'TM' => __('filament-google-analytics::widgets.TM'),
-            'TY' => __('filament-google-analytics::widgets.TY'),
+            'T' => __('google-analytics::widgets.T'),
+            'TW' => __('google-analytics::widgets.TW'),
+            'TM' => __('google-analytics::widgets.TM'),
+            'TY' => __('google-analytics::widgets.TY'),
         ];
     }
 }

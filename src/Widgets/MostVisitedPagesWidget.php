@@ -1,18 +1,18 @@
 <?php
 
-namespace BezhanSalleh\FilamentGoogleAnalytics\Widgets;
+namespace BezhanSalleh\GoogleAnalytics\Widgets;
 
-use BezhanSalleh\FilamentGoogleAnalytics\Support\GAFilters;
-use BezhanSalleh\FilamentGoogleAnalytics\Support\GAResponse;
-use BezhanSalleh\FilamentGoogleAnalytics\Support\SelectAction;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\CanViewWidget;
+use BezhanSalleh\GoogleAnalytics\Support\GAFilters;
+use BezhanSalleh\GoogleAnalytics\Support\GAResponse;
+use BezhanSalleh\GoogleAnalytics\Support\SelectAction;
+use BezhanSalleh\GoogleAnalytics\Traits\CanViewWidget;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget;
 
-class GAMostVisitedPagesList extends TableWidget
+class MostVisitedPagesWidget extends TableWidget
 {
     use CanViewWidget;
 
@@ -23,7 +23,7 @@ class GAMostVisitedPagesList extends TableWidget
     public function table(Table $table): Table
     {
         return $table
-            ->heading(__('filament-google-analytics::widgets.most_visited_pages'))
+            ->heading(__('google-analytics::widgets.most_visited_pages'))
             ->records(
                 fn () => collect(GAResponse::mostVisitedPages($this->filter))
                     ->mapWithKeys(fn (array $item): array => [str()->uuid()->toString() => $item])

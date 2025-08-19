@@ -1,6 +1,6 @@
 {
     "name": "bezhansalleh/filament-google-analytics",
-    "description": "Google Analytics integration with Filamentphp (FilamentAdmin)",
+    "description": "Google Analytics integration for FilamentPHP",
     "keywords": [
         "bezhanSalleh",
         "laravel",
@@ -50,12 +50,12 @@
     },
     "autoload": {
         "psr-4": {
-            "BezhanSalleh\\FilamentGoogleAnalytics\\": "src"
+            "BezhanSalleh\\GoogleAnalytics\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BezhanSalleh\\FilamentGoogleAnalytics\\Tests\\": "tests"
+            "BezhanSalleh\\GoogleAnalytics\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -82,11 +82,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BezhanSalleh\\FilamentGoogleAnalytics\\FilamentGoogleAnalyticsServiceProvider"
-            ],
-            "aliases": {
-                "FilamentGoogleAnalytics": "BezhanSalleh\\FilamentGoogleAnalytics\\Facades\\FilamentGoogleAnalytics"
-            }
+                "BezhanSalleh\\GoogleAnalytics\\GoogleAnalyticsServiceProvider"
+            ]
         }
     },
     "minimum-stability": "stable",

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace BezhanSalleh\FilamentGoogleAnalytics\Support;
+namespace BezhanSalleh\GoogleAnalytics\Support;
 
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\ActiveUsers;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\PageViews;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\Sessions;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\SessionsDuration;
-use BezhanSalleh\FilamentGoogleAnalytics\Traits\Visitors;
+use BezhanSalleh\GoogleAnalytics\Traits\ActiveUsers;
+use BezhanSalleh\GoogleAnalytics\Traits\PageViews;
+use BezhanSalleh\GoogleAnalytics\Traits\Sessions;
+use BezhanSalleh\GoogleAnalytics\Traits\SessionsDuration;
+use BezhanSalleh\GoogleAnalytics\Traits\Visitors;
 use Carbon\Carbon;
 use Spatie\Analytics\Period;
 

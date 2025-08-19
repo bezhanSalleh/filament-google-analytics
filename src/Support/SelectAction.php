@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BezhanSalleh\FilamentGoogleAnalytics\Support;
+namespace BezhanSalleh\GoogleAnalytics\Support;
 
 use Filament\Actions\SelectAction as BaseSelectAction;
 use Filament\Support\Enums\IconSize;

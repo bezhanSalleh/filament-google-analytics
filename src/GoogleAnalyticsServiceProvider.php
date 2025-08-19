@@ -1,16 +1,16 @@
 <?php
 
-namespace BezhanSalleh\FilamentGoogleAnalytics;
+namespace BezhanSalleh\GoogleAnalytics;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentGoogleAnalyticsServiceProvider extends PackageServiceProvider
+class GoogleAnalyticsServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('filament-google-analytics')
+            ->name('google-analytics')
             ->hasConfigFile()
             ->hasViews()
             ->hasTranslations();
