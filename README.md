@@ -5,24 +5,21 @@
 
 <p align="center" class="flex items-center justify-center">
     <a href="https://filamentphp.com/docs/3.x/panels/installation">
-        <img alt="FILAMENT 8.x" src="https://img.shields.io/badge/FILAMENT-3.x-EBB304?style=for-the-badge">
+        <img alt="FILAMENT 4.x" src="https://img.shields.io/badge/FILAMENT-4.x-EBB304?style=for-the-badge">
     </a>
     <a href="https://packagist.org/packages/bezhansalleh/filament-google-analytics">
-        <img alt="Packagist" src="https://img.shields.io/packagist/v/bezhansalleh/google-analytics.svg?style=for-the-badge&logo=packagist">
+        <img alt="Packagist" src="https://img.shields.io/packagist/v/bezhansalleh/filament-google-analytics.svg?style=for-the-badge&logo=packagist">
     </a>
-<!--     <a href="https://github.com/bezhansalleh/filament-google-analytics/actions?query=workflow%3Arun-tests+branch%3Amain" class="filament-hidden">
-        <img alt="Tests Passing" src="https://img.shields.io/github/actions/workflow/status/bezhansalleh/filament-google-analytics/run-tests.yml?style=for-the-badge&logo=github&label=tests">
-    </a> -->
     <a href="https://github.com/bezhansalleh/filament-google-analytics/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain" class="filament-hidden">
         <img alt="Code Style Passing" src="https://img.shields.io/github/actions/workflow/status/bezhansalleh/filament-google-analytics/laravel-pint.yml?style=for-the-badge&logo=github&label=code%20style">
     </a>
 
 <a href="https://packagist.org/packages/bezhansalleh/filament-google-analytics">
-    <img alt="Downloads" src="https://img.shields.io/packagist/dt/bezhansalleh/google-analytics.svg?style=for-the-badge" >
+    <img alt="Downloads" src="https://img.shields.io/packagist/dt/bezhansalleh/filament-google-analytics.svg?style=for-the-badge" >
     </a>
 <p>
 
-# Filament Google Analytics (GA4)
+# Google Analytics (GA4)
 Google Analytics integration for [Filament Panels](https://filamentphp.com) with a set of widgets to display your analytics data in a beautiful way.
 
 #### Compatibility
@@ -31,7 +28,7 @@ Google Analytics integration for [Filament Panels](https://filamentphp.com) with
 |----------------|---------------------|
 | [v1](https://github.com/bezhanSalleh/filament-google-analytics/tree/1.x) | [v2](https://filamentphp.com/docs/2.x/admin/installation) |
 | [v2](https://github.com/bezhanSalleh/filament-google-analytics/tree/2.x) | [v3](https://filamentphp.com/docs/3.x/panels/installation) |
-| [v3](https://github.com/bezhanSalleh/filament-google-analytics) | [v4](https://filamentphp.com/docs/4.x/introduction/overview) |
+| v3 | [v4](https://filamentphp.com/docs/4.x/introduction/overview) |
 
 ## Upgrading from v2 to v3
 
