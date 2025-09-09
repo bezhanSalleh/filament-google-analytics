@@ -1,5 +1,5 @@
 <a href="https://github.com/bezhansalleh/filament-google-analytics" class="filament-hidden">
-<img style="width: 100%; max-width: 100%;" alt="filament-google-analytics-art" src="https://user-images.githubusercontent.com/10007504/156520889-0abeb87d-a231-4f63-a79a-774fbd92ee5c.png" >
+<img style="width: 100%; max-width: 100%;" alt="filament-google-analytics-art" src="https://repository-images.githubusercontent.com/461983658/983ab0b3-a97f-49ab-91a0-7bfd165217e1" >
 </a>
 
 
