@@ -80,7 +80,7 @@ All the widgets are enabled by default for you to use them in your filament page
 
 Publish the config files and set your settings:
 ```bash
-php artisan vendor:publish --tag=filament-google-analytics-config
+ php artisan vendor:publish --tag=google-analytics-config
 ```
 
 #### Available Widgets

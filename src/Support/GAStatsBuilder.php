@@ -87,8 +87,9 @@ class GAStatsBuilder
         }
 
         $data = data_get($this->getResponse(), 'results');
+        $result = last($data) ?: 0;
 
-        return GAStats::make($this->getHeading(), GoogleAnalytics::for(last($data))->trajectoryValue())
+        return GAStats::make($this->getHeading(), GoogleAnalytics::for($result)->trajectoryValue())
             ->chart($data)
             ->chartColor('primary')
             ->select($this->getOptions(), $this->getFilter());

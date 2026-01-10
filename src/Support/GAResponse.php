@@ -52,8 +52,9 @@ final class GAResponse
                 'previous' => 0,
             ],
         );
+        $result = (int) $data['result'] ?: 0;
 
-        return GoogleAnalytics::for((int) $data['result'])
+        return GoogleAnalytics::for($result)
             ->previous((int) $data['previous'])
             ->format('%');
     }
