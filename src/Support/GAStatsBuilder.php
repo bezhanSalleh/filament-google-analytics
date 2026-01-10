@@ -87,7 +87,10 @@ class GAStatsBuilder
         }
 
         $data = data_get($this->getResponse(), 'results');
-        $result = last($data) ?: 0;
+
+        $value = last($data);
+
+        $result = is_numeric($value) ? (float) $value : 0;
 
         return GAStats::make($this->getHeading(), GoogleAnalytics::for($result)->trajectoryValue())
             ->chart($data)
