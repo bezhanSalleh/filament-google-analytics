@@ -2,6 +2,20 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 3.0.1 - 2026-01-10
+
+### What's Changed
+
+* Bump stefanzweifel/git-auto-commit-action from 6 to 7 by @dependabot[bot] in https://github.com/bezhanSalleh/filament-google-analytics/pull/99
+* Bump actions/checkout from 5 to 6 by @dependabot[bot] in https://github.com/bezhanSalleh/filament-google-analytics/pull/100
+* Fix doc command to publish config & fix no results in data from analytics by @n-ramos in https://github.com/bezhanSalleh/filament-google-analytics/pull/102
+
+### New Contributors
+
+* @n-ramos made their first contribution in https://github.com/bezhanSalleh/filament-google-analytics/pull/102
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/3.0.0...3.0.1
+
 ## 3.0.2 - 2025-08-19
 
 ### What's Changed
