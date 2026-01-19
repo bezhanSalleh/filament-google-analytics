@@ -2,6 +2,15 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 3.1.0 - 2026-01-19
+
+### What's Changed
+
+* Added support for Filament 5.x
+* Bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/bezhanSalleh/filament-google-analytics/pull/103
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/3.0.1...3.1.0
+
 ## 3.0.1 - 2026-01-10
 
 ### What's Changed
