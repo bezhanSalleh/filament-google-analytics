@@ -4,8 +4,11 @@
 
 
 <p align="center" class="flex items-center justify-center">
-    <a href="https://filamentphp.com/docs/3.x/panels/installation">
+    <a href="https://filamentphp.com/docs/4.x/panels/installation">
         <img alt="FILAMENT 4.x" src="https://img.shields.io/badge/FILAMENT-4.x-EBB304?style=for-the-badge">
+    </a>
+    <a href="https://filamentphp.com/docs/5.x/panels/installation">
+        <img alt="FILAMENT 5.x" src="https://img.shields.io/badge/FILAMENT-5.x-EBB304?style=for-the-badge">
     </a>
     <a href="https://packagist.org/packages/bezhansalleh/filament-google-analytics">
         <img alt="Packagist" src="https://img.shields.io/packagist/v/bezhansalleh/filament-google-analytics.svg?style=for-the-badge&logo=packagist">
@@ -26,9 +29,9 @@ Google Analytics integration for [Filament Panels](https://filamentphp.com) with
 
 | Package Version | Filament Version | 
 |----------------|---------------------|
-| [v1](https://github.com/bezhanSalleh/filament-google-analytics/tree/1.x) | [v2](https://filamentphp.com/docs/2.x/admin/installation) |
-| [v2](https://github.com/bezhanSalleh/filament-google-analytics/tree/2.x) | [v3](https://filamentphp.com/docs/3.x/panels/installation) |
-| v3 | [v4](https://filamentphp.com/docs/4.x/introduction/overview) |
+| [1.x](https://github.com/bezhanSalleh/filament-google-analytics/tree/1.x) | [2.x](https://filamentphp.com/docs/2.x/admin/installation) |
+| [2.x](https://github.com/bezhanSalleh/filament-google-analytics/tree/2.x) | [3.x](https://filamentphp.com/docs/3.x/panels/installation) |
+| 3.x | [4.x](https://filamentphp.com/docs/4.x/introduction/overview) & [5.x](https://filamentphp.com/docs/4.x/introduction/overview) |
 
 ## Upgrading from v2 to v3
 
