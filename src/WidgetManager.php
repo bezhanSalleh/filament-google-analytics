@@ -70,8 +70,18 @@ class WidgetManager
 
     protected function queueLivewireComponentForRegistration(string $component): void
     {
-        $componentName = app(ComponentRegistry::class)->getName($component);
+        $componentName = $this->getComponentAlias($component);
 
         $this->livewireComponents[$componentName] = $component;
+    }
+
+    private function getComponentAlias(string $component): string
+    {
+        if (app()->has(ComponentRegistry::class)) {
+
+            return app(ComponentRegistry::class)->getClass($component);
+        }
+
+        return app('livewire.finder')->resolveClassComponentClassName($component);
     }
 }
