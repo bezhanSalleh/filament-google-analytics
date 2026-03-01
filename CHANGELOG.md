@@ -2,6 +2,20 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 3.2.0 - 2026-03-01
+
+### What's Changed
+
+* Fix queueLivewireComponentForRegistration for Filament v5 by @ShamarKellman in https://github.com/bezhanSalleh/filament-google-analytics/pull/106
+* Added German Language by @Luukkkiiii in https://github.com/bezhanSalleh/filament-google-analytics/pull/107
+
+### New Contributors
+
+* @ShamarKellman made their first contribution in https://github.com/bezhanSalleh/filament-google-analytics/pull/106
+* @Luukkkiiii made their first contribution in https://github.com/bezhanSalleh/filament-google-analytics/pull/107
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/3.1.0...3.2.0
+
 ## 3.1.0 - 2026-01-19
 
 ### What's Changed
