@@ -4,6 +4,7 @@ namespace BezhanSalleh\GoogleAnalytics\Pages;
 
 use BezhanSalleh\GoogleAnalytics\Widgets;
 use Filament\Pages\Page;
+use Filament\Widgets\Widget;
 use Illuminate\Contracts\Support\Htmlable;
 
 class GoogleAnalyticsDashboard extends Page
@@ -36,7 +37,7 @@ class GoogleAnalyticsDashboard extends Page
     }
 
     /**
-     * @return array<class-string<\Filament\Widgets\Widget>>
+     * @return array<class-string<Widget>>
      */
     protected function getHeaderWidgets(): array
     {

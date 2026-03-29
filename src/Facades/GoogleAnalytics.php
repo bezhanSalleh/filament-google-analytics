@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static thousandsFormater()
  * @method static for()
  *
- * @see \BezhanSalleh\GoogleAnalytics\GoogleAnalytics
+ * @see FilamentGoogleAnalytics
  */
 class GoogleAnalytics extends Facade
 {

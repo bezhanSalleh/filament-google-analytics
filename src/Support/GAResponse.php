@@ -9,6 +9,7 @@ use Facades\BezhanSalleh\GoogleAnalytics\Support\GADataLookups;
 use Illuminate\Support\Arr;
 use Spatie\Analytics\Facades\Analytics;
 use Spatie\Analytics\OrderBy;
+use Spatie\Analytics\Period;
 
 final class GAResponse
 {
@@ -69,7 +70,7 @@ final class GAResponse
     {
         $filter ??= 'T';
 
-        /** @var \Spatie\Analytics\Period $period */
+        /** @var Period $period */
         $period = GADataLookups::sessionsByDeviceAndByCountry()[$filter]; // @phpstan-ignore-line
 
         $analyticsData = Analytics::get(
@@ -102,7 +103,7 @@ final class GAResponse
     {
         $filter ??= 'T';
 
-        /** @var \Spatie\Analytics\Period $period */
+        /** @var Period $period */
         $period = GADataLookups::sessionsByDeviceAndByCountry()[$filter]; // @phpstan-ignore-line
 
         $analyticsData = Analytics::get(
@@ -134,7 +135,7 @@ final class GAResponse
     {
         $filter ??= 'T';
 
-        /** @var \Spatie\Analytics\Period $period */
+        /** @var Period $period */
         $period = GADataLookups::mostVisitedAndTopReferrers()[$filter]; // @phpstan-ignore-line
 
         $analyticsData = Analytics::get(
@@ -165,7 +166,7 @@ final class GAResponse
     {
         $filter ??= 'T';
 
-        /** @var \Spatie\Analytics\Period $period */
+        /** @var Period $period */
         $period = GADataLookups::mostVisitedAndTopReferrers()[$filter]; // @phpstan-ignore-line
 
         $analyticsData = Analytics::get(
