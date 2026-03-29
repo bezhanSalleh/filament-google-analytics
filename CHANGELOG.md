@@ -2,6 +2,143 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 3.3.0 - 2026-03-29
+
+### What's Changed
+
+* Laravel 13 support by @bezhanSalleh in https://github.com/bezhanSalleh/filament-google-analytics/pull/109
+
+> [!CAUTION]
+If you've upgraded to Laravel 13, you may encounter errors when loading Google Analytics widgets. Keep reading below for the fix.
+
+**If you've upgraded to Laravel 13, you may encounter the following error when loading Google Analytics widgets:**
+
+```
+Return value must be of type RunReportResponse, __PHP_Incomplete_Class returned
+
+```
+This happens because Laravel 13 introduced a `serializable_classes` option in `config/cache.php` that defaults to `false`, preventing PHP from unserializing cached objects. The underlying `spatie/laravel-analytics` package caches raw Google Protobuf response objects, which are blocked by this new restriction.
+
+I have already submitted a [PR](https://github.com/spatie/laravel-analytics/pull/553) to fix this upstream but until that ships, here are three ways to resolve this in your application.
+
+
+---
+
+#### Option 1: Disable Spatie's Internal Cache (Recommended)
+
+Set the cache lifetime to `0` in `config/analytics.php` so protobuf objects are never cached:
+
+```php
+'cache_lifetime_in_minutes' => 0,
+
+```
+This avoids the serialization issue entirely.
+
+
+---
+
+#### Option 2: Allow All Serializable Classes
+
+Set `serializable_classes` to `true` in `config/cache.php`:
+
+```php
+'serializable_classes' => true,
+
+```
+This restores pre-Laravel 13 behavior and allows any class to be unserialized from cache. Simple, but it disables the security hardening that Laravel 13 introduced.
+
+
+---
+
+#### Option 3: Allow-List Specific Classes
+
+Add the required protobuf and Google Analytics classes to the `serializable_classes` array in `config/cache.php`. This is the most secure option if you want to keep spatie's caching enabled — only these specific classes will be allowed through `unserialize()`.
+
+```php
+use Google\Analytics\Data\V1beta\DimensionHeader;
+use Google\Analytics\Data\V1beta\DimensionValue;
+use Google\Analytics\Data\V1beta\MetricHeader;
+use Google\Analytics\Data\V1beta\MetricValue;
+use Google\Analytics\Data\V1beta\ResponseMetaData;
+use Google\Analytics\Data\V1beta\Row;
+use Google\Analytics\Data\V1beta\RunReportRequest;
+use Google\Analytics\Data\V1beta\RunReportResponse;
+use Google\Protobuf\Descriptor;
+use Google\Protobuf\EnumDescriptor;
+use Google\Protobuf\EnumValueDescriptor;
+use Google\Protobuf\FieldDescriptor;
+use Google\Protobuf\Internal\Descriptor as InternalDescriptor;
+use Google\Protobuf\Internal\EnumDescriptor as InternalEnumDescriptor;
+use Google\Protobuf\Internal\EnumValueDescriptorProto;
+use Google\Protobuf\Internal\FieldDescriptor as InternalFieldDescriptor;
+use Google\Protobuf\Internal\OneofDescriptor as InternalOneofDescriptor;
+use Google\Protobuf\Internal\OneofField;
+use Google\Protobuf\OneofDescriptor;
+use Google\Protobuf\RepeatedField;
+
+return [
+    // ...
+
+    'serializable_classes' => [
+        RunReportResponse::class,
+        RunReportRequest::class,
+        Row::class,
+        DimensionValue::class,
+        MetricValue::class,
+        DimensionHeader::class,
+        MetricHeader::class,
+        ResponseMetaData::class,
+        RepeatedField::class,
+        Descriptor::class,
+        FieldDescriptor::class,
+        EnumDescriptor::class,
+        EnumValueDescriptor::class,
+        OneofDescriptor::class,
+        InternalDescriptor::class,
+        InternalFieldDescriptor::class,
+        InternalEnumDescriptor::class,
+        InternalOneofDescriptor::class,
+        OneofField::class,
+        EnumValueDescriptorProto::class,
+    ],
+];
+
+```
+#### Full Class Reference
+
+| Class | Package |
+|---|---|
+| `Google\Analytics\Data\V1beta\RunReportResponse` | google/analytics-data |
+| `Google\Analytics\Data\V1beta\RunReportRequest` | google/analytics-data |
+| `Google\Analytics\Data\V1beta\Row` | google/analytics-data |
+| `Google\Analytics\Data\V1beta\DimensionValue` | google/analytics-data |
+| `Google\Analytics\Data\V1beta\MetricValue` | google/analytics-data |
+| `Google\Analytics\Data\V1beta\DimensionHeader` | google/analytics-data |
+| `Google\Analytics\Data\V1beta\MetricHeader` | google/analytics-data |
+| `Google\Analytics\Data\V1beta\ResponseMetaData` | google/analytics-data |
+| `Google\Protobuf\RepeatedField` | google/protobuf |
+| `Google\Protobuf\Descriptor` | google/protobuf |
+| `Google\Protobuf\FieldDescriptor` | google/protobuf |
+| `Google\Protobuf\EnumDescriptor` | google/protobuf |
+| `Google\Protobuf\EnumValueDescriptor` | google/protobuf |
+| `Google\Protobuf\OneofDescriptor` | google/protobuf |
+| `Google\Protobuf\Internal\Descriptor` | google/protobuf |
+| `Google\Protobuf\Internal\FieldDescriptor` | google/protobuf |
+| `Google\Protobuf\Internal\EnumDescriptor` | google/protobuf |
+| `Google\Protobuf\Internal\EnumValueDescriptorProto` | google/protobuf |
+| `Google\Protobuf\Internal\OneofDescriptor` | google/protobuf |
+| `Google\Protobuf\Internal\OneofField` | google/protobuf |
+
+
+---
+
+**Important:** After choosing any option, run `php artisan cache:clear` to flush stale cached entries.
+
+> [!Important]
+After choosing any option, run `php artisan cache:clear` to flush stale cached entries.
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/3.2.0...3.3.0
+
 ## 3.2.0 - 2026-03-01
 
 ### What's Changed
