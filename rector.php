@@ -16,5 +16,4 @@ return RectorConfig::configure()
         privatization: true,
         earlyReturn: true,
     )
-    ->withComposerBased(laravel: true)
     ->withPhpSets();
