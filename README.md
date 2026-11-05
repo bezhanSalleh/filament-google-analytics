@@ -2,91 +2,122 @@
 <img style="width: 100%; max-width: 100%;" alt="filament-google-analytics-art" src="https://repository-images.githubusercontent.com/461983658/983ab0b3-a97f-49ab-91a0-7bfd165217e1" >
 </a>
 
-
 <p align="center" class="flex items-center justify-center">
-    <a href="https://filamentphp.com/docs/4.x/panels/installation">
+    <a href="https://filamentphp.com/docs/4.x/introduction/overview">
         <img alt="FILAMENT 4.x" src="https://img.shields.io/badge/FILAMENT-4.x-EBB304?style=for-the-badge">
     </a>
-    <a href="https://filamentphp.com/docs/5.x/panels/installation">
+    <a href="https://filamentphp.com/docs/5.x/introduction/overview">
         <img alt="FILAMENT 5.x" src="https://img.shields.io/badge/FILAMENT-5.x-EBB304?style=for-the-badge">
     </a>
     <a href="https://packagist.org/packages/bezhansalleh/filament-google-analytics">
         <img alt="Packagist" src="https://img.shields.io/packagist/v/bezhansalleh/filament-google-analytics.svg?style=for-the-badge&logo=packagist">
     </a>
-    <a href="https://github.com/bezhansalleh/filament-google-analytics/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain" class="filament-hidden">
+    <a href="https://github.com/bezhansalleh/filament-google-analytics/actions?query=workflow%3Arun-tests+branch%3Amain" class="filament-hidden">
+        <img alt="Tests Passing" src="https://img.shields.io/github/actions/workflow/status/bezhansalleh/filament-google-analytics/run-tests.yml?style=for-the-badge&logo=github&label=tests">
+    </a>
+    <a href="https://github.com/bezhansalleh/filament-google-analytics/actions/workflows/laravel-pint.yml?query=branch%3Amain" class="filament-hidden">
         <img alt="Code Style Passing" src="https://img.shields.io/github/actions/workflow/status/bezhansalleh/filament-google-analytics/laravel-pint.yml?style=for-the-badge&logo=github&label=code%20style">
     </a>
 
 <a href="https://packagist.org/packages/bezhansalleh/filament-google-analytics">
     <img alt="Downloads" src="https://img.shields.io/packagist/dt/bezhansalleh/filament-google-analytics.svg?style=for-the-badge" >
     </a>
-<p>
+</p>
 
 # Google Analytics (GA4)
-Google Analytics integration for [Filament Panels](https://filamentphp.com) with a set of widgets to display your analytics data in a beautiful way.
 
-#### Compatibility
+Bring your Google Analytics 4 data into [Filament Panels](https://filamentphp.com). The plugin ships a dedicated dashboard page and a set of widgets that show page views, visitors, sessions, active users, devices, countries, top pages and referrers, each with its own period filter.
 
-| Package Version | Filament Version | 
-|----------------|---------------------|
+## Table of Contents
+
+- [Compatibility](#compatibility)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+  - [Dedicated Dashboard](#dedicated-dashboard)
+  - [Available Widgets](#available-widgets)
+  - [Widget Visibility](#widget-visibility)
+  - [Custom Dashboard](#custom-dashboard)
+- [Preview](#preview)
+- [Upgrading](#upgrading)
+- [Testing](#testing)
+- [Changelog](#changelog)
+- [Contributing](#contributing)
+- [Security Vulnerabilities](#security-vulnerabilities)
+- [Credits](#credits)
+- [License](#license)
+
+## Compatibility
+
+| Package Version | Filament Version |
+|-----------------|------------------|
 | [1.x](https://github.com/bezhanSalleh/filament-google-analytics/tree/1.x) | [2.x](https://filamentphp.com/docs/2.x/admin/installation) |
 | [2.x](https://github.com/bezhanSalleh/filament-google-analytics/tree/2.x) | [3.x](https://filamentphp.com/docs/3.x/panels/installation) |
-| 3.x | [4.x](https://filamentphp.com/docs/4.x/introduction/overview) & [5.x](https://filamentphp.com/docs/4.x/introduction/overview) |
+| **3.x** | [4.x](https://filamentphp.com/docs/4.x/introduction/overview) & [5.x](https://filamentphp.com/docs/5.x/introduction/overview) |
 
-## Upgrading from v2 to v3
+## Installation
 
-If you are upgrading from version 2 to version 3, you will need to update the namespace anywhere you are using the plugin from `BezhanSalleh\FilamentGoogleAnalytics` to `BezhanSalleh\GoogleAnalytics`.
-
-# Installation
-
-You can install the package in to a Laravel app that uses [Filament](https://filamentphp.com) via composer:
+Install the package with Composer:
 
 ```bash
 composer require bezhansalleh/filament-google-analytics
 ```
 
-For now, follow the directions on [Spatie's Laravel Google Analytics package](https://github.com/spatie/laravel-analytics) for getting your credentials, then put them here:
+The plugin reads your analytics data through [Spatie's Laravel Analytics package](https://github.com/spatie/laravel-analytics). Follow its guide to create a service account and download the credentials, then place the file at:
 
 ```
-yourapp/storage/app/analytics/service-account-credentials.json
+storage/app/analytics/service-account-credentials.json
 ```
 
-Also add this to the `.env` for your Filament PHP app:
+Add your GA4 property ID to your `.env` file:
 
 ```ini
 ANALYTICS_PROPERTY_ID=
 ```
-> [!IMPORTANT]
-> If you have not set up a custom theme and are using Filament Panels follow the instructions in the [Filament Docs](https://filamentphp.com/docs/4.x/styling/overview#creating-a-custom-theme) first.
 
-After setting up a custom theme add the following to your theme css file.
+> [!IMPORTANT]
+> The plugin follows Filament's theming rules. Create a [custom theme](https://filamentphp.com/docs/4.x/styling/overview#creating-a-custom-theme) if you haven't already, then add the following lines to your theme's CSS file:
 
 ```css
 @source '../../../../vendor/bezhansalleh/filament-google-analytics/resources/views/**/*';
 @source '../../../../vendor/bezhansalleh/filament-google-analytics/src/{Widgets,Support}/*';
 ```
 
+Register the plugin in your panel provider:
+
 ```php
+use BezhanSalleh\GoogleAnalytics\GoogleAnalyticsPlugin;
+
 public function panel(Panel $panel): Panel
 {
     return $panel
         ->plugins([
-            ...
-            \BezhanSalleh\GoogleAnalytics\GoogleAnalyticsPlugin::make()
+            GoogleAnalyticsPlugin::make(),
         ]);
 }
 ```
 
-# Usage
+## Configuration
 
-All the widgets are enabled by default for you to use them in your filament pages/resources. In order to enable the widgets for the default filament dashboard, you need to set the `filament_dashboard` option to `true` in the config file `google-analytics.php` for each widget you want to enable.
+Publish the config file to change the defaults:
 
-Publish the config files and set your settings:
 ```bash
- php artisan vendor:publish --tag=google-analytics-config
+php artisan vendor:publish --tag=google-analytics-config
 ```
 
-#### Available Widgets
+The config file lets you:
+
+- Enable or disable the dedicated dashboard page and set its navigation icon.
+- Control where each widget appears through its `filament_dashboard` and `global` options. See [Widget Visibility](#widget-visibility).
+- Change the icons and colors the stat widgets use for upward, downward and steady trends.
+
+## Usage
+
+### Dedicated Dashboard
+
+The plugin registers a **Google Analytics** page in your panel's navigation and renders every widget on it. Set `dedicated_dashboard` to `false` in the config file to remove the page.
+
+### Available Widgets
 
 ```php
 use BezhanSalleh\GoogleAnalytics\Widgets;
@@ -104,27 +135,40 @@ Widgets\MostVisitedPagesWidget::class,
 Widgets\TopReferrersListWidget::class,
 ```
 
-#### Custom Dashboard
-Though this plugin comes with a default dashboard, but sometimes you might want to change `navigationLabel` or `navigationGroup` or disable some `widgets` or any other options and given that the dashboard is a simple filament `page`; The easiest solution would be to disable the default dashboard and create a new `page`:
+### Widget Visibility
+
+Each widget has two options in the config file:
+
+| Option | Effect |
+|--------|--------|
+| `filament_dashboard` | Show the widget on Filament's default dashboard. Off by default. |
+| `global` | Show the widget on the dedicated dashboard and on any other page where you register it. |
+
+Set `filament_dashboard` to `true` for every widget you want on Filament's own dashboard.
+
+### Custom Dashboard
+
+The dedicated dashboard is a plain Filament page. To change its navigation label or group, pick a subset of widgets, or apply any other customization, disable the dedicated dashboard and create your own page:
 
 ```bash
-php artisan filament:page MyCustomDashboardPage
+php artisan make:filament-page MyCustomDashboardPage
 ```
-then register the widgets you want from the **Available Widgets** list either in the `getHeaderWidgets()` or `getFooterWidgets()`:
+
+Register the widgets you want in `getHeaderWidgets()` or `getFooterWidgets()`:
 
 ```php
 <?php
 
 namespace App\Filament\Pages;
 
-use Filament\Pages\Page;
 use BezhanSalleh\GoogleAnalytics\Widgets;
+use Filament\Pages\Page;
 
 class MyCustomDashboardPage extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    protected static string $view = 'filament.pages.my-custom-dashboard-page';
+    protected string $view = 'filament.pages.my-custom-dashboard-page';
 
     protected function getHeaderWidgets(): array
     {
@@ -144,27 +188,38 @@ class MyCustomDashboardPage extends Page
     }
 }
 ```
-> [!NOTE]  
-> In order to enable the widgets for the default filament dashboard, you need to set the `filament_dashboard` option to `true` in the config file `google-analytics.php` for each widget you want to enable.
 
-# Preview
-Widgets rendered in a dedicated dashboard (or any other page you create)
+## Preview
+
+The widgets rendered on the dedicated dashboard. They look the same on any page you add them to.
+
 ![Demo](https://github.com/bezhanSalleh/filament-google-analytics/blob/main/previews/v4-art.png?raw=true "Filament GA4 Preview")
 ![Demo](https://github.com/bezhanSalleh/filament-google-analytics/blob/main/previews/v4-art2.png?raw=true "Filament GA4 Preview")
 
-# Changelog
+## Upgrading
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+When you upgrade from 2.x to 3.x, replace the `BezhanSalleh\FilamentGoogleAnalytics` namespace with `BezhanSalleh\GoogleAnalytics` everywhere you reference the plugin.
 
-# Contributing
-If you want to contribute to this packages, you may want to test it in a real Filament project:
+## Testing
+
+```bash
+composer test
+```
+
+## Changelog
+
+See [CHANGELOG](CHANGELOG.md) for the list of recent changes.
+
+## Contributing
+
+If you want to contribute to this package, test it in a real Filament project:
 
 - Fork this repository to your GitHub account.
 - Create a Filament app locally.
 - Clone your fork in your Filament app's root directory.
 - In the `/filament-google-analytics` directory, create a branch for your fix, e.g. `fix/error-message`.
 
-Install the packages in your app's `composer.json`:
+Install the package in your app's `composer.json`:
 
 ```json
 "require": {
@@ -180,20 +235,19 @@ Install the packages in your app's `composer.json`:
 
 Now, run `composer update`.
 
+See [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+## Security Vulnerabilities
 
-# Security Vulnerabilities
+Review [our security policy](../../security/policy) to learn how to report security vulnerabilities.
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
-# Credits
+## Credits
 
 - [Bezhan Salleh](https://github.com/bezhanSalleh)
 - [Laravel Analytics](https://github.com/spatie/laravel-analytics) By [Spatie](https://github.com/spatie)
 - [Nova Google Analytics](https://github.com/tighten/nova-google-analytics) By [Tighten](https://github.com/tighten)
 - [All Contributors](../../contributors)
 
-# License
+## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). See the [License File](LICENSE.md) for more information.
