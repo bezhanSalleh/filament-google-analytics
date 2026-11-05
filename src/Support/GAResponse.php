@@ -170,7 +170,7 @@ final class GAResponse
             ['activeUsers'],
             ['pageReferrer'],
             10,
-            [OrderBy::dimension('activeUsers', true)],
+            [OrderBy::metric('activeUsers', true)],
         );
 
         return $analyticsData->map(fn (array $pageRow): array => [
