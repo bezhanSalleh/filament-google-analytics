@@ -7,7 +7,6 @@ use Rector\Config\RectorConfig;
 return RectorConfig::configure()
     ->withPaths([
         __DIR__ . '/src',
-        // __DIR__ . '/tests',
     ])
     ->withPreparedSets(
         deadCode: true,
@@ -16,6 +15,6 @@ return RectorConfig::configure()
         typeDeclarations: true,
         privatization: true,
         earlyReturn: true,
-        naming: true,
     )
-    ->withPhpSets(php82: true);
+    ->withComposerBased(laravel: true)
+    ->withPhpSets();
