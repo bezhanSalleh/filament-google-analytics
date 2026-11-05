@@ -2,6 +2,23 @@
 
 All notable changes to `filament-google-analytics` will be documented in this file.
 
+## 3.4.0 - 2026-11-05
+
+### What's Changed
+
+* Require Filament 4.16.1+ or 5.11.1+ and switch table widgets to `lazyLoaded()`, replacing the deprecated `deferLoading()`
+* Only link referrer and page URLs from Google Analytics when they are absolute http(s) URLs
+* Fall back to the default period when a widget filter value is not a known key, instead of raising an error
+* Order the top referrers by the `activeUsers` metric, matching `spatie/laravel-analytics`
+* Exclude `spatie/laravel-analytics` 5.7.0, which breaks caching on Laravel 13
+* Resolve Livewire component aliases the way Filament does on both Livewire 3 and 4
+* README rewritten with a table of contents and version support section
+* Bump dependabot/fetch-metadata from 2.5.0 to 3.0.0 by @dependabot[bot] in https://github.com/bezhanSalleh/filament-google-analytics/pull/110
+* Bump dependabot/fetch-metadata from 3.0.0 to 3.1.0 by @dependabot[bot] in https://github.com/bezhanSalleh/filament-google-analytics/pull/111
+* Bump actions/checkout from 6 to 7 by @dependabot[bot] in https://github.com/bezhanSalleh/filament-google-analytics/pull/113
+
+**Full Changelog**: https://github.com/bezhanSalleh/filament-google-analytics/compare/3.3.0...3.4.0
+
 ## 3.3.0 - 2026-03-29
 
 ### What's Changed
@@ -15,6 +32,7 @@ If you've upgraded to Laravel 13, you may encounter errors when loading Google A
 
 ```
 Return value must be of type RunReportResponse, __PHP_Incomplete_Class returned
+
 
 ```
 This happens because Laravel 13 introduced a `serializable_classes` option in `config/cache.php` that defaults to `false`, preventing PHP from unserializing cached objects. The underlying `spatie/laravel-analytics` package caches raw Google Protobuf response objects, which are blocked by this new restriction.
@@ -31,6 +49,7 @@ Set the cache lifetime to `0` in `config/analytics.php` so protobuf objects are 
 ```php
 'cache_lifetime_in_minutes' => 0,
 
+
 ```
 This avoids the serialization issue entirely.
 
@@ -43,6 +62,7 @@ Set `serializable_classes` to `true` in `config/cache.php`:
 
 ```php
 'serializable_classes' => true,
+
 
 ```
 This restores pre-Laravel 13 behavior and allows any class to be unserialized from cache. Simple, but it disables the security hardening that Laravel 13 introduced.
@@ -102,6 +122,7 @@ return [
         EnumValueDescriptorProto::class,
     ],
 ];
+
 
 ```
 #### Full Class Reference
