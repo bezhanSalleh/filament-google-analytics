@@ -30,7 +30,6 @@ Bring your Google Analytics 4 data into [Filament Panels](https://filamentphp.co
 
 ## Table of Contents
 
-- [Compatibility](#compatibility)
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
@@ -41,19 +40,12 @@ Bring your Google Analytics 4 data into [Filament Panels](https://filamentphp.co
 - [Preview](#preview)
 - [Upgrading](#upgrading)
 - [Testing](#testing)
+- [Version Support](#version-support)
 - [Changelog](#changelog)
 - [Contributing](#contributing)
 - [Security Vulnerabilities](#security-vulnerabilities)
 - [Credits](#credits)
 - [License](#license)
-
-## Compatibility
-
-| Package Version | Filament Version |
-|-----------------|------------------|
-| [1.x](https://github.com/bezhanSalleh/filament-google-analytics/tree/1.x) | [2.x](https://filamentphp.com/docs/2.x/admin/installation) |
-| [2.x](https://github.com/bezhanSalleh/filament-google-analytics/tree/2.x) | [3.x](https://filamentphp.com/docs/3.x/panels/installation) |
-| **3.x** | [4.x](https://filamentphp.com/docs/4.x/introduction/overview) & [5.x](https://filamentphp.com/docs/5.x/introduction/overview) |
 
 ## Installation
 
@@ -205,6 +197,18 @@ When you upgrade from 2.x to 3.x, replace the `BezhanSalleh\FilamentGoogleAnalyt
 ```bash
 composer test
 ```
+
+## Version Support
+
+Only the latest major plugin line receives active development. Older lines stay installable for legacy projects but get no new features; they only receive security fixes while their Filament target is still supported upstream.
+
+| Plugin | Filament | Status |
+|---|---|---|
+| **[`3.x`](https://github.com/bezhansalleh/filament-google-analytics/tree/main)** | [v4](https://filamentphp.com/docs/4.x/introduction/overview) & [v5](https://filamentphp.com/docs/5.x/introduction/overview) | **Active** — new features + bug fixes (lives on `main`) |
+| [`2.x`](https://github.com/bezhansalleh/filament-google-analytics/tree/2.x) | [v3](https://filamentphp.com/docs/3.x/panels/installation) | End of life — follows Filament v3 EOL |
+| [`1.x`](https://github.com/bezhansalleh/filament-google-analytics/tree/1.x) | [v2](https://filamentphp.com/docs/2.x/admin/installation) | End of life |
+
+See [CHANGELOG](CHANGELOG.md) for migration notes between majors.
 
 ## Changelog
 
