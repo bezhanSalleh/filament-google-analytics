@@ -32,7 +32,7 @@ class MostVisitedPagesWidget extends TableWidget
             ->columns([
                 Split::make([
                     TextColumn::make('name')
-                        ->url(fn (array $record): string => str($record['hostname'])->append($record['path'])->prepend('https://')->toString())
+                        ->url(fn (array $record): ?string => GAResponse::sanitizeUrl('https://' . $record['hostname'] . $record['path']))
                         ->openUrlInNewTab()
                         ->alignStart()
                         ->weight(FontWeight::Medium)
@@ -51,6 +51,6 @@ class MostVisitedPagesWidget extends TableWidget
                 SelectAction::make('filter')
                     ->options(fn (): array => GAFilters::mostVisitedAndTopReferrers()),
             ])
-            ->deferLoading();
+            ->lazyLoaded();
     }
 }

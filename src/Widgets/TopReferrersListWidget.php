@@ -33,8 +33,8 @@ class TopReferrersListWidget extends TableWidget
                 Split::make([
                     TextColumn::make('url')
                         ->state(fn (array $record): string => filled($record['url']) ? $record['url'] : 'Unknown')
-                        ->url(fn (array $record): ?string => filled($record['url']) && $record['url'] !== 'Unknown' ? $record['url'] : null)
-                        ->openUrlInNewTab(fn (array $record): bool => filled($record['url']) && $record['url'] !== 'Unknown')
+                        ->url(fn (array $record): ?string => GAResponse::sanitizeUrl($record['url']))
+                        ->openUrlInNewTab(fn (array $record): bool => GAResponse::sanitizeUrl($record['url']) !== null)
                         ->alignStart()
                         ->weight(FontWeight::Medium)
                         ->wrap(),
@@ -52,6 +52,6 @@ class TopReferrersListWidget extends TableWidget
                 SelectAction::make('filter')
                     ->options(fn (): array => GAFilters::mostVisitedAndTopReferrers()),
             ])
-            ->deferLoading();
+            ->lazyLoaded();
     }
 }

@@ -19,7 +19,7 @@ trait ActiveUsers
             ['date']
         );
 
-        $results = $analyticsData->mapWithKeys(fn (array $row) => [
+        $results = $analyticsData->mapWithKeys(fn (array $row): array => [
             (new Carbon($row['date']))->format('M j') => $row[$metric],
         ])->sortKeys();
 

@@ -75,13 +75,17 @@ class WidgetManager
         $this->livewireComponents[$componentName] = $component;
     }
 
+    /**
+     * Livewire 3 (Filament 4) derives an alias from the class through its
+     * component registry. Livewire 4 (Filament 5) registers class components
+     * under the class name itself, which is what Filament does for widgets.
+     */
     private function getComponentAlias(string $component): string
     {
         if (app()->has(ComponentRegistry::class)) {
-
-            return app(ComponentRegistry::class)->getClass($component);
+            return app(ComponentRegistry::class)->getName($component);
         }
 
-        return app('livewire.finder')->resolveClassComponentClassName($component);
+        return $component;
     }
 }

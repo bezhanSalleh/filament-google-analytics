@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BezhanSalleh\GoogleAnalytics\Facades;
 
 use BezhanSalleh\GoogleAnalytics\GoogleAnalytics as FilamentGoogleAnalytics;

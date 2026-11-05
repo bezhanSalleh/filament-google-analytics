@@ -70,8 +70,7 @@ final class GAResponse
     {
         $filter ??= 'T';
 
-        /** @var Period $period */
-        $period = GADataLookups::sessionsByDeviceAndByCountry()[$filter]; // @phpstan-ignore-line
+        $period = self::periodFor(GADataLookups::sessionsByDeviceAndByCountry(), $filter);
 
         $analyticsData = Analytics::get(
             $period,
@@ -103,8 +102,7 @@ final class GAResponse
     {
         $filter ??= 'T';
 
-        /** @var Period $period */
-        $period = GADataLookups::sessionsByDeviceAndByCountry()[$filter]; // @phpstan-ignore-line
+        $period = self::periodFor(GADataLookups::sessionsByDeviceAndByCountry(), $filter);
 
         $analyticsData = Analytics::get(
             $period,
@@ -135,8 +133,7 @@ final class GAResponse
     {
         $filter ??= 'T';
 
-        /** @var Period $period */
-        $period = GADataLookups::mostVisitedAndTopReferrers()[$filter]; // @phpstan-ignore-line
+        $period = self::periodFor(GADataLookups::mostVisitedAndTopReferrers(), $filter);
 
         $analyticsData = Analytics::get(
             $period,
@@ -166,8 +163,7 @@ final class GAResponse
     {
         $filter ??= 'T';
 
-        /** @var Period $period */
-        $period = GADataLookups::mostVisitedAndTopReferrers()[$filter]; // @phpstan-ignore-line
+        $period = self::periodFor(GADataLookups::mostVisitedAndTopReferrers(), $filter);
 
         $analyticsData = Analytics::get(
             $period,
@@ -178,8 +174,41 @@ final class GAResponse
         );
 
         return $analyticsData->map(fn (array $pageRow): array => [
-            'url' => $pageRow['pageReferrer'],
+            'url' => (string) $pageRow['pageReferrer'],
             'pageViews' => (int) $pageRow['activeUsers'],
         ])->all();
+    }
+
+    /**
+     * Return the URL only when it is an absolute http(s) URL, so values that
+     * reach the property through the Measurement Protocol cannot become
+     * links with other schemes in the panel.
+     */
+    public static function sanitizeUrl(?string $url): ?string
+    {
+        if (blank($url)) {
+            return null;
+        }
+
+        $url = trim($url);
+
+        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+            return null;
+        }
+
+        $scheme = strtolower((string) parse_url($url, PHP_URL_SCHEME));
+
+        return in_array($scheme, ['http', 'https'], true) ? $url : null;
+    }
+
+    /**
+     * Resolve the period for a filter key, falling back to the default when the
+     * key is not one of the known options.
+     *
+     * @param  array<string, Period>  $periods
+     */
+    private static function periodFor(array $periods, string $filter): Period
+    {
+        return $periods[$filter] ?? $periods['T'];
     }
 }

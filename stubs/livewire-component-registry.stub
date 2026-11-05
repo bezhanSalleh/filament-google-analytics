@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Livewire 3 ships this class; Livewire 4 removed it. The stub lets PHPStan
+ * analyse the Livewire 3 code path when Livewire 4 is installed.
+ */
+
+namespace Livewire\Mechanisms;
+
+class ComponentRegistry
+{
+    public function getName(string $nameOrClass): string {}
+
+    public function getClass(string $nameOrClass): string {}
+}

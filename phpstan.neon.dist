@@ -10,6 +10,9 @@ parameters:
 
     tmpDir: build/phpstan
 
+    scanFiles:
+        - stubs/livewire-component-registry.stub
+
     ignoreErrors:
         -
             identifier: property.onlyWritten
