@@ -28,7 +28,8 @@
 
 Bring your Google Analytics 4 data into [Filament Panels](https://filamentphp.com). The plugin ships a dedicated dashboard page and a set of widgets that show page views, visitors, sessions, active users, devices, countries, top pages and referrers, each with its own period filter.
 
-## Table of Contents
+<div class="filament-hidden">
+<b>Table of Contents</b>
 
 - [Installation](#installation)
 - [Configuration](#configuration)
@@ -46,6 +47,7 @@ Bring your Google Analytics 4 data into [Filament Panels](https://filamentphp.co
 - [Security Vulnerabilities](#security-vulnerabilities)
 - [Credits](#credits)
 - [License](#license)
+</div>
 
 ## Installation
 
